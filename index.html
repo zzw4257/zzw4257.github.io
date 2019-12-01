@@ -1,400 +1,627 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <meta charset="utf-8">
-  
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
 
-  
-  <title>zzw4257</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    hostname: new URL('http://zzw4257.github.io').hostname,
+    root: '/',
+    scheme: 'Muse',
+    version: '7.6.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: '',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
+  };
+</script>
+
   <meta property="og:type" content="website">
 <meta property="og:title" content="zzw4257">
 <meta property="og:url" content="http:&#x2F;&#x2F;zzw4257.github.io&#x2F;index.html">
 <meta property="og:site_name" content="zzw4257">
 <meta property="og:locale" content="en">
 <meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://zzw4257.github.io/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: true,
+    isPost: false,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>zzw4257</title>
   
-    <link rel="alternate" href="/atom.xml" title="zzw4257" type="application/atom+xml">
-  
-  
-    <link rel="icon" href="/favicon.png">
-  
-  
-    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
-  
-  <link rel="stylesheet" href="/css/style.css">
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
 </head>
 
-<body>
-  <div id="container">
-    <div id="wrap">
-      <header id="header">
-  <div id="banner"></div>
-  <div id="header-outer" class="outer">
-    <div id="header-title" class="inner">
-      <h1 id="logo-wrap">
-        <a href="/" id="logo">zzw4257</a>
-      </h1>
-      
-    </div>
-    <div id="header-inner" class="inner">
-      <nav id="main-nav">
-        <a id="main-nav-toggle" class="nav-icon"></a>
-        
-          <a class="main-nav-link" href="/">Home</a>
-        
-          <a class="main-nav-link" href="/archives">Archives</a>
-        
-      </nav>
-      <nav id="sub-nav">
-        
-          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
-        
-        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
-      </nav>
-      <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://zzw4257.github.io"></form>
-      </div>
-    </div>
-  </div>
-</header>
-      <div class="outer">
-        <section id="main">
-  
-    <article id="post-hello-world" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/12/01/hello-world/" class="article-date">
-  <time datetime="2019-12-01T09:24:14.075Z" itemprop="datePublished">2019-12-01</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/12/01/hello-world/">Hello World</a>
-    </h1>
-  
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
 
-      </header>
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">zzw4257</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>Archives</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
     
-    <div class="article-entry" itemprop="articleBody">
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://zzw4257.github.io/2019/12/01/hello-world/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="zzw4257">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="zzw4257">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/12/01/hello-world/" class="post-title-link" itemprop="url">Hello World</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2019-12-01 17:24:14 / Modified: 18:37:31" itemprop="dateCreated datePublished" datetime="2019-12-01T17:24:14+08:00">2019-12-01</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
       
-        <p>我是CQ初三CSP蒟蒻选手zzw4257</p>
+          <p>我是CQ初三CSP蒟蒻选手zzw4257</p>
 <p>这是我新建的Hexo博客，希望多多关照</p>
 
       
     </div>
-    <footer class="article-footer">
-      <a data-url="http://zzw4257.github.io/2019/12/01/hello-world/" data-id="ck3mvo3ve0003acu3dp4o3uby" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
 
-
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
   
-    <article id="post-CSP复习" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/12/01/CSP%E5%A4%8D%E4%B9%A0/" class="article-date">
-  <time datetime="2019-11-30T16:00:00.000Z" itemprop="datePublished">2019-12-01</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
+  
+  
+
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/12/01/CSP%E5%A4%8D%E4%B9%A0/">CSP2019复习</a>
-    </h1>
   
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://zzw4257.github.io/2019/12/01/CSP%E5%BF%83%E8%B7%AF%E5%8E%86%E7%A8%8B/">
 
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="zzw4257">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="zzw4257">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/12/01/CSP%E5%BF%83%E8%B7%AF%E5%8E%86%E7%A8%8B/" class="post-title-link" itemprop="url">CSP心路历程</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2019-12-01 00:00:00 / Modified: 18:38:50" itemprop="dateCreated datePublished" datetime="2019-12-01T00:00:00+08:00">2019-12-01</time>
+            </span>
+
+          
+
+        </div>
       </header>
+
     
-    <div class="article-entry" itemprop="articleBody">
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
       
-        <p>希望能聊胜于无</p>
-        
-          <p class="article-more-link">
-            <a href="/2019/12/01/CSP%E5%A4%8D%E4%B9%A0/#more">Read More</a>
-          </p>
+          <p>_——人常说无论做什么都不要忘了初心，但如果一个人从来没有”应该”去忘了初心，又从何谈起的初心。_</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2019/12/01/CSP%E5%BF%83%E8%B7%AF%E5%8E%86%E7%A8%8B/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
         
       
     </div>
-    <footer class="article-footer">
-      <a data-url="http://zzw4257.github.io/2019/12/01/CSP%E5%A4%8D%E4%B9%A0/" data-id="ck3mvo3uw0000acu38au41ue3" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%AE%97%E6%B3%95/" rel="tag">算法</a></li></ul>
 
-    </footer>
-  </div>
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
   
-</article>
-
-
   
-    <article id="post-CSP心路历程" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/12/01/CSP%E5%BF%83%E8%B7%AF%E5%8E%86%E7%A8%8B/" class="article-date">
-  <time datetime="2019-11-30T16:00:00.000Z" itemprop="datePublished">2019-12-01</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
+  
+
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/12/01/CSP%E5%BF%83%E8%B7%AF%E5%8E%86%E7%A8%8B/">CSP心路历程</a>
-    </h1>
   
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://zzw4257.github.io/2019/12/01/CSP%E5%A4%8D%E4%B9%A0/">
 
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="zzw4257">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="zzw4257">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/12/01/CSP%E5%A4%8D%E4%B9%A0/" class="post-title-link" itemprop="url">CSP2019复习</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2019-12-01 00:00:00 / Modified: 18:23:57" itemprop="dateCreated datePublished" datetime="2019-12-01T00:00:00+08:00">2019-12-01</time>
+            </span>
+
+          
+
+        </div>
       </header>
+
     
-    <div class="article-entry" itemprop="articleBody">
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
       
-        <p>_——人常说无论做什么都不要忘了初心，但如果一个人从来没有”应该”去忘了初心，又从何谈起的初心。_</p>
-        
-          <p class="article-more-link">
-            <a href="/2019/12/01/CSP%E5%BF%83%E8%B7%AF%E5%8E%86%E7%A8%8B/#more">Read More</a>
-          </p>
+          <p>希望能聊胜于无</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2019/12/01/CSP%E5%A4%8D%E4%B9%A0/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
         
       
     </div>
-    <footer class="article-footer">
-      <a data-url="http://zzw4257.github.io/2019/12/01/CSP%E5%BF%83%E8%B7%AF%E5%8E%86%E7%A8%8B/" data-id="ck3mvo3v70001acu3dxyg1bi6" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%B8%B8%E8%AE%B0/" rel="tag">游记</a></li></ul>
 
-    </footer>
-  </div>
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
   
-</article>
-
-
   
-    <article id="post-【BZOJ4237】稻草人 CDQ分治 单调栈" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/12/01/%E3%80%90BZOJ4237%E3%80%91%E7%A8%BB%E8%8D%89%E4%BA%BA%20CDQ%E5%88%86%E6%B2%BB%20%E5%8D%95%E8%B0%83%E6%A0%88/" class="article-date">
-  <time datetime="2019-11-30T16:00:00.000Z" itemprop="datePublished">2019-12-01</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
+  
+
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/12/01/%E3%80%90BZOJ4237%E3%80%91%E7%A8%BB%E8%8D%89%E4%BA%BA%20CDQ%E5%88%86%E6%B2%BB%20%E5%8D%95%E8%B0%83%E6%A0%88/">【BZOJ4237】稻草人 CDQ分治 单调栈</a>
-    </h1>
   
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://zzw4257.github.io/2019/12/01/%E3%80%90BZOJ4237%E3%80%91%E7%A8%BB%E8%8D%89%E4%BA%BA%20CDQ%E5%88%86%E6%B2%BB%20%E5%8D%95%E8%B0%83%E6%A0%88/">
 
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="zzw4257">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="zzw4257">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/12/01/%E3%80%90BZOJ4237%E3%80%91%E7%A8%BB%E8%8D%89%E4%BA%BA%20CDQ%E5%88%86%E6%B2%BB%20%E5%8D%95%E8%B0%83%E6%A0%88/" class="post-title-link" itemprop="url">【BZOJ4237】稻草人 CDQ分治 单调栈</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2019-12-01 00:00:00 / Modified: 18:44:10" itemprop="dateCreated datePublished" datetime="2019-12-01T00:00:00+08:00">2019-12-01</time>
+            </span>
+
+          
+
+        </div>
       </header>
+
     
-    <div class="article-entry" itemprop="articleBody">
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
       
-        <h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><hr>
+          <h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><hr>
 <blockquote>
 <p>JOI村有一片荒地，上面竖着N个稻草人，村民们每年多次在稻草人们的周围举行祭典。<br>有一次，JOI村的村长听到了稻草人们的启示，计划在荒地中开垦一片田地。和启示中的一样，田地需要满足以下条件：<br>田地的形状是边平行于坐标轴的长方形；<br>左下角和右上角各有一个稻草人；<br>田地的内部(不包括边界)没有稻草人。<br>给出每个稻草人的坐标，请你求出有多少遵从启示的田地的个数<br><strong>简述</strong> 求$n$个点组成的内部不含其它点的矩形有多少</p>
 </blockquote>
-        
-          <p class="article-more-link">
-            <a href="/2019/12/01/%E3%80%90BZOJ4237%E3%80%91%E7%A8%BB%E8%8D%89%E4%BA%BA%20CDQ%E5%88%86%E6%B2%BB%20%E5%8D%95%E8%B0%83%E6%A0%88/#more">Read More</a>
-          </p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2019/12/01/%E3%80%90BZOJ4237%E3%80%91%E7%A8%BB%E8%8D%89%E4%BA%BA%20CDQ%E5%88%86%E6%B2%BB%20%E5%8D%95%E8%B0%83%E6%A0%88/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
         
       
     </div>
-    <footer class="article-footer">
-      <a data-url="http://zzw4257.github.io/2019/12/01/%E3%80%90BZOJ4237%E3%80%91%E7%A8%BB%E8%8D%89%E4%BA%BA%20CDQ%E5%88%86%E6%B2%BB%20%E5%8D%95%E8%B0%83%E6%A0%88/" data-id="ck3mvo3vi0004acu3hopf4x07" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E9%A2%98%E8%A7%A3-%E5%8D%95%E8%B0%83%E6%A0%88-CDQ%E5%88%86%E6%B2%BB/" rel="tag">题解,单调栈,CDQ分治</a></li></ul>
 
-    </footer>
-  </div>
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
   
-</article>
-
-
   
-    <article id="post-生成函数" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/12/01/%E7%94%9F%E6%88%90%E5%87%BD%E6%95%B0/" class="article-date">
-  <time datetime="2019-11-30T16:00:00.000Z" itemprop="datePublished">2019-12-01</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
+  
+
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/12/01/%E7%94%9F%E6%88%90%E5%87%BD%E6%95%B0/">生成函数</a>
-    </h1>
   
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://zzw4257.github.io/2019/12/01/%E7%94%9F%E6%88%90%E5%87%BD%E6%95%B0/">
 
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="zzw4257">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="zzw4257">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/12/01/%E7%94%9F%E6%88%90%E5%87%BD%E6%95%B0/" class="post-title-link" itemprop="url">生成函数</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2019-12-01 00:00:00 / Modified: 18:44:17" itemprop="dateCreated datePublished" datetime="2019-12-01T00:00:00+08:00">2019-12-01</time>
+            </span>
+
+          
+
+        </div>
       </header>
+
     
-    <div class="article-entry" itemprop="articleBody">
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
       
-        <h2 id="【前置知识】"><a href="#【前置知识】" class="headerlink" title="【前置知识】"></a>【前置知识】</h2><p>组合数公式($n\in N$):$C_n^m$=$\frac{n!}{(n-m)!\cdot m!}$</p>
+          <h2 id="【前置知识】"><a href="#【前置知识】" class="headerlink" title="【前置知识】"></a>【前置知识】</h2><p>组合数公式($n\in N$):$C_n^m$=$\frac{n!}{(n-m)!\cdot m!}$</p>
 <p>拓展（$n\in R$）:$C_n^m$=$\frac{\prod_{i=n-m+1}^n{}i}{m!}$</p>
 <p>二项式定理:$(a+b)^n=\sum_{i=0}^{n}C_n^i<em>a^{n-i}</em>b^i(n&gt;0)$</p>
 <p>拓展:$(a+b)^{-n}=\sum_{i=0}^{-n}C_{-n}^i<em>a^{n-i}</em>b^i(n&gt;0)$</p>
-        
-          <p class="article-more-link">
-            <a href="/2019/12/01/%E7%94%9F%E6%88%90%E5%87%BD%E6%95%B0/#more">Read More</a>
-          </p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2019/12/01/%E7%94%9F%E6%88%90%E5%87%BD%E6%95%B0/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
         
       
     </div>
-    <footer class="article-footer">
-      <a data-url="http://zzw4257.github.io/2019/12/01/%E7%94%9F%E6%88%90%E5%87%BD%E6%95%B0/" data-id="ck3mvo3vk0005acu3d12g06yg" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E6%95%B0%E5%AD%A6-%E7%94%9F%E6%88%90%E5%87%BD%E6%95%B0/" rel="tag">学习笔记,数学,生成函数</a></li></ul>
 
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-
-
-</section>
-        
-          <aside id="sidebar">
-  
     
-
-  
     
-  <div class="widget-wrap">
-    <h3 class="widget-title">Tags</h3>
-    <div class="widget">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E6%95%B0%E5%AD%A6-%E7%94%9F%E6%88%90%E5%87%BD%E6%95%B0/" rel="tag">学习笔记,数学,生成函数</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%B8%B8%E8%AE%B0/" rel="tag">游记</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AE%97%E6%B3%95/" rel="tag">算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%A2%98%E8%A7%A3-%E5%8D%95%E8%B0%83%E6%A0%88-CDQ%E5%88%86%E6%B2%BB/" rel="tag">题解,单调栈,CDQ分治</a></li></ul>
-    </div>
-  </div>
-
-
-  
     
-  <div class="widget-wrap">
-    <h3 class="widget-title">Tag Cloud</h3>
-    <div class="widget tagcloud">
-      <a href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E6%95%B0%E5%AD%A6-%E7%94%9F%E6%88%90%E5%87%BD%E6%95%B0/" style="font-size: 10px;">学习笔记,数学,生成函数</a> <a href="/tags/%E6%B8%B8%E8%AE%B0/" style="font-size: 10px;">游记</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 10px;">算法</a> <a href="/tags/%E9%A2%98%E8%A7%A3-%E5%8D%95%E8%B0%83%E6%A0%88-CDQ%E5%88%86%E6%B2%BB/" style="font-size: 10px;">题解,单调栈,CDQ分治</a>
-    </div>
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
   </div>
 
   
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Archives</h3>
-    <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a></li></ul>
-    </div>
+
+
+
+          </div>
+          
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
   </div>
 
+  <aside class="sidebar">
+    <div class="sidebar-inner">
 
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Recent Posts</h3>
-    <div class="widget">
-      <ul>
-        
-          <li>
-            <a href="/2019/12/01/hello-world/">Hello World</a>
-          </li>
-        
-          <li>
-            <a href="/2019/12/01/CSP%E5%A4%8D%E4%B9%A0/">CSP2019复习</a>
-          </li>
-        
-          <li>
-            <a href="/2019/12/01/CSP%E5%BF%83%E8%B7%AF%E5%8E%86%E7%A8%8B/">CSP心路历程</a>
-          </li>
-        
-          <li>
-            <a href="/2019/12/01/%E3%80%90BZOJ4237%E3%80%91%E7%A8%BB%E8%8D%89%E4%BA%BA%20CDQ%E5%88%86%E6%B2%BB%20%E5%8D%95%E8%B0%83%E6%A0%88/">【BZOJ4237】稻草人 CDQ分治 单调栈</a>
-          </li>
-        
-          <li>
-            <a href="/2019/12/01/%E7%94%9F%E6%88%90%E5%87%BD%E6%95%B0/">生成函数</a>
-          </li>
-        
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
       </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">zzw4257</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">5</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">tags</span>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
     </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">zzw4257</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> v4.0.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">Theme – <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.6.0
   </div>
 
-  
-</aside>
+        
+
+
+
+
+
+
+
+
         
       </div>
-      <footer id="footer">
-  
-  <div class="outer">
-    <div id="footer-info" class="inner">
-      &copy; 2019 zzw4257<br>
-      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
-    </div>
+    </footer>
   </div>
-</footer>
-    </div>
-    <nav id="mobile-nav">
+
   
-    <a href="/" class="mobile-nav-link">Home</a>
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+<script src="/js/schemes/muse.js"></script>
+<script src="/js/next-boot.js"></script>
+
+
+
   
-    <a href="/archives" class="mobile-nav-link">Archives</a>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   
-</nav>
-    
 
-<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+  
 
-
-  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
-  <script src="/fancybox/jquery.fancybox.pack.js"></script>
-
-
-<script src="/js/script.js"></script>
-
-
-
-  </div>
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        tex2jax: {
-            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
-            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
-            processEscapes: true
-        }
-    });
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax();
-        for (var i = 0; i < all.length; ++i)
-            all[i].SourceElement().parentNode.className += ' has-jax';
-    });
-</script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
-<!-- script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 </body>
 </html>
