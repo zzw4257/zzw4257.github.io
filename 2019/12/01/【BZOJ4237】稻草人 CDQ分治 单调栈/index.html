@@ -58,7 +58,7 @@
 <meta property="og:image" content="https:&#x2F;&#x2F;i.loli.net&#x2F;2019&#x2F;10&#x2F;23&#x2F;cktHUeR3n8l54xP.png">
 <meta property="og:image" content="https:&#x2F;&#x2F;i.loli.net&#x2F;2019&#x2F;10&#x2F;23&#x2F;8Snm4IBMhrypd3J.png">
 <meta property="og:image" content="https:&#x2F;&#x2F;i.loli.net&#x2F;2019&#x2F;10&#x2F;23&#x2F;zlkrs4tnohfBm69.png">
-<meta property="og:updated_time" content="2019-12-01T11:35:57.395Z">
+<meta property="og:updated_time" content="2019-12-01T11:47:16.422Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https:&#x2F;&#x2F;i.loli.net&#x2F;2019&#x2F;10&#x2F;23&#x2F;JUhZF5OKlAq3NTd.png">
 
@@ -199,7 +199,7 @@
               <span class="post-meta-item-text">Posted on</span>
               
 
-              <time title="Created: 2019-12-01 00:00:00 / Modified: 19:35:57" itemprop="dateCreated datePublished" datetime="2019-12-01T00:00:00+08:00">2019-12-01</time>
+              <time title="Created: 2019-12-01 00:00:00 / Modified: 19:47:16" itemprop="dateCreated datePublished" datetime="2019-12-01T00:00:00+08:00">2019-12-01</time>
             </span>
 
           
@@ -256,7 +256,9 @@
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/%E9%A2%98%E8%A7%A3-%E5%8D%95%E8%B0%83%E6%A0%88-CDQ%E5%88%86%E6%B2%BB/" rel="tag"># 题解,单调栈,CDQ分治</a>
+              <a href="/tags/%E9%A2%98%E8%A7%A3/" rel="tag"># 题解</a>
+              <a href="/tags/%E5%8D%95%E8%B0%83%E6%A0%88/" rel="tag"># 单调栈</a>
+              <a href="/tags/CDQ%E5%88%86%E6%B2%BB/" rel="tag"># CDQ分治</a>
           </div>
 
         
@@ -269,8 +271,8 @@
       <i class="fa fa-chevron-left"></i> 生成函数
     </a></div>
       <div class="post-nav-item">
-    <a href="/2019/12/01/CSP%E5%BF%83%E8%B7%AF%E5%8E%86%E7%A8%8B/" rel="next" title="CSP心路历程">
-      CSP心路历程 <i class="fa fa-chevron-right"></i>
+    <a href="/2019/12/01/CSP%E5%A4%8D%E4%B9%A0/" rel="next" title="CSP2019复习">
+      CSP2019复习 <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
       </footer>
@@ -328,7 +330,7 @@
         </a>
       </div>
       <div class="site-state-item site-state-tags">
-        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-count">8</span>
         <span class="site-state-item-name">tags</span>
       </div>
   </nav>
@@ -407,6 +409,56 @@
 
 
   
+
+  
+      
+<script type="text/x-mathjax-config">
+
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$', '$'], ['\\(', '\\)'] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+      equationNumbers: {
+        autoNumber: 'AMS'
+      }
+    }
+  });
+
+  MathJax.Hub.Register.StartupHook('TeX Jax Ready', function() {
+    MathJax.InputJax.TeX.prefilterHooks.Add(function(data) {
+      if (data.display) {
+        var next = data.script.nextSibling;
+        while (next && next.nodeName.toLowerCase() === '#text') {
+          next = next.nextSibling;
+        }
+        if (next && next.nodeName.toLowerCase() === 'br') {
+          next.parentNode.removeChild(next);
+        }
+      }
+    });
+  });
+
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for (i = 0; i < all.length; i += 1) {
+      element = document.getElementById(all[i].inputID + '-Frame').parentNode;
+      if (element.nodeName.toLowerCase() == 'li') {
+        element = element.parentNode;
+      }
+      element.classList.add('has-jax');
+    }
+  });
+</script>
+<script>
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS-MML_HTMLorMML', () => {
+    MathJax.Hub.Typeset();
+  }, window.MathJax);
+</script>
+
+    
 
   
 

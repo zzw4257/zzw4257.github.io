@@ -257,12 +257,12 @@ Day1-Day2的转折点上，我实则漫不经心的听着父母亲的长篇大�
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2019/12/01/%E3%80%90BZOJ4237%E3%80%91%E7%A8%BB%E8%8D%89%E4%BA%BA%20CDQ%E5%88%86%E6%B2%BB%20%E5%8D%95%E8%B0%83%E6%A0%88/" rel="prev" title="【BZOJ4237】稻草人 CDQ分治 单调栈">
-      <i class="fa fa-chevron-left"></i> 【BZOJ4237】稻草人 CDQ分治 单调栈
+    <a href="/2019/12/01/CSP%E5%A4%8D%E4%B9%A0/" rel="prev" title="CSP2019复习">
+      <i class="fa fa-chevron-left"></i> CSP2019复习
     </a></div>
       <div class="post-nav-item">
-    <a href="/2019/12/01/CSP%E5%A4%8D%E4%B9%A0/" rel="next" title="CSP2019复习">
-      CSP2019复习 <i class="fa fa-chevron-right"></i>
+    <a href="/2019/12/01/hello-world/" rel="next" title="Hello World">
+      Hello World <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
       </footer>
@@ -319,7 +319,7 @@ Day1-Day2的转折点上，我实则漫不经心的听着父母亲的长篇大�
         </a>
       </div>
       <div class="site-state-item site-state-tags">
-        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-count">8</span>
         <span class="site-state-item-name">tags</span>
       </div>
   </nav>
@@ -398,6 +398,56 @@ Day1-Day2的转折点上，我实则漫不经心的听着父母亲的长篇大�
 
 
   
+
+  
+      
+<script type="text/x-mathjax-config">
+
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$', '$'], ['\\(', '\\)'] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+      equationNumbers: {
+        autoNumber: 'AMS'
+      }
+    }
+  });
+
+  MathJax.Hub.Register.StartupHook('TeX Jax Ready', function() {
+    MathJax.InputJax.TeX.prefilterHooks.Add(function(data) {
+      if (data.display) {
+        var next = data.script.nextSibling;
+        while (next && next.nodeName.toLowerCase() === '#text') {
+          next = next.nextSibling;
+        }
+        if (next && next.nodeName.toLowerCase() === 'br') {
+          next.parentNode.removeChild(next);
+        }
+      }
+    });
+  });
+
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for (i = 0; i < all.length; i += 1) {
+      element = document.getElementById(all[i].inputID + '-Frame').parentNode;
+      if (element.nodeName.toLowerCase() == 'li') {
+        element = element.parentNode;
+      }
+      element.classList.add('has-jax');
+    }
+  });
+</script>
+<script>
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS-MML_HTMLorMML', () => {
+    MathJax.Hub.Typeset();
+  }, window.MathJax);
+</script>
+
+    
 
   
 
