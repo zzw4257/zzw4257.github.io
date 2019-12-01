@@ -8,7 +8,7 @@
   <title>【BZOJ4237】稻草人 CDQ分治 单调栈 | zzw4257</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="题目描述  JOI村有一片荒地，上面竖着N个稻草人，村民们每年多次在稻草人们的周围举行祭典。有一次，JOI村的村长听到了稻草人们的启示，计划在荒地中开垦一片田地。和启示中的一样，田地需要满足以下条件：田地的形状是边平行于坐标轴的长方形；左下角和右上角各有一个稻草人；田地的内部(不包括边界)没有稻草人。给出每个稻草人的坐标，请你求出有多少遵从启示的田地的个数简述 求$n$个点组成的内部不含其它点的矩">
-<meta name="keywords" content="题解 单调栈 CDQ分治">
+<meta name="keywords" content="题解,单调栈,CDQ分治">
 <meta property="og:type" content="article">
 <meta property="og:title" content="【BZOJ4237】稻草人 CDQ分治 单调栈">
 <meta property="og:url" content="http:&#x2F;&#x2F;zzw4257.github.io&#x2F;2019&#x2F;12&#x2F;01&#x2F;%E3%80%90BZOJ4237%E3%80%91%E7%A8%BB%E8%8D%89%E4%BA%BA%20CDQ%E5%88%86%E6%B2%BB%20%E5%8D%95%E8%B0%83%E6%A0%88&#x2F;index.html">
@@ -20,7 +20,7 @@
 <meta property="og:image" content="https:&#x2F;&#x2F;i.loli.net&#x2F;2019&#x2F;10&#x2F;23&#x2F;cktHUeR3n8l54xP.png">
 <meta property="og:image" content="https:&#x2F;&#x2F;i.loli.net&#x2F;2019&#x2F;10&#x2F;23&#x2F;8Snm4IBMhrypd3J.png">
 <meta property="og:image" content="https:&#x2F;&#x2F;i.loli.net&#x2F;2019&#x2F;10&#x2F;23&#x2F;zlkrs4tnohfBm69.png">
-<meta property="og:updated_time" content="2019-12-01T10:38:50.313Z">
+<meta property="og:updated_time" content="2019-12-01T10:44:10.037Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https:&#x2F;&#x2F;i.loli.net&#x2F;2019&#x2F;10&#x2F;23&#x2F;JUhZF5OKlAq3NTd.png">
   
@@ -129,10 +129,10 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://zzw4257.github.io/2019/12/01/%E3%80%90BZOJ4237%E3%80%91%E7%A8%BB%E8%8D%89%E4%BA%BA%20CDQ%E5%88%86%E6%B2%BB%20%E5%8D%95%E8%B0%83%E6%A0%88/" data-id="ck3mvh38c0004a4u36vqw1ow9" class="article-share-link">Share</a>
+      <a data-url="http://zzw4257.github.io/2019/12/01/%E3%80%90BZOJ4237%E3%80%91%E7%A8%BB%E8%8D%89%E4%BA%BA%20CDQ%E5%88%86%E6%B2%BB%20%E5%8D%95%E8%B0%83%E6%A0%88/" data-id="ck3mvo3vi0004acu3hopf4x07" class="article-share-link">Share</a>
       
       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E9%A2%98%E8%A7%A3-%E5%8D%95%E8%B0%83%E6%A0%88-CDQ%E5%88%86%E6%B2%BB/" rel="tag">题解 单调栈 CDQ分治</a></li></ul>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E9%A2%98%E8%A7%A3-%E5%8D%95%E8%B0%83%E6%A0%88-CDQ%E5%88%86%E6%B2%BB/" rel="tag">题解,单调栈,CDQ分治</a></li></ul>
 
     </footer>
   </div>
@@ -171,7 +171,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E6%95%B0%E5%AD%A6-%E7%94%9F%E6%88%90%E5%87%BD%E6%95%B0/" rel="tag">学习笔记 数学 生成函数</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%B8%B8%E8%AE%B0/" rel="tag">游记</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AE%97%E6%B3%95/" rel="tag">算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%A2%98%E8%A7%A3-%E5%8D%95%E8%B0%83%E6%A0%88-CDQ%E5%88%86%E6%B2%BB/" rel="tag">题解 单调栈 CDQ分治</a></li></ul>
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E6%95%B0%E5%AD%A6-%E7%94%9F%E6%88%90%E5%87%BD%E6%95%B0/" rel="tag">学习笔记,数学,生成函数</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%B8%B8%E8%AE%B0/" rel="tag">游记</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AE%97%E6%B3%95/" rel="tag">算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%A2%98%E8%A7%A3-%E5%8D%95%E8%B0%83%E6%A0%88-CDQ%E5%88%86%E6%B2%BB/" rel="tag">题解,单调栈,CDQ分治</a></li></ul>
     </div>
   </div>
 
@@ -181,7 +181,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E6%95%B0%E5%AD%A6-%E7%94%9F%E6%88%90%E5%87%BD%E6%95%B0/" style="font-size: 10px;">学习笔记 数学 生成函数</a> <a href="/tags/%E6%B8%B8%E8%AE%B0/" style="font-size: 10px;">游记</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 10px;">算法</a> <a href="/tags/%E9%A2%98%E8%A7%A3-%E5%8D%95%E8%B0%83%E6%A0%88-CDQ%E5%88%86%E6%B2%BB/" style="font-size: 10px;">题解 单调栈 CDQ分治</a>
+      <a href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E6%95%B0%E5%AD%A6-%E7%94%9F%E6%88%90%E5%87%BD%E6%95%B0/" style="font-size: 10px;">学习笔记,数学,生成函数</a> <a href="/tags/%E6%B8%B8%E8%AE%B0/" style="font-size: 10px;">游记</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 10px;">算法</a> <a href="/tags/%E9%A2%98%E8%A7%A3-%E5%8D%95%E8%B0%83%E6%A0%88-CDQ%E5%88%86%E6%B2%BB/" style="font-size: 10px;">题解,单调栈,CDQ分治</a>
     </div>
   </div>
 
