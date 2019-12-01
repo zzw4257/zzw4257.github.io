@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    hostname: new URL('http://zzw4257.github.io').hostname,
+    root: '/',
+    scheme: 'Muse',
+    version: '7.6.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: '',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
+  };
+</script>
+
+  <meta name="description" content="看到没有人用老师的办法，于是自己写一下思路 思路第一步:排除旧方法首先这道题和$4178$不一样，因为那道题是计数，而这道题是求最值，最值有个坏处，就是对于来自相同子树的信息没法高效剔除,比如容斥用不了，举例来说，对于这道题，如果我们继续用尺取法维护黑点个数，对于一组刚好使$cnt_l+cnt_r\leq k$的$l,r$,且$[l+1,r]$所在子树都与$l$不同时就可以选取$l~and~x\i">
+<meta name="keywords" content="题解,点分治,启发式合并">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【BSOJ2769】黑白树 点分治 启发式合并">
+<meta property="og:url" content="http:&#x2F;&#x2F;zzw4257.github.io&#x2F;2019&#x2F;12&#x2F;01&#x2F;%E3%80%90BSOJ2769%E3%80%91%E3%80%90SPOJ1825%E3%80%91%E9%BB%91%E7%99%BD%E6%A0%91%20%E7%82%B9%E5%88%86%E6%B2%BB%20%E5%90%AF%E5%8F%91%E5%BC%8F%E5%90%88%E5%B9%B6&#x2F;index.html">
+<meta property="og:site_name" content="zzw4257">
+<meta property="og:description" content="看到没有人用老师的办法，于是自己写一下思路 思路第一步:排除旧方法首先这道题和$4178$不一样，因为那道题是计数，而这道题是求最值，最值有个坏处，就是对于来自相同子树的信息没法高效剔除,比如容斥用不了，举例来说，对于这道题，如果我们继续用尺取法维护黑点个数，对于一组刚好使$cnt_l+cnt_r\leq k$的$l,r$,且$[l+1,r]$所在子树都与$l$不同时就可以选取$l~and~x\i">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2019-12-01T12:00:48.782Z">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://zzw4257.github.io/2019/12/01/%E3%80%90BSOJ2769%E3%80%91%E3%80%90SPOJ1825%E3%80%91%E9%BB%91%E7%99%BD%E6%A0%91%20%E7%82%B9%E5%88%86%E6%B2%BB%20%E5%90%AF%E5%8F%91%E5%BC%8F%E5%90%88%E5%B9%B6/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>【BSOJ2769】黑白树 点分治 启发式合并 | zzw4257</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">zzw4257</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">一只苦苦追寻的蒟蒻</p>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>Archives</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="en">
+    <link itemprop="mainEntityOfPage" href="http://zzw4257.github.io/2019/12/01/%E3%80%90BSOJ2769%E3%80%91%E3%80%90SPOJ1825%E3%80%91%E9%BB%91%E7%99%BD%E6%A0%91%20%E7%82%B9%E5%88%86%E6%B2%BB%20%E5%90%AF%E5%8F%91%E5%BC%8F%E5%90%88%E5%B9%B6/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="zzw4257">
+      <meta itemprop="description" content="人常说无论做什么都不要忘了初心，但如果一个人从来没有”应该”去忘了初心，又从何谈起的初心。">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="zzw4257">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          【BSOJ2769】黑白树 点分治 启发式合并
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2019-12-01 00:00:00 / Modified: 20:00:48" itemprop="dateCreated datePublished" datetime="2019-12-01T00:00:00+08:00">2019-12-01</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>看到没有人用老师的办法，于是自己写一下思路</p>
+<h3 id="思路第一步-排除旧方法"><a href="#思路第一步-排除旧方法" class="headerlink" title="思路第一步:排除旧方法"></a><strong>思路第一步:排除旧方法</strong></h3><p>首先这道题和<a href="https://www.luogu.org/problem/P4178" target="_blank" rel="noopener">$4178$</a>不一样，因为那道题是计数，而这道题是求最值，最值有个坏处，就是对于<strong>来自相同子树的信息没法高效剔除</strong>,比如容斥用不了，举例来说，对于这道题，如果我们继续用尺取法维护黑点个数，对于一组刚好使$cnt_l+cnt_r\leq k$的$l,r$,且$[l+1,r]$所在子树都与$l$不同时就可以选取$l~and~x\in [l+1,r]$,我们要使$dis_l+dis_x$只需使$dis_x$最大，因此每次递归建$ST$表$RMQ$即可</p>
+<p>很奇怪的这道题这样做有$50$分</p>
+<p>但$[l+1,r]$所在子树有与$l$相同时至少我就束手无策了</p>
+<p>于是我们放弃这个办法</p>
+<h3 id="思路第二步-放缩"><a href="#思路第二步-放缩" class="headerlink" title="思路第二步:放缩"></a><strong>思路第二步:放缩</strong></h3><p>我们依然不改变点分治本质思想，利用好经过根这个性质</p>
+<p>如果不能尺取法贪心,那么$DP$可以吗，两个变量:过的黑点个数，和路径长度，我们想合并的根的不同儿子为根的子树</p>
+<p>$\therefore$有$f^{rt}\left[i\right]<a href="=l">j</a>$表示以$rt$为根子树中,根到以$i$号儿子为根子树中一点路径上有$j$个黑点的路径最大长度</p>
+<p>着眼在经过的黑点数不超过$K$个上，我们有可能会想到放缩，就是我们并不定义死刚好是$j$个黑点，好处等会儿就知道了</p>
+<p>$\therefore$有$f^{rt}\left[i\right]<a href="=l">j</a>$表示以$rt$为根子树中,根到以$i$号儿子为根子树中一点路径上<strong>最多</strong>有$j$个黑点的路径最大长度</p>
+<p>所求:$Ans=\max\{f^{rt}[x][p],f^{rt}[y][q]\}(p+q+[color_{rt}=”black”]\le k])$</p>
+<p>于是这里我们的定义就很好用了，那个$\le$号在实现中就可以取等</p>
+<p>为了知道$p,q$的取值范围，我们再定义一个量$cnt^{rt}_i$表示以$rt$为根子树中,根到以$i$号儿子为根子树中一点最多经过的黑点数</p>
+<p>$\therefore p\le cnt^{rt}_x~~q\le cnt^{rt}_y$</p>
+<h3 id="思路第三步-合并"><a href="#思路第三步-合并" class="headerlink" title="思路第三步:合并"></a><strong>思路第三步:合并</strong></h3><p>如果我们这样做就要解决这个问题</p>
+<p>如何求$\max\{f^{rt}[x][p],f^{rt}[y][q]\}(p+q+[color_{rt}=”black”]\le k])$</p>
+<p>有一个办法是暴力，因为对$f^{rt}[x][p],f^{rt}[y][q]$我们都可以$O(n)$求出</p>
+<p>复杂度为$O(\frac{n\cdot (n-1)}{2})=O(n^2)$</p>
+<p>但我们想并没有必要两两子树比较，由于求$\max$具有传递性,如果我们知道$f^{rt}[s_1][p]&gt;f^{rt}[s_2][p]$我们就完全没有必要保留$f^{rt}[s_2][p]$了</p>
+<p>因此我们想到合并</p>
+<p>具体来说我们记录两个值，$Now^{rt}_{(i,)x}$/$Past^{rt}_{(i,)x}$分别表示以$rt$为根子树中,根到以$i$号儿子为根子树/以$1\rightarrow i-1$号儿子为根子树经过$x$个黑点的最长路径</p>
+<p>但合并的顺序是个问题，每次我们需要比较求$\max$更新$\max\{cnt_1,cnt_2…cnt_i\}$次</p>
+<p>由于答案与枚举儿子顺序无关，因此贪心可得对儿子按$cnt_i$从小到大排序即可</p>
+<p>小结一下，对于这类最值点分治有一种办法是合并</p>
+<p>代码常数大</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">define</span> re register</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">define</span> N 200005</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">define</span> INF 0x3f3f3f3f</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> _int&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">read</span><span class="params">(re _int&amp;x)</span></span>&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">	re _int res=<span class="number">0</span>,flag=<span class="number">1</span>;re <span class="keyword">char</span> opt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">	<span class="keyword">while</span>((opt=getchar())&gt;<span class="string">'9'</span>||opt&lt;<span class="string">'0'</span>)<span class="keyword">if</span>(opt==<span class="string">'-'</span>)flag=<span class="number">-1</span>;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">	<span class="keyword">while</span>(opt&gt;=<span class="string">'0'</span>&amp;&amp;opt&lt;=<span class="string">'9'</span>)&#123;res=(res&lt;&lt;<span class="number">1</span>)+(res&lt;&lt;<span class="number">3</span>)+opt-<span class="string">'0'</span>;opt=getchar();&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">	x=res*flag;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Edge</span>&#123;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line">	<span class="keyword">int</span> to,next,v;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line">&#125;e[N&lt;&lt;<span class="number">1</span>];</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">16</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> n,k,m,h[N],cnt,size[N],color[N],now[N],past[N],mind,ans=-INF;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">17</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">char</span> vis[N];</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">18</span></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">AddEdge</span><span class="params">(re <span class="keyword">int</span> x,re <span class="keyword">int</span> y,re <span class="keyword">int</span> z)</span></span>&#123;e[++cnt]=(Edge)&#123;y,h[x],z&#125;;h[x]=cnt;&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">19</span></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Node</span>&#123;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">20</span></pre></td><td class="code"><pre><span class="line">	<span class="keyword">int</span> len,son,cnt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">21</span></pre></td><td class="code"><pre><span class="line">	<span class="keyword">inline</span> <span class="keyword">char</span> <span class="keyword">friend</span> <span class="keyword">operator</span>&lt;(re Node a,re Node b)&#123;<span class="keyword">return</span> a.cnt&lt;b.cnt;&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">22</span></pre></td><td class="code"><pre><span class="line">&#125;p[N&lt;&lt;<span class="number">1</span>];</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">23</span></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">dfs_size</span><span class="params">(re <span class="keyword">int</span> x,re <span class="keyword">int</span> prt)</span></span>&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">24</span></pre></td><td class="code"><pre><span class="line">	re <span class="keyword">int</span> i,y;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">25</span></pre></td><td class="code"><pre><span class="line">	size[x]=<span class="number">1</span>;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">26</span></pre></td><td class="code"><pre><span class="line">	<span class="keyword">for</span>(i=h[x];i;i=e[i].next)&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">27</span></pre></td><td class="code"><pre><span class="line">		y=e[i].to;<span class="keyword">if</span>(y==prt||vis[y])<span class="keyword">continue</span>;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">28</span></pre></td><td class="code"><pre><span class="line">		dfs_size(y,x);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">29</span></pre></td><td class="code"><pre><span class="line">		size[x]+=size[y];</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">30</span></pre></td><td class="code"><pre><span class="line">	&#125;	</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">31</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">32</span></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">dfs_cnt</span><span class="params">(re <span class="keyword">int</span> x,re <span class="keyword">int</span> prt,re <span class="keyword">int</span> pos,re <span class="keyword">int</span> bcnt)</span></span>&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">33</span></pre></td><td class="code"><pre><span class="line">	re <span class="keyword">int</span> i,y;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">34</span></pre></td><td class="code"><pre><span class="line">	bcnt+=color[x];</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">35</span></pre></td><td class="code"><pre><span class="line">	<span class="keyword">if</span>(bcnt&gt;k)<span class="keyword">return</span> ;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">36</span></pre></td><td class="code"><pre><span class="line">	<span class="keyword">if</span>(bcnt&gt;p[pos].cnt)p[pos].cnt=bcnt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">37</span></pre></td><td class="code"><pre><span class="line">	<span class="keyword">for</span>(i=h[x];i;i=e[i].next)&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">38</span></pre></td><td class="code"><pre><span class="line">		y=e[i].to;<span class="keyword">if</span>(y==prt||vis[y])<span class="keyword">continue</span>;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">39</span></pre></td><td class="code"><pre><span class="line">		dfs_cnt(y,x,pos,bcnt);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">40</span></pre></td><td class="code"><pre><span class="line">	&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">41</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">42</span></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">dfs_dist</span><span class="params">(re <span class="keyword">int</span> x,re <span class="keyword">int</span> prt,re <span class="keyword">int</span> dist,re <span class="keyword">int</span> bcnt)</span></span>&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">43</span></pre></td><td class="code"><pre><span class="line">	re <span class="keyword">int</span> i,y;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">44</span></pre></td><td class="code"><pre><span class="line">	bcnt+=color[x];</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">45</span></pre></td><td class="code"><pre><span class="line">	<span class="keyword">if</span>(bcnt&gt;k)<span class="keyword">return</span> ;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">46</span></pre></td><td class="code"><pre><span class="line">	<span class="keyword">if</span>(dist&gt;now[bcnt])now[bcnt]=dist;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">47</span></pre></td><td class="code"><pre><span class="line">	<span class="keyword">for</span>(i=h[x];i;i=e[i].next)&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">48</span></pre></td><td class="code"><pre><span class="line">		y=e[i].to;<span class="keyword">if</span>(y==prt||vis[y])<span class="keyword">continue</span>;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">49</span></pre></td><td class="code"><pre><span class="line">		dfs_dist(y,x,dist+e[i].v,bcnt);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">50</span></pre></td><td class="code"><pre><span class="line">	&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">51</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">52</span></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">Center</span><span class="params">(re <span class="keyword">int</span> x,re <span class="keyword">int</span> prt,re <span class="keyword">int</span>&amp;rt,re <span class="keyword">int</span> root)</span></span>&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">53</span></pre></td><td class="code"><pre><span class="line">	re <span class="keyword">int</span> i,y,maxx=-INF;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">54</span></pre></td><td class="code"><pre><span class="line">	<span class="keyword">for</span>(i=h[x];i;i=e[i].next)&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">55</span></pre></td><td class="code"><pre><span class="line">		y=e[i].to;<span class="keyword">if</span>(y==prt||vis[y])<span class="keyword">continue</span>;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">56</span></pre></td><td class="code"><pre><span class="line">		Center(y,x,rt,root);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">57</span></pre></td><td class="code"><pre><span class="line">		maxx=max(maxx,size[y]);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">58</span></pre></td><td class="code"><pre><span class="line">	&#125;	</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">59</span></pre></td><td class="code"><pre><span class="line">	maxx=max(maxx,size[root]-size[x]);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">60</span></pre></td><td class="code"><pre><span class="line">	<span class="keyword">if</span>(maxx&lt;mind)&#123;mind=maxx;rt=x;&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">61</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">62</span></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">Solve</span><span class="params">(re <span class="keyword">int</span> x)</span></span>&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">63</span></pre></td><td class="code"><pre><span class="line">	re <span class="keyword">int</span> i,j,y,rt,tot=<span class="number">0</span>,tmp;mind=INF;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">64</span></pre></td><td class="code"><pre><span class="line">	dfs_size(x,<span class="number">0</span>);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">65</span></pre></td><td class="code"><pre><span class="line">	Center(x,<span class="number">0</span>,rt,x);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">66</span></pre></td><td class="code"><pre><span class="line">	vis[rt]=<span class="number">1</span>;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">67</span></pre></td><td class="code"><pre><span class="line">	<span class="keyword">for</span>(i=h[rt];i;i=e[i].next)&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">68</span></pre></td><td class="code"><pre><span class="line">		y=e[i].to;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">69</span></pre></td><td class="code"><pre><span class="line">		p[++tot]=(Node)&#123;e[i].v,y,<span class="number">0</span>&#125;;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">70</span></pre></td><td class="code"><pre><span class="line">		dfs_cnt(y,<span class="number">0</span>,tot,<span class="number">0</span>);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">71</span></pre></td><td class="code"><pre><span class="line">	&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">72</span></pre></td><td class="code"><pre><span class="line">	sort(p+<span class="number">1</span>,p+tot+<span class="number">1</span>);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">73</span></pre></td><td class="code"><pre><span class="line">	<span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;=p[tot].cnt;++i)past[i]=<span class="number">0</span>;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">74</span></pre></td><td class="code"><pre><span class="line">	<span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;=tot;++i)&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">75</span></pre></td><td class="code"><pre><span class="line">		y=p[i].son;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">76</span></pre></td><td class="code"><pre><span class="line">		<span class="keyword">for</span>(j=<span class="number">0</span>;j&lt;=p[i].cnt;++j)now[j]=-INF;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">77</span></pre></td><td class="code"><pre><span class="line">		dfs_dist(y,<span class="number">0</span>,p[i].len,<span class="number">0</span>);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">78</span></pre></td><td class="code"><pre><span class="line">		<span class="keyword">for</span>(j=<span class="number">1</span>;j&lt;=p[i].cnt;++j)now[j]=max(now[j<span class="number">-1</span>],now[j]);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">79</span></pre></td><td class="code"><pre><span class="line">		<span class="keyword">for</span>(j=<span class="number">0</span>;j&lt;=p[i].cnt;++j)&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">80</span></pre></td><td class="code"><pre><span class="line">			tmp=min(p[i<span class="number">-1</span>].cnt,k-j-color[rt]);<span class="keyword">if</span>(tmp&lt;<span class="number">0</span>)<span class="keyword">continue</span>;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">81</span></pre></td><td class="code"><pre><span class="line">			ans=max(ans,now[j]+past[tmp]);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">82</span></pre></td><td class="code"><pre><span class="line">		&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">83</span></pre></td><td class="code"><pre><span class="line">		<span class="keyword">for</span>(j=<span class="number">0</span>;j&lt;=p[i].cnt;++j)past[j]=max(past[j],now[j]);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">84</span></pre></td><td class="code"><pre><span class="line">		<span class="keyword">for</span>(j=<span class="number">1</span>;j&lt;=p[i].cnt;++j)past[j]=max(past[j<span class="number">-1</span>],past[j]);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">85</span></pre></td><td class="code"><pre><span class="line">	&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">86</span></pre></td><td class="code"><pre><span class="line">	<span class="keyword">for</span>(i=h[rt];i;i=e[i].next)&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">87</span></pre></td><td class="code"><pre><span class="line">		y=e[i].to;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">88</span></pre></td><td class="code"><pre><span class="line">		<span class="keyword">if</span>(!vis[y])Solve(y);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">89</span></pre></td><td class="code"><pre><span class="line">	&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">90</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">91</span></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">Read</span><span class="params">(<span class="keyword">void</span>)</span></span>&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">92</span></pre></td><td class="code"><pre><span class="line">	re <span class="keyword">int</span> i,x,y,z;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">93</span></pre></td><td class="code"><pre><span class="line">	read(n);read(k);read(m);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">94</span></pre></td><td class="code"><pre><span class="line">	<span class="keyword">while</span>(m--)&#123;read(x);color[x]=<span class="number">1</span>;&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">95</span></pre></td><td class="code"><pre><span class="line">	<span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;n;++i)&#123;read(x);read(y);read(z);AddEdge(x,y,z);AddEdge(y,x,z);&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">96</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">97</span></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">void</span>)</span></span>&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">98</span></pre></td><td class="code"><pre><span class="line">	Read();</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">99</span></pre></td><td class="code"><pre><span class="line">	Solve(<span class="number">1</span>);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">100</span></pre></td><td class="code"><pre><span class="line">	<span class="built_in">printf</span>(<span class="string">"%d\n"</span>,ans);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">101</span></pre></td><td class="code"><pre><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">102</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E9%A2%98%E8%A7%A3/" rel="tag"># 题解</a>
+              <a href="/tags/%E7%82%B9%E5%88%86%E6%B2%BB/" rel="tag"># 点分治</a>
+              <a href="/tags/%E5%90%AF%E5%8F%91%E5%BC%8F%E5%90%88%E5%B9%B6/" rel="tag"># 启发式合并</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2019/12/01/%E3%80%90BSOJ3763%E3%80%91%E6%B6%88%E6%81%AF%E4%BC%A0%E9%80%92%20%E6%8D%A2%E6%A0%B9dp/" rel="prev" title="【BSOJ2769】 消息传递 换根dp">
+      <i class="fa fa-chevron-left"></i> 【BSOJ2769】 消息传递 换根dp
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2019/12/01/CSP%E5%A4%8D%E4%B9%A0/" rel="next" title="CSP2019复习">
+      CSP2019复习 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#思路第一步-排除旧方法"><span class="nav-number">1.</span> <span class="nav-text">思路第一步:排除旧方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#思路第二步-放缩"><span class="nav-number">2.</span> <span class="nav-text">思路第二步:放缩</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#思路第三步-合并"><span class="nav-number">3.</span> <span class="nav-text">思路第三步:合并</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">zzw4257</p>
+  <div class="site-description" itemprop="description">人常说无论做什么都不要忘了初心，但如果一个人从来没有”应该”去忘了初心，又从何谈起的初心。</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">9</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">13</span>
+        <span class="site-state-item-name">tags</span>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">zzw4257</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> v4.0.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">Theme – <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.6.0
+  </div>
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+<script src="/js/schemes/muse.js"></script>
+<script src="/js/next-boot.js"></script>
+
+  <script defer src="/lib/three/three.min.js"></script>
+    <script defer src="/lib/three/three-waves.min.js"></script>
+    <script defer src="/lib/three/canvas_lines.min.js"></script>
+    <script defer src="/lib/three/canvas_sphere.min.js"></script>
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+      
+<script type="text/x-mathjax-config">
+
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$', '$'], ['\\(', '\\)'] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+      equationNumbers: {
+        autoNumber: 'AMS'
+      }
+    }
+  });
+
+  MathJax.Hub.Register.StartupHook('TeX Jax Ready', function() {
+    MathJax.InputJax.TeX.prefilterHooks.Add(function(data) {
+      if (data.display) {
+        var next = data.script.nextSibling;
+        while (next && next.nodeName.toLowerCase() === '#text') {
+          next = next.nextSibling;
+        }
+        if (next && next.nodeName.toLowerCase() === 'br') {
+          next.parentNode.removeChild(next);
+        }
+      }
+    });
+  });
+
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for (i = 0; i < all.length; i += 1) {
+      element = document.getElementById(all[i].inputID + '-Frame').parentNode;
+      if (element.nodeName.toLowerCase() == 'li') {
+        element = element.parentNode;
+      }
+      element.classList.add('has-jax');
+    }
+  });
+</script>
+<script>
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS-MML_HTMLorMML', () => {
+    MathJax.Hub.Typeset();
+  }, window.MathJax);
+</script>
+
+    
+
+  
+
+</body>
+</html>

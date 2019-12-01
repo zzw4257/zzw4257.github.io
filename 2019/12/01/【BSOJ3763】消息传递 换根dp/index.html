@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    hostname: new URL('http://zzw4257.github.io').hostname,
+    root: '/',
+    scheme: 'Muse',
+    version: '7.6.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: '',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
+  };
+</script>
+
+  <meta name="description" content="题目 H国的社会等级森严，除了国王之外，每个人均有且只有一个直接上级，当然国王没有上级。如果A是B的上级，B是C的上级，那么A就是C的上级。绝对不会出现这样的关系：A是B的上级，B也是A的上级。　　最开始的时刻是0，你要做的就是用1单位的时间把一个消息告诉某一个人，让他们自行散布消息。在任意一个时间单位中，任何一个已经接到消息的人，都可以把消息告诉他的一个直接上级或者直接下属。　　现在，你想知道：">
+<meta name="keywords" content="题解,换根dp">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【BSOJ2769】 消息传递 换根dp">
+<meta property="og:url" content="http:&#x2F;&#x2F;zzw4257.github.io&#x2F;2019&#x2F;12&#x2F;01&#x2F;%E3%80%90BSOJ3763%E3%80%91%E6%B6%88%E6%81%AF%E4%BC%A0%E9%80%92%20%E6%8D%A2%E6%A0%B9dp&#x2F;index.html">
+<meta property="og:site_name" content="zzw4257">
+<meta property="og:description" content="题目 H国的社会等级森严，除了国王之外，每个人均有且只有一个直接上级，当然国王没有上级。如果A是B的上级，B是C的上级，那么A就是C的上级。绝对不会出现这样的关系：A是B的上级，B也是A的上级。　　最开始的时刻是0，你要做的就是用1单位的时间把一个消息告诉某一个人，让他们自行散布消息。在任意一个时间单位中，任何一个已经接到消息的人，都可以把消息告诉他的一个直接上级或者直接下属。　　现在，你想知道：">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="https:&#x2F;&#x2F;i.loli.net&#x2F;2019&#x2F;08&#x2F;22&#x2F;uhWxZiXpgz7VFeD.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;i.loli.net&#x2F;2019&#x2F;08&#x2F;22&#x2F;GOwKhgEe9qmdTya.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;i.loli.net&#x2F;2019&#x2F;08&#x2F;22&#x2F;RVHoL4eAlr9PSz3.png">
+<meta property="og:updated_time" content="2019-12-01T12:00:47.899Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https:&#x2F;&#x2F;i.loli.net&#x2F;2019&#x2F;08&#x2F;22&#x2F;uhWxZiXpgz7VFeD.png">
+
+<link rel="canonical" href="http://zzw4257.github.io/2019/12/01/%E3%80%90BSOJ3763%E3%80%91%E6%B6%88%E6%81%AF%E4%BC%A0%E9%80%92%20%E6%8D%A2%E6%A0%B9dp/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>【BSOJ2769】 消息传递 换根dp | zzw4257</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">zzw4257</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">一只苦苦追寻的蒟蒻</p>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>Archives</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="en">
+    <link itemprop="mainEntityOfPage" href="http://zzw4257.github.io/2019/12/01/%E3%80%90BSOJ3763%E3%80%91%E6%B6%88%E6%81%AF%E4%BC%A0%E9%80%92%20%E6%8D%A2%E6%A0%B9dp/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="zzw4257">
+      <meta itemprop="description" content="人常说无论做什么都不要忘了初心，但如果一个人从来没有”应该”去忘了初心，又从何谈起的初心。">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="zzw4257">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          【BSOJ2769】 消息传递 换根dp
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2019-12-01 00:00:00 / Modified: 20:00:47" itemprop="dateCreated datePublished" datetime="2019-12-01T00:00:00+08:00">2019-12-01</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><blockquote>
+<p>H国的社会等级森严，除了国王之外，每个人均有且只有一个直接上级，当然国王没有上级。如果A是B的上级，B是C的上级，那么A就是C的上级。绝对不会出现这样的关系：A是B的上级，B也是A的上级。<br>　　最开始的时刻是0，你要做的就是用1单位的时间把一个消息告诉某一个人，让他们自行散布消息。在任意一个时间单位中，任何一个已经接到消息的人，都可以把消息告诉他的一个直接上级或者直接下属。<br>　　现在，你想知道：<br>　　1.到底需要多长时间，消息才能传遍整个H国的所有人？<br>　　2.要使消息在传递过程中消耗的时间最短，可供选择的人有那些？</p>
+</blockquote>
+<h2 id="Solution"><a href="#Solution" class="headerlink" title="$Solution$"></a>$Solution$</h2><p>这里主要介绍一个$O(n\log_2n)$的算法</p>
+<p>虽然对于这道题$O(n^2\log_2n)$暴力枚举根已经可以$AC$了，但<strong>优化是无止境的</strong></p>
+<p>首先可以想出这道题对于一个确定的根的$dp$</p>
+<p>再以任意点$root$为主根前提下</p>
+<p>我们设$f_{i}$表示以$i$为根<strong>不计算根被传递到消息时间,把消息传到$i$为根的子树</strong>的最短时间</p>
+<p>当$i$的子树均被计算完毕时</p>
+<p>$\displaystyle{f_i=\max_{j\in son_i}}\{f_j+order_j\}$</p>
+<p>其中$order_j$表示$j$是$i$的孩子中第$order_j$个选的，也就是他在$i$收到消息后第$order_j$个时间收到消息的</p>
+<p>很容易想到贪心，我们让$f_j$值大的先传</p>
+<p>单次复杂度$O(n\log_2n)$</p>
+<p>但这样做需要枚举根，最终复杂度$O(n^2\log_2n)$</p>
+<p>瓶颈在于什么,仔细思考我们会发现其实是<strong>我们确定了向“下”传的顺序，而因此很多子树的信息在不同的根下实际上是一样的</strong></p>
+<p>什么意思，我们看一下这幅图</p>
+<p><img src="https://i.loli.net/2019/08/22/uhWxZiXpgz7VFeD.png" alt="graph.png"></p>
+<p>在$fa$,$i$,$brother1$,$brother2$作根的时候,以$j$为根的子树的形态没有一点改变</p>
+<p>我们有没有办法一次计算这些信息呢</p>
+<p>有的，那就是所谓的<strong>二次扫描与换根法</strong></p>
+<p>在李煜东的书里介绍了这个算法并给出了一个例题，但这个例题会更为复杂一些</p>
+<p>我先重复一下这个算法流程</p>
+<ul>
+<li>一次<strong>树形dp</strong>,求出每个点以$root$为根的子树中信息$down$</li>
+<li>一次<strong>DFS</strong>求出每个点以$root$为根来自父亲的信息$up$,同时合并$up$和$down$</li>
+</ul>
+<p>我们用这道题来看如何实现</p>
+<p>对于$down$部分是类似的</p>
+<p>设$down_{i}$表示<strong>不计算根被传递到消息时间,把消息传到$i$为根的子树</strong>的最短时间</p>
+<p>我们在计算完了$i$的儿子$j$后来更新$i$</p>
+<p>$\displaystyle{down_i=\max_{j\in son_i}}\{down_j+order_j\}$</p>
+<p>$order$可以直接通过排序得到</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">tree_dp</span><span class="params">(re <span class="keyword">int</span> x)</span></span>&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">	re <span class="keyword">int</span> i,y,res=<span class="number">0</span>;re <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; son;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">	<span class="keyword">for</span>(i=h[x];i;i=e[i].next)&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">		y=e[i].to;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">		tree_dp(y);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">		son.push_back(dpson[y]);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">	&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">	sort(son.begin(),son.end(),cmp);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">	<span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;(<span class="keyword">int</span>)son.size();++i)res=max(res,son[i]+i+<span class="number">1</span>);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">	dpson[x]=res;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
+<p>而对于$up$部分</p>
+<p>设$up_{i}$表示<strong>不计算根被传递到消息时间,把消息传到除了$i$为根的子树的节点</strong>的最短时间</p>
+<p>可能很难理解，我们用一张图来展示</p>
+<p><img src="https://i.loli.net/2019/08/22/GOwKhgEe9qmdTya.png" alt="upanddown.png"></p>
+<p>可以形象的理解为$down$对应的部分是在有根情况下向“下”的很多支子树,而$up$对应的部分是向“上”的那一支</p>
+<p>我们在计算完了$j$的父亲$i$后来更新$j$</p>
+<p>$\displaystyle{up_j=\max\{up_i+order’_i~,\max_{k\in son_i\vee k\ne j}}~\{down_k~+~order’_k\}~\}$</p>
+<p>用这幅图理解一下,$up_j$保存的是来自父亲$i$的一支,其中包含了他父亲的父亲那一支$up_j$,也包含了$i$的父亲除了$i$的其他儿子支</p>
+<p><img src="https://i.loli.net/2019/08/22/RVHoL4eAlr9PSz3.png" alt="upandup.png"></p>
+<p>注意一下:为了处理方便，我们并不一开始显式去掉$i$的儿子$j$,而是吧$down_k$和$up_i$加进去排序,在需要求出$up_j$时我们二分查找$j$的位置,并把这个位置后面的位置的$order$值减一，因为我们在我们一开始的假设中，选$j$实际上是花了一个时间的，但实际并没有.实际操作上可以利用前缀和后缀$\max$来实现</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">inline void change_root(re int x)&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">	re int i,y,pos;re vector&lt;int&gt; son;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">	for(i&#x3D;h[x];i;i&#x3D;e[i].next)&#123;y&#x3D;e[i].to;son.push_back(dpson[y]);&#125;if(fa[x])son.push_back(dpfa[x]);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">	sort(son.begin(),son.end(),cmp);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">	for(i&#x3D;0;i&lt;(int)son.size();++i)t[i]&#x3D;son[i]+i+1;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">	*maxl&#x3D;t[0];for(i&#x3D;1;i&lt;(int)son.size();++i)maxl[i]&#x3D;max(maxl[i-1],t[i]);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">	maxr[son.size()-1]&#x3D;t[son.size()-1];for(i&#x3D;son.size()-2;i&gt;&#x3D;0;--i)maxr[i]&#x3D;max(maxr[i+1],t[i]);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">	reverse(son.begin(),son.end());</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">	for(i&#x3D;h[x];i;i&#x3D;e[i].next)&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">		y&#x3D;e[i].to;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">		pos&#x3D;lower_bound(son.begin(),son.end(),dpson[y])-son.begin();pos&#x3D;son.size()-pos-1;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">		if(!pos)dpfa[y]&#x3D;max(0,maxr[1]-1);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">		else if(pos&#x3D;&#x3D;(int)son.size()-1)dpfa[y]&#x3D;max(0,maxl[pos-1]);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line">		dpfa[y]&#x3D;max(maxl[pos-1],maxr[pos+1]-1); </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line">	&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">16</span></pre></td><td class="code"><pre><span class="line">	dp[x]&#x3D;maxl[son.size()-1];for(i&#x3D;h[x];i;i&#x3D;e[i].next)&#123;y&#x3D;e[i].to;change_root(y);&#125; </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">17</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
+<p>其他细节比如边界什么的需要做了才知道</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">define</span> N 200005</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">define</span> re register</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">define</span> INF 0x3f3f3f3f</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">read</span>&#123;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">	<span class="keyword">char</span> buf[<span class="number">1</span>&lt;&lt;<span class="number">25</span>],*opt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">	read():opt(buf)&#123;buf[fread(buf,<span class="number">1</span>,<span class="keyword">sizeof</span> buf,<span class="built_in">stdin</span>)]=<span class="number">0</span>;&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">	<span class="keyword">template</span>&lt;<span class="keyword">typename</span> _int&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">	<span class="keyword">operator</span> _int()&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">		_int res=<span class="number">0</span>,flag=<span class="number">1</span>;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">		<span class="keyword">while</span>(*opt&lt;<span class="number">48</span>&amp;&amp;*opt!=<span class="string">'-'</span>)++opt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">		<span class="keyword">if</span>(*opt==<span class="string">'-'</span>)&#123;flag=<span class="number">-1</span>;++opt;&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line">		<span class="keyword">while</span>(*opt&gt;<span class="number">32</span>)res=(res&lt;&lt;<span class="number">1</span>)+(res&lt;&lt;<span class="number">3</span>)+(*opt++)<span class="number">-48</span>;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line">		<span class="keyword">return</span> res*flag;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">16</span></pre></td><td class="code"><pre><span class="line">	&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">17</span></pre></td><td class="code"><pre><span class="line">&#125;it;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">18</span></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">char</span> <span class="title">cmp</span><span class="params">(re <span class="keyword">int</span> x,re <span class="keyword">int</span> y)</span></span>&#123;<span class="keyword">return</span> y&lt;x;&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">19</span></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Edge</span>&#123;</span><span class="keyword">int</span> to,next;&#125;e[N&lt;&lt;<span class="number">1</span>];</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">20</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> n,cnt,h[N],t[N],dpson[N],dpfa[N],maxl[N],maxr[N],fa[N],dp[N],ans=INF,Ans[N];</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">21</span></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">AddEdge</span><span class="params">(re <span class="keyword">int</span> x,re <span class="keyword">int</span> y)</span></span>&#123;e[++cnt]=(Edge)&#123;y,h[x]&#125;;h[x]=cnt;&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">22</span></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">tree_dp</span><span class="params">(re <span class="keyword">int</span> x)</span></span>&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">23</span></pre></td><td class="code"><pre><span class="line">	re <span class="keyword">int</span> i,y,res=<span class="number">0</span>;re <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; son;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">24</span></pre></td><td class="code"><pre><span class="line">	<span class="keyword">for</span>(i=h[x];i;i=e[i].next)&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">25</span></pre></td><td class="code"><pre><span class="line">		y=e[i].to;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">26</span></pre></td><td class="code"><pre><span class="line">		tree_dp(y);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">27</span></pre></td><td class="code"><pre><span class="line">		son.push_back(dpson[y]);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">28</span></pre></td><td class="code"><pre><span class="line">	&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">29</span></pre></td><td class="code"><pre><span class="line">	sort(son.begin(),son.end(),cmp);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">30</span></pre></td><td class="code"><pre><span class="line">	<span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;(<span class="keyword">int</span>)son.size();++i)res=max(res,son[i]+i+<span class="number">1</span>);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">31</span></pre></td><td class="code"><pre><span class="line">	dpson[x]=res;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">32</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">33</span></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">change_root</span><span class="params">(re <span class="keyword">int</span> x)</span></span>&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">34</span></pre></td><td class="code"><pre><span class="line">	re <span class="keyword">int</span> i,y,pos;re <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; son;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">35</span></pre></td><td class="code"><pre><span class="line">	<span class="keyword">for</span>(i=h[x];i;i=e[i].next)&#123;y=e[i].to;son.push_back(dpson[y]);&#125;<span class="keyword">if</span>(fa[x])son.push_back(dpfa[x]);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">36</span></pre></td><td class="code"><pre><span class="line">	sort(son.begin(),son.end(),cmp);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">37</span></pre></td><td class="code"><pre><span class="line">	<span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;(<span class="keyword">int</span>)son.size();++i)t[i]=son[i]+i+<span class="number">1</span>;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">38</span></pre></td><td class="code"><pre><span class="line">	*maxl=t[<span class="number">0</span>];<span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;(<span class="keyword">int</span>)son.size();++i)maxl[i]=max(maxl[i<span class="number">-1</span>],t[i]);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">39</span></pre></td><td class="code"><pre><span class="line">	maxr[son.size()<span class="number">-1</span>]=t[son.size()<span class="number">-1</span>];<span class="keyword">for</span>(i=son.size()<span class="number">-2</span>;i&gt;=<span class="number">0</span>;--i)maxr[i]=max(maxr[i+<span class="number">1</span>],t[i]);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">40</span></pre></td><td class="code"><pre><span class="line">	reverse(son.begin(),son.end());</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">41</span></pre></td><td class="code"><pre><span class="line">	<span class="keyword">for</span>(i=h[x];i;i=e[i].next)&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">42</span></pre></td><td class="code"><pre><span class="line">		y=e[i].to;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">43</span></pre></td><td class="code"><pre><span class="line">		pos=lower_bound(son.begin(),son.end(),dpson[y])-son.begin();pos=son.size()-pos<span class="number">-1</span>;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">44</span></pre></td><td class="code"><pre><span class="line">		<span class="keyword">if</span>(!pos)dpfa[y]=max(<span class="number">0</span>,maxr[<span class="number">1</span>]<span class="number">-1</span>);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">45</span></pre></td><td class="code"><pre><span class="line">		<span class="keyword">else</span> <span class="keyword">if</span>(pos==(<span class="keyword">int</span>)son.size()<span class="number">-1</span>)dpfa[y]=max(<span class="number">0</span>,maxl[pos<span class="number">-1</span>]);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">46</span></pre></td><td class="code"><pre><span class="line">		<span class="keyword">else</span> dpfa[y]=max(maxl[pos<span class="number">-1</span>],maxr[pos+<span class="number">1</span>]<span class="number">-1</span>); </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">47</span></pre></td><td class="code"><pre><span class="line">	&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">48</span></pre></td><td class="code"><pre><span class="line">	dp[x]=maxl[son.size()<span class="number">-1</span>];<span class="keyword">for</span>(i=h[x];i;i=e[i].next)&#123;y=e[i].to;change_root(y);&#125; </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">49</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">50</span></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">void</span>)</span></span>&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">51</span></pre></td><td class="code"><pre><span class="line">	n=it;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">52</span></pre></td><td class="code"><pre><span class="line">	re <span class="keyword">int</span> i;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">53</span></pre></td><td class="code"><pre><span class="line">	<span class="keyword">for</span>(i=<span class="number">2</span>;i&lt;=n;++i)&#123;fa[i]=it;AddEdge(fa[i],i);&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">54</span></pre></td><td class="code"><pre><span class="line">	tree_dp(<span class="number">1</span>);change_root(<span class="number">1</span>);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">55</span></pre></td><td class="code"><pre><span class="line">	<span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;=n;++i)<span class="keyword">if</span>(dp[i]&lt;ans)&#123;ans=dp[i];Ans[*Ans=<span class="number">1</span>]=i;&#125;<span class="keyword">else</span> <span class="keyword">if</span>(ans==dp[i])Ans[++*Ans]=i;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">56</span></pre></td><td class="code"><pre><span class="line">	<span class="built_in">printf</span>(<span class="string">"%d\n"</span>,ans+<span class="number">1</span>);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">57</span></pre></td><td class="code"><pre><span class="line">	<span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;=*Ans;++i)<span class="built_in">printf</span>(<span class="string">"%d "</span>,Ans[i]);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">58</span></pre></td><td class="code"><pre><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">59</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E9%A2%98%E8%A7%A3/" rel="tag"># 题解</a>
+              <a href="/tags/%E6%8D%A2%E6%A0%B9dp/" rel="tag"># 换根dp</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2019/12/01/%E3%80%90BZOJ4237%E3%80%91%E7%A8%BB%E8%8D%89%E4%BA%BA%20CDQ%E5%88%86%E6%B2%BB%20%E5%8D%95%E8%B0%83%E6%A0%88/" rel="prev" title="【BZOJ4237】稻草人 CDQ分治 单调栈">
+      <i class="fa fa-chevron-left"></i> 【BZOJ4237】稻草人 CDQ分治 单调栈
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2019/12/01/%E3%80%90BSOJ2769%E3%80%91%E3%80%90SPOJ1825%E3%80%91%E9%BB%91%E7%99%BD%E6%A0%91%20%E7%82%B9%E5%88%86%E6%B2%BB%20%E5%90%AF%E5%8F%91%E5%BC%8F%E5%90%88%E5%B9%B6/" rel="next" title="【BSOJ2769】黑白树 点分治 启发式合并">
+      【BSOJ2769】黑白树 点分治 启发式合并 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#题目"><span class="nav-number">1.</span> <span class="nav-text">题目</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Solution"><span class="nav-number">2.</span> <span class="nav-text">$Solution$</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">zzw4257</p>
+  <div class="site-description" itemprop="description">人常说无论做什么都不要忘了初心，但如果一个人从来没有”应该”去忘了初心，又从何谈起的初心。</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">9</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">13</span>
+        <span class="site-state-item-name">tags</span>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">zzw4257</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> v4.0.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">Theme – <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.6.0
+  </div>
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+<script src="/js/schemes/muse.js"></script>
+<script src="/js/next-boot.js"></script>
+
+  <script defer src="/lib/three/three.min.js"></script>
+    <script defer src="/lib/three/three-waves.min.js"></script>
+    <script defer src="/lib/three/canvas_lines.min.js"></script>
+    <script defer src="/lib/three/canvas_sphere.min.js"></script>
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+      
+<script type="text/x-mathjax-config">
+
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$', '$'], ['\\(', '\\)'] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+      equationNumbers: {
+        autoNumber: 'AMS'
+      }
+    }
+  });
+
+  MathJax.Hub.Register.StartupHook('TeX Jax Ready', function() {
+    MathJax.InputJax.TeX.prefilterHooks.Add(function(data) {
+      if (data.display) {
+        var next = data.script.nextSibling;
+        while (next && next.nodeName.toLowerCase() === '#text') {
+          next = next.nextSibling;
+        }
+        if (next && next.nodeName.toLowerCase() === 'br') {
+          next.parentNode.removeChild(next);
+        }
+      }
+    });
+  });
+
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for (i = 0; i < all.length; i += 1) {
+      element = document.getElementById(all[i].inputID + '-Frame').parentNode;
+      if (element.nodeName.toLowerCase() == 'li') {
+        element = element.parentNode;
+      }
+      element.classList.add('has-jax');
+    }
+  });
+</script>
+<script>
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS-MML_HTMLorMML', () => {
+    MathJax.Hub.Typeset();
+  }, window.MathJax);
+</script>
+
+    
+
+  
+
+</body>
+</html>

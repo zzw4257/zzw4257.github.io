@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    hostname: new URL('http://zzw4257.github.io').hostname,
+    root: '/',
+    scheme: 'Muse',
+    version: '7.6.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: '',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
+  };
+</script>
+
+  <meta name="description" content="Part I 前置技能数论分块 性质一:对于$\large \lfloor \frac Ni \rfloor$,最多只有$2\sqrt{N}$种取值 性质二:对于使得$\large \lfloor \frac N{i’} \rfloor$&#x3D;$\large \lfloor \frac Ni \rfloor$的$i’$,$i’_{max}&#x3D;\large \left \lfloor \frac N{\l">
+<meta name="keywords" content="学习笔记,数学,长链剖分">
+<meta property="og:type" content="article">
+<meta property="og:title" content="莫比乌斯反演">
+<meta property="og:url" content="http:&#x2F;&#x2F;zzw4257.github.io&#x2F;2019&#x2F;12&#x2F;01&#x2F;%E8%8E%AB%E6%AF%94%E4%B9%8C%E6%96%AF%E5%8F%8D%E6%BC%94&#x2F;index.html">
+<meta property="og:site_name" content="zzw4257">
+<meta property="og:description" content="Part I 前置技能数论分块 性质一:对于$\large \lfloor \frac Ni \rfloor$,最多只有$2\sqrt{N}$种取值 性质二:对于使得$\large \lfloor \frac N{i’} \rfloor$&#x3D;$\large \lfloor \frac Ni \rfloor$的$i’$,$i’_{max}&#x3D;\large \left \lfloor \frac N{\l">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2019-12-01T11:59:46.083Z">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://zzw4257.github.io/2019/12/01/%E8%8E%AB%E6%AF%94%E4%B9%8C%E6%96%AF%E5%8F%8D%E6%BC%94/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>莫比乌斯反演 | zzw4257</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">zzw4257</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">一只苦苦追寻的蒟蒻</p>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>Archives</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="en">
+    <link itemprop="mainEntityOfPage" href="http://zzw4257.github.io/2019/12/01/%E8%8E%AB%E6%AF%94%E4%B9%8C%E6%96%AF%E5%8F%8D%E6%BC%94/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="zzw4257">
+      <meta itemprop="description" content="人常说无论做什么都不要忘了初心，但如果一个人从来没有”应该”去忘了初心，又从何谈起的初心。">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="zzw4257">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          莫比乌斯反演
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2019-12-01 00:00:00 / Modified: 19:59:46" itemprop="dateCreated datePublished" datetime="2019-12-01T00:00:00+08:00">2019-12-01</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="Part-I-前置技能"><a href="#Part-I-前置技能" class="headerlink" title="Part I 前置技能"></a>Part I 前置技能</h2><h3 id="数论分块"><a href="#数论分块" class="headerlink" title="数论分块"></a><strong>数论分块</strong></h3><hr>
+<p>性质一:对于$\large \lfloor \frac Ni \rfloor$,最多只有$2\sqrt{N}$种取值</p>
+<p>性质二:对于使得$\large \lfloor \frac N{i’} \rfloor$=$\large \lfloor \frac Ni \rfloor$的$i’$,$i’_{max}=\large \left \lfloor \frac N{\left \lfloor \frac Ni \right \rfloor } \right \rfloor$</p>
+<p>$e.g.$求$\sum_{i=1}^N \lfloor \frac Ni \rfloor(N&lt;10^{12})$</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(l=<span class="number">1</span>;l&lt;=n;l=r+<span class="number">1</span>)&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">	r=(n/(n/l));</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">	ans+=(n/l)*(r-l+<span class="number">1</span>); </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
+<p><strong>例一</strong><a href="https://oj.bashu.com.cn/code/problempage.php?problem_id=2019" target="_blank" rel="noopener">$BSOJ2019$</a></p>
+<p><strong>【题意】</strong>:求$\sum_{i=1}^{n}{k\space mod\space i}$</p>
+<p>$\sum_{i=1}^{n}{k\space mod\space i}$<br>$=\sum_{i=1}^{n}{k\space-\lfloor \frac{k}{i} \rfloor<em>i}$<br>$=n</em>k-\sum_{i=1}^{n}{\lfloor \frac{k}{i}\rfloor*i}$</p>
+<p>以这道题为例解释一下怎么做<br>对于同一个${\lfloor \frac{k}{i} \rfloor}$,设其区间为$[l,r]$<br>有$\sum_{i=l}^{r}{\lfloor \frac{k}{i} \rfloor}<em>i \\<br>=\sum_{i=l}^{r}{\lfloor \frac{k}{i} \rfloor}</em>\sum_{i=l}^{r}i$</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(l=<span class="number">1</span>;l&lt;=n;l=r+<span class="number">1</span>)&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">	r=(k/l)?min(k/(k/l),n):n;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">	ans+=(k/l)*Sum(l,r);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
+<p><strong>例二</strong><a href="https://oj.bashu.com.cn/code/problempage.php?problem_id=3713" target="_blank" rel="noopener">$BSOJ3713$</a></p>
+<p>$\sum_{i=1}^{n}\sum_{j=1 \land i \not = j}^{m}(n mod i)(m mod j)\\<br>=\sum_{i=1}^{n}\sum_{j=1}^{m}(n-{\left \lfloor \frac{n}{i} \right \rfloor}i)(m-{\left \lfloor \frac{m}{j} \right \rfloor}j)-\sum_{i=1}^{min(n,m)}(n-{\left \lfloor \frac{n}{i} \right \rfloor}i)(m-{\left \lfloor \frac{m}{i} \right \rfloor}i)\\<br>=\sum_{i=1}^{n}\sum_{j=1}^{m}(n-{\left \lfloor \frac{n}{i} \right \rfloor}i)(m-{\left \lfloor \frac{m}{j} \right \rfloor}j)-\sum_{i=1}^{min(n,m)}(nm+{\left \lfloor \frac{n}{i} \right \rfloor}{\left \lfloor \frac{m}{i} \right \rfloor}i^2-(m{\left \lfloor \frac{n}{i} \right \rfloor}+n{\left \lfloor \frac{m}{i} \right \rfloor})i)<br>$</p>
+<h3 id="积性函数"><a href="#积性函数" class="headerlink" title="积性函数"></a><strong>积性函数</strong></h3><hr>
+<p>首先，我们定义整数集合上的数论函数：定义域和值域都在整数集合中的函数称为数论函数;</p>
+<p>（真正的数论函数定义有所不同，可以自行参考维基）</p>
+<p>那么积性函数就是这样的一类数论函数：</p>
+<p>若函数$f$是积性函数，那么对于任意$gcd\left(i,j\right)=1$，有$f\left(i\ast j\right)=f\left(i\right)\ast f\left(j\right)$</p>
+<p>如果函数$f$在$gcd\left(i,j\right)\neq1$时也满足后面的条件，称函数$f$为完全积性函数</p>
+<p>常见的积性函数：</p>
+<p>$\mu\left(i\right)$，莫比乌斯函数</p>
+<p>$\varphi\left(i\right)$，欧拉函数</p>
+<p>$d\left(i\right)$，约数个数函数</p>
+<p>$\sigma\left(i\right)$，约数和函数</p>
+<p>常见的完全积性函数（注意完全积性函数一定是积性函数）</p>
+<p>$I\left(i\right)=1$，常函数</p>
+<p>$\varepsilon\left(i\right)=\left[i=1\right]$，单位函数</p>
+<p>$id\left(i\right)=i$，恒等函数</p>
+<h3 id="狄利克雷卷积"><a href="#狄利克雷卷积" class="headerlink" title="狄利克雷卷积"></a>狄利克雷卷积</h3><p>嗯这个东西，是今天我要讲的大部分东西的基础<br>那么狄利克雷卷积就是两个数论函数，通过一定的方法相乘：</p>
+<p>定义$\left(g\ast f\right)\left(i\right)=F$，我们称F函数是g和f函数关于i的狄利克雷卷积<br>F的计算方式如下：<br>$F\left(i\right)=\sum_{d|i}g\left(d\right)f\left(\frac id\right)$<br>还是比较好理解的吧？</p>
+<p>狄利克雷卷积满足交换律、结合律，并且有一些经典的结论：</p>
+<p>$\left(\mu\ast I\right)=\varepsilon$</p>
+<p>$\left(\varphi\ast I\right)=id$</p>
+<p>$\left(\mu\ast id\right)=\varphi$</p>
+<p>$\left(I\ast I\right)=d$</p>
+<p>$\left(I\ast id\right)=\sigma$</p>
+<p>其中前面三个，在莫比乌斯反演以及杜教筛中的应用很广泛，后面两个在解决大部分积性函数题目时候也有很大的作用</p>
+<p>Part II 莫比乌斯函数/莫比乌斯反演<br>莫比乌斯函数<br>前面已经提到过这个东西……名字听起来很高大上对不对~<br>实际上它的定义不是特别高大上<br>定义莫比乌斯函数$\mu$</p>
+<p>当$i=1$时，$\mu\left(i\right)=1$</p>
+<p>当$i=\prod_{i=1}^{n}p_i^1$，其中$p_i$是互不相同的质数时，$\mu\left(i\right)=\left(-1\right)^n$</p>
+<p>其余时候$\mu\left(i\right)=0$</p>
+<p>$\mu$函数的两个最重要的性质，在上文中都已经用狄利克雷卷积的形式写过了</p>
+<p>莫比乌斯函数同时也是接下来的莫比乌斯反演的主角</p>
+<h2 id="莫比乌斯反演"><a href="#莫比乌斯反演" class="headerlink" title="莫比乌斯反演"></a>莫比乌斯反演</h2><p>莫比乌斯反演是一个数论反演。当初发明它的主要目的是为了简化计算（1718世纪的时候）</p>
+<h3 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h3><p>$\left(\mu\ast I\right)=\varepsilon$</p>
+<h3 id="实例："><a href="#实例：" class="headerlink" title="实例："></a>实例：</h3><p>设$f=\left(g\ast I\right)$<br>两边同时卷积一个$\mu$，变成<br>$f\ast\mu=g\ast I\ast\mu$<br>$f\ast\mu=g\ast\varepsilon=g$<br>莫比乌斯反演就完成了<br>如果写成$\sum$的形式就是这样的：<br>如果</p>
+<p>$f\left(d\right)=\sum_{i|d}g\left(i\right)$</p>
+<p>那么</p>
+<p>$g\left(i\right)=\sum_{i|d}f\left(i\right)\mu\left(\frac di\right)$</p>
+<p>另一种形式：</p>
+<p>如果</p>
+<p>$f\left(d\right)=\sum_{d|i}g\left(i\right)$</p>
+<p>那么</p>
+<p>$g\left(i\right)=\sum_{d|i}f\left(d\right)\mu\left(\frac di\right)$</p>
+<p>好像在大部分莫比乌斯反演题目中后面再这一种形式更常见一些<br>可以把他们两个理解为&ldquo;对一个东西的所有约数求和&rdquo;以及&ldquo;对一个东西的所有倍数求和&rdquo;然后反演</p>
+<p>为了加深理解，我们先来看一个<a href="http://www.cnblogs.com/dedicatus545/p/8488890.html" target="_blank" rel="noopener">例子</a></p>
+<p>$f(x)=\sum_{i=1}^{n}\sum_{j=1}^{m}[gcd(i,j)=x]$</p>
+<p>$F(x)=\sum_{i=1}^{n}\sum_{j=1}^{m}[x|gcd(i,j)]=\lfloor \frac{n}{x}\rfloor\lfloor \frac{m}{x}\rfloor$</p>
+<p>因为$F(x)=\sum_{x|d}f(d)$</p>
+<p>所以$f(x)=\sum_{x|d}F(d)\mu(\frac{d}{x})$</p>
+<p>注意这里面就是把一个不太好求的东西求了一个和，然后变成了一个很好求的东西，再通过反演把它反向算出来</p>
+<p>再来看下一个例子：求<br>$\sum_{i=1}^{n}\sum_{j=1}^{m}gcd\left(i,j\right)$<br>我们做一步变形，一步非常重要的变形：把$gcd\left(i,j\right)$的值提出来，变成：</p>
+<p>$\sum_{d=1}^{n}d\sum_{i=1}^{n}\sum_{j=1}^{m}\left[gcd\left(i,j\right)=d\right]$</p>
+<p>这一步非常重要，一定要好好理解再继续，因为它是一个超级常用的技巧</p>
+<p>下一步，发现后面$gcd\left(i,j\right)=d$这里的$d$很烦呐，把它除上去：</p>
+<p>$\sum_{d=1}^{n}d\sum_{i=1}^{\frac nd}\sum_{j=1}^{\frac md}\left[gcd\left(i,j\right)=1\right]$</p>
+<p>看到了吗？这就完成了向的转变，后面就反演一下，变成这个形式：</p>
+<p>$\sum_{d=1}^{n}d\sum_{i=1}^{n}\mu\left(i\right)\frac n{id}\frac m{id}$</p>
+<p>设$D=id$，我们先枚举D再枚举D的约数d，变成这个形式</p>
+<p>$\sum_{D=1}^{N}\sum_{d|D}d\mu\left(\frac Dd\right)\frac n{id}\frac m{id}$</p>
+<p>最后面两项提到前面去，变成</p>
+<p>$\sum_{D=1}^{N}\frac n{D}\frac m{D}\sum_{d|D}d\mu\left(\frac Dd\right)$</p>
+<p>发现后面的是一个卷积的形式，就是$\left(\mu\ast id\right)=\varphi$</p>
+<p>所以得到最终结果：</p>
+<p>$\sum_{D=1}^{N}\frac n{D}\frac m{D}\varphi\left(D\right)$</p>
+<p>然后数论分块技巧，在$O\left(\sqrt n\right)$下解决</p>
+<h3 id="【例题】"><a href="#【例题】" class="headerlink" title="_【例题】_"></a>_【例题】_</h3><p><a href="https://oj.bashu.com.cn/code/problempage.php?problem_id=4127" target="_blank" rel="noopener">$BSOJ3431$</a>&amp;<br><a href="https://oj.bashu.com.cn/code/problempage.php?problem_id=4129" target="_blank" rel="noopener">$BSOJ4129$</a></p>
+<p>${\sum_{i=1}^{n}\sum_{j=1}^{m}lcm(i,j)}$</p>
+<p>${=\sum_{i=1}^{n}\sum_{j=1}^{m}\frac{ij}{gcd(i,j)}}$</p>
+<p>${=\sum_{d=1}^{n}\sum_{i=1}^{\left \lfloor \frac{n}{d} \right \rfloor}\sum_{j=1}^{\left \lfloor \frac{m}{d} \right \rfloor}\sum_{k|i,k|j}\mu (k)ijg}$</p>
+<p>令$S[n]=\sum_{i=1}^{n}i$，则</p>
+<p>原式${=\sum_{d=1}^{n}d\sum_{k=1}^{\left\lfloor\frac{n}{d}\right\rfloor}\mu (k)k^2 S(\left \lfloor \frac{n}{gt} \right \rfloor) S(\left \lfloor \frac{m}{gt} \right \rfloor)}$</p>
+<p>令$T=gt$，换元得：</p>
+<p>原式${=\sum_{T=1}^{n}S(\left \lfloor \frac{n}{T} \right \rfloor)S(\left \lfloor \frac{m}{T} \right \rfloor)T\sum_{k|T}\mu (k)k}$</p>
+<p>不妨设${f(n)=\sum_{k|n}\mu(k)\ast k}$</p>
+<p> 则$f(n)$为积性函数，可以在$O(n)$的复杂度内，做线性筛时顺便递推得到：</p>
+<p>　  ${f(i<em>p)=f(i)</em>f(p) ,}$ $i$ $mod$ $p$ ${\neq 0}$</p>
+<p> 　${f(i*p)=f(i) ,}$ $i$ $mod$ $p$ ${=0}$</p>
+<p>（$p$为质数）</p>
+<p>总复杂度：$O(n)$</p>
+<p>变形:<br><a href="https://oj.bashu.com.cn/code/problempage.php?problem_id=4127" target="_blank" rel="noopener">$BSOJ4127$</a></p>
+<p>求$\sum_{i=1}^{n} lcm(i,n)$</p>
+<p>$\sum_{i=1}^{n} lcm(i,n)$</p>
+<p>$=\sum_{i=1}^{n} i \cdot n/gcd(i,n)$</p>
+<p>$=n\sum_{i=1}^{n} i/gcd(i,n)$</p>
+<p>$=n\sum_{d|n}\sum_{i=1}^{n} \frac{i}{d}[gcd(i,n)==d]$</p>
+<p>$=n\sum_{d|n}\sum_{i=1}^{n/d} \frac{i}{d}[gcd(id,n)==d]$</p>
+<p>$=n\sum_{d|n}\sum_{i=1}^{n/d} i[gcd(i,n/d)==1]$</p>
+<p>$=n\sum_{d|n}\sum_{i=1}^{d} i[gcd(i,d)==1]$</p>
+<p>$=n\sum_{d|n}\frac{\varphi(d)d}{2}$</p>
+<p><a href="https://oj.bashu.com.cn/code/problempage.php?problem_id=4347" target="_blank" rel="noopener">$BSOJ4347$</a></p>
+<p>记一个结论:</p>
+<p>$d(i \ast j)=\sum_{x|i}\sum_{y|j}[gcd(x,y)==1]$</p>
+<p><a href="https://blog.csdn.net/ab_ever/article/details/76737617" target="_blank" rel="noopener">题解</a></p>
+<p><a href="https://oj.bashu.com.cn/code/problempage.php?problem_id=4372" target="_blank" rel="noopener">$BSOJ4372$</a></p>
+<p>$\sum\limits_i^n \sum\limits_j^m f(gcd(i,j))$</p>
+<p>$=\sum\limits_d f(d) \sum\limits_i^n \sum\limits_j^m [gcd(i,j)==d]$</p>
+<p>$=\sum\limits_d f(d) \sum\limits_i^{\lfloor\frac{n}{d}\rfloor} \sum\limits_j^{\lfloor\frac{m}{d}\rfloor}  [gcd(i,j)==1]$</p>
+<p>$=\sum\limits_d f(d) \sum\limits_i^{\lfloor\frac{n}{d}\rfloor} \sum\limits_j^{\lfloor\frac{m}{d}\rfloor} \sum_{d|i,d|j} \mu(d)$</p>
+<p>$=\sum_d f(d) \sum_k \mu(k) \lfloor\frac{m}{kd}\rfloor \lfloor\frac{n}{kd}\rfloor$</p>
+<p>令$T=kd$</p>
+<p>$=\sum_T  \lfloor\frac{m}{T}\rfloor \lfloor\frac{n}{T}\rfloor \sum_{d|T}  f(d) \mu(\frac{T}{d})$</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" rel="tag"># 学习笔记</a>
+              <a href="/tags/%E6%95%B0%E5%AD%A6/" rel="tag"># 数学</a>
+              <a href="/tags/%E9%95%BF%E9%93%BE%E5%89%96%E5%88%86/" rel="tag"># 长链剖分</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2019/12/01/%E9%95%BF%E9%93%BE%E5%89%96%E5%88%86/" rel="prev" title="长链剖分">
+      <i class="fa fa-chevron-left"></i> 长链剖分
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2019/12/01/%E7%94%9F%E6%88%90%E5%87%BD%E6%95%B0/" rel="next" title="生成函数">
+      生成函数 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Part-I-前置技能"><span class="nav-number">1.</span> <span class="nav-text">Part I 前置技能</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#数论分块"><span class="nav-number">1.1.</span> <span class="nav-text">数论分块</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#积性函数"><span class="nav-number">1.2.</span> <span class="nav-text">积性函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#狄利克雷卷积"><span class="nav-number">1.3.</span> <span class="nav-text">狄利克雷卷积</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#莫比乌斯反演"><span class="nav-number">2.</span> <span class="nav-text">莫比乌斯反演</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#原理"><span class="nav-number">2.1.</span> <span class="nav-text">原理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#实例："><span class="nav-number">2.2.</span> <span class="nav-text">实例：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#【例题】"><span class="nav-number">2.3.</span> <span class="nav-text">_【例题】_</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">zzw4257</p>
+  <div class="site-description" itemprop="description">人常说无论做什么都不要忘了初心，但如果一个人从来没有”应该”去忘了初心，又从何谈起的初心。</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">9</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">13</span>
+        <span class="site-state-item-name">tags</span>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">zzw4257</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> v4.0.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">Theme – <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.6.0
+  </div>
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+<script src="/js/schemes/muse.js"></script>
+<script src="/js/next-boot.js"></script>
+
+  <script defer src="/lib/three/three.min.js"></script>
+    <script defer src="/lib/three/three-waves.min.js"></script>
+    <script defer src="/lib/three/canvas_lines.min.js"></script>
+    <script defer src="/lib/three/canvas_sphere.min.js"></script>
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+      
+<script type="text/x-mathjax-config">
+
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$', '$'], ['\\(', '\\)'] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+      equationNumbers: {
+        autoNumber: 'AMS'
+      }
+    }
+  });
+
+  MathJax.Hub.Register.StartupHook('TeX Jax Ready', function() {
+    MathJax.InputJax.TeX.prefilterHooks.Add(function(data) {
+      if (data.display) {
+        var next = data.script.nextSibling;
+        while (next && next.nodeName.toLowerCase() === '#text') {
+          next = next.nextSibling;
+        }
+        if (next && next.nodeName.toLowerCase() === 'br') {
+          next.parentNode.removeChild(next);
+        }
+      }
+    });
+  });
+
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for (i = 0; i < all.length; i += 1) {
+      element = document.getElementById(all[i].inputID + '-Frame').parentNode;
+      if (element.nodeName.toLowerCase() == 'li') {
+        element = element.parentNode;
+      }
+      element.classList.add('has-jax');
+    }
+  });
+</script>
+<script>
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS-MML_HTMLorMML', () => {
+    MathJax.Hub.Typeset();
+  }, window.MathJax);
+</script>
+
+    
+
+  
+
+</body>
+</html>
