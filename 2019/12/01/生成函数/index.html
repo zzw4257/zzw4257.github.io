@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>生成函数 | zzw4257</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="【前置知识】组合数公式($n\in N$):$C_n^m$&#x3D;$\frac{n!}{(n-m)!\cdot m!}$ 拓展（$n\in R$）:$C_n^m$&#x3D;$\frac{\prod_{i&#x3D;n-m+1}^n{}i}{m!}$ 二项式定理:$(a+b)^n&#x3D;\sum_{i&#x3D;0}^{n}C_n^ia^{n-i}b^i(n&amp;gt;0)$ 拓展:$(a+b)^{-n}&#x3D;\sum_{i&#x3D;0}^{-n}C_{">
+<meta property="og:type" content="article">
+<meta property="og:title" content="生成函数">
+<meta property="og:url" content="http:&#x2F;&#x2F;zzw4257.github.io&#x2F;2019&#x2F;12&#x2F;01&#x2F;%E7%94%9F%E6%88%90%E5%87%BD%E6%95%B0&#x2F;index.html">
+<meta property="og:site_name" content="zzw4257">
+<meta property="og:description" content="【前置知识】组合数公式($n\in N$):$C_n^m$&#x3D;$\frac{n!}{(n-m)!\cdot m!}$ 拓展（$n\in R$）:$C_n^m$&#x3D;$\frac{\prod_{i&#x3D;n-m+1}^n{}i}{m!}$ 二项式定理:$(a+b)^n&#x3D;\sum_{i&#x3D;0}^{n}C_n^ia^{n-i}b^i(n&amp;gt;0)$ 拓展:$(a+b)^{-n}&#x3D;\sum_{i&#x3D;0}^{-n}C_{">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="https:&#x2F;&#x2F;i.loli.net&#x2F;2019&#x2F;05&#x2F;01&#x2F;5cc9654b7a446.jpg">
+<meta property="og:updated_time" content="2019-12-01T10:32:12.692Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https:&#x2F;&#x2F;i.loli.net&#x2F;2019&#x2F;05&#x2F;01&#x2F;5cc9654b7a446.jpg">
+  
+    <link rel="alternate" href="/atom.xml" title="zzw4257" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">zzw4257</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://zzw4257.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-生成函数" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/12/01/%E7%94%9F%E6%88%90%E5%87%BD%E6%95%B0/" class="article-date">
+  <time datetime="2019-12-01T10:30:03.264Z" itemprop="datePublished">2019-12-01</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      生成函数
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="【前置知识】"><a href="#【前置知识】" class="headerlink" title="【前置知识】"></a>【前置知识】</h3><p>组合数公式($n\in N$):$C_n^m$=$\frac{n!}{(n-m)!\cdot m!}$</p>
+<p>拓展（$n\in R$）:$C_n^m$=$\frac{\prod_{i=n-m+1}^n{}i}{m!}$</p>
+<p>二项式定理:$(a+b)^n=\sum_{i=0}^{n}C_n^i<em>a^{n-i}</em>b^i(n&gt;0)$</p>
+<p>拓展:$(a+b)^{-n}=\sum_{i=0}^{-n}C_{-n}^i<em>a^{n-i}</em>b^i(n&gt;0)$</p>
+<h2 id="一-普通生成函数"><a href="#一-普通生成函数" class="headerlink" title="一.普通生成函数"></a>一.普通生成函数</h2><h3 id="【定义】"><a href="#【定义】" class="headerlink" title="【定义】"></a>【定义】</h3><p>假设你有一个函数$f(n)$</p>
+<p>这个函数不好求(卷积)，尤其是在它的定义很复杂时</p>
+<p>这时我们构造$f$的生成函数$g^{f}(x)=\sum_{i=0}^{∞}f(i)*x^i$</p>
+<p>一个很重要的点：为保证这个求和收敛需要$-1&lt;x&lt;1$，但这个$x$是没有实际意义的，在后面可以看出，它是用来反解系数的。</p>
+<h3 id="【应用】"><a href="#【应用】" class="headerlink" title="【应用】"></a>【应用】</h3><p>例题:_$gyh$要买东西，他要买$3$的倍数个$a$,至少$4$个$b$求买了$n$个字母的情况数_</p>
+<p>解答:首先确定这里的方案数是组合。</p>
+<p>定义$f(n)$表示买了$n$个字母的情况数,$h_i(n)$表示第$i$种字母，选$n$个可取性</p>
+<p>这里再定义$g^{f}(x)=\sum_{i=0}^{∞}f(i)\cdot x^i=g_a(x)\cdot g_b(x)$</p>
+<p>对$h_a:(1,0,0,1,0,0,1)-&gt;g_a(x)=\frac{1}{(1-x)^3}$</p>
+<p>对$h_b:(0,0,0,0,1,1,1)-&gt;g_b(x)=\frac{x^4}{1-x}$</p>
+<p>因此$g^f(x)=\frac{x^4}{(1-x)^4}$</p>
+<p>求出其第$n$项即可</p>
+<h3 id="【例题】"><a href="#【例题】" class="headerlink" title="【例题】"></a>【例题】</h3><p>【一】<a href="https://oj.bashu.com.cn/code/problempage.php?problem_id=4763" target="_blank" rel="noopener">$BSOJ4763$</a>:模板</p>
+<p>偶数 $(1,0,1,0,1,0)-&gt;g_1(x)=\frac{1}{1-x^2}$</p>
+<p>$3$的倍数 $(1,0,0,1,0,0)-&gt;g_2(x)=\frac{1}{1-x^3}$</p>
+<p>$4$的倍数 $(1,0,0,0,1,0)-&gt;g_3(x)=\frac{1}{1-x^4}$</p>
+<p>0或1个$(1,1,0,0,0,0)-&gt;g_4(x)=\frac{1}{1-x}-\frac{x^2}{1-x} =\frac{1-x^2}{1-x}=1+x$</p>
+<p>不超过一个(同上)$(1,1,0,0,0,0)-&gt;g_5(x)=\frac{1-x^2}{1-x}=1+x$</p>
+<p>0,1或2个$(1,1,1,0,0,0)-&gt;g_6(x)=\frac{1}{1-x}-\frac{x^3}{1-x} =\frac{1-x^3}{1-x}$</p>
+<p>0,1,2或3个$(1,1,1,1,0,0)-&gt;g_7(x)=\frac{1}{1-x}-\frac{x^4}{1-x} =\frac{1-x^4}{1-x}$</p>
+<p>奇数 $(0,1,0,1,0,1)-&gt;g_8(x)=\frac{x}{1-x^2}$</p>
+<p>累乘即得$g^f(x)=\frac{x}{(1-x)^4}=(1-x)^{-4}*x$</p>
+<p>$=x\cdot\sum_{i=0}^∞C_{4+i-1}^i\cdot x^i$</p>
+<p>$=x\cdot\sum_{i=0}^∞C_{3+i}^3\cdot x^i$</p>
+<p>$=\sum_{i=0}^∞C_{3+i}^3\cdot x^{i+1}$</p>
+<p>$=\sum_{i=1}^∞C_{2+i}^3\cdot x^i$</p>
+<p>则$f(n)=C_{2+n}^3$</p>
+<p><a href="https://paste.ubuntu.com/p/sxjZdM4xsz/" target="_blank" rel="noopener">$Code$</a></p>
+<p>【二】</p>
+<p>首先我们要求卡特兰数</p>
+<p>$C_n=\sum_{i=0}^{n-1}C_i\cdot C_{n-i-1}$</p>
+<p>定义生成函数$g^C(x)=\sum_{i=0}^{∞}C_i\cdot x^i$</p>
+<p>所以有$g^C(x)=x\cdot g^C(x)^2+1$(卷积性定义可得)</p>
+<p>解得$g^C(x)=\frac{1-\sqrt{1-4x}}{2x}$</p>
+<p>然后就</p>
+<p><img src="https://i.loli.net/2019/05/01/5cc9654b7a446.jpg" alt="11.jpg"></p>
+<p>【三】</p>
+<h3 id="【练习】"><a href="#【练习】" class="headerlink" title="【练习】"></a>【练习】</h3><p>$1.$<a href="https://oj.bashu.com.cn/code/problempage.php?problem_id=4705" target="_blank" rel="noopener">$BSOJ4705$</a></p>
+<p>【简述】给你$n$个正整数$a_1-a_n$</p>
+<p>求对选一个或两个或三个的和可能取值的方案数</p>
+<p>【题解】设$Ans(x)$为斧头的生成函数，其中第$x^i$项的系数为价值为$i$的斧头个数</p>
+<p>$A(x)$表示同一个斧头重复一次价值为$x$的斧头个数</p>
+<p>$B(x)$表示同一个斧头重复二次价值为$x$的斧头个数</p>
+<p>$C(x)$表示同一个斧头重复三次价值为$x$的斧头个数</p>
+<p>对$A^2(x)$，会产生$(x_i,x_i)$同一把斧头的贡献，所以定义$B(x)$为同一个斧头重复两次的方案数，那么$A^2(x)-B(x)$就是两把斧头时真正的贡献，又因为与顺序无关，所以还要除以$2$</p>
+<p>然后$A^3(x)$的话，可能会有一把斧头重复两次或三次，如果重复两次，那么就是$(x_i,x_i,y_i),(x_i,y_i,x_i),(y_i,x_i,x_i)$，就是$3A(x)B(x)$，但是减去这个的话又会把$(x_i,x_i,x_i)$的情况多减去两次，所以定义$C(x)$为同一把斧头重复三次的生成函数，于是还要加上$2C(x)$，然后无关顺序的话还要除掉$3!=6$</p>
+<p>综上，最终的答案的生成函数为$Ans(x)=A(x)+\frac{A^2(x)-B(x)}{2}+\frac{A^3(x)-3A(x)B(x)+2C(x)}{6}$</p>
+<p>$2.$<a href="https://oj.bashu.com.cn/code/problempage.php?problem_id=4370" target="_blank" rel="noopener">$BSOJ4370$</a></p>
+<p>【题意】给你$n$个正整数$a_1-a_n$</p>
+<p>每次随机选出三个数。问这三个数能组成三角形的概率为多大？</p>
+<p>【题解】暂空</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://zzw4257.github.io/2019/12/01/%E7%94%9F%E6%88%90%E5%87%BD%E6%95%B0/" data-id="ck3mv9okc000528u3gnu7cw7l" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2019/12/01/%E3%80%90BZOJ4237%E3%80%91%E7%A8%BB%E8%8D%89%E4%BA%BA%20CDQ%E5%88%86%E6%B2%BB%20%E5%8D%95%E8%B0%83%E6%A0%88/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">【BZOJ4237】稻草人 CDQ分治 单调栈</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AE%97%E6%B3%95/" rel="tag">算法</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 10px;">算法</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/12/01/%E7%94%9F%E6%88%90%E5%87%BD%E6%95%B0/">生成函数</a>
+          </li>
+        
+          <li>
+            <a href="/2019/12/01/%E3%80%90BZOJ4237%E3%80%91%E7%A8%BB%E8%8D%89%E4%BA%BA%20CDQ%E5%88%86%E6%B2%BB%20%E5%8D%95%E8%B0%83%E6%A0%88/">【BZOJ4237】稻草人 CDQ分治 单调栈</a>
+          </li>
+        
+          <li>
+            <a href="/2019/12/01/CSP%E5%BF%83%E8%B7%AF%E5%8E%86%E7%A8%8B/">CSP心路历程</a>
+          </li>
+        
+          <li>
+            <a href="/2019/12/01/hello-world/">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/2019/12/01/CSP%E5%A4%8D%E4%B9%A0/">CSP2019复习</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 zzw4257<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<!-- script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+</html>

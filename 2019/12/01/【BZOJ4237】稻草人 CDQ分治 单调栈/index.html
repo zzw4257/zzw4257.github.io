@@ -5,14 +5,23 @@
   
 
   
-  <title>zzw4257</title>
+  <title>【BZOJ4237】稻草人 CDQ分治 单调栈 | zzw4257</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="zzw4257">
-<meta property="og:url" content="http:&#x2F;&#x2F;zzw4257.github.io&#x2F;index.html">
+  <meta name="description" content="题目描述  JOI村有一片荒地，上面竖着N个稻草人，村民们每年多次在稻草人们的周围举行祭典。有一次，JOI村的村长听到了稻草人们的启示，计划在荒地中开垦一片田地。和启示中的一样，田地需要满足以下条件：田地的形状是边平行于坐标轴的长方形；左下角和右上角各有一个稻草人；田地的内部(不包括边界)没有稻草人。给出每个稻草人的坐标，请你求出有多少遵从启示的田地的个数简述 求$n$个点组成的内部不含其它点的矩">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【BZOJ4237】稻草人 CDQ分治 单调栈">
+<meta property="og:url" content="http:&#x2F;&#x2F;zzw4257.github.io&#x2F;2019&#x2F;12&#x2F;01&#x2F;%E3%80%90BZOJ4237%E3%80%91%E7%A8%BB%E8%8D%89%E4%BA%BA%20CDQ%E5%88%86%E6%B2%BB%20%E5%8D%95%E8%B0%83%E6%A0%88&#x2F;index.html">
 <meta property="og:site_name" content="zzw4257">
+<meta property="og:description" content="题目描述  JOI村有一片荒地，上面竖着N个稻草人，村民们每年多次在稻草人们的周围举行祭典。有一次，JOI村的村长听到了稻草人们的启示，计划在荒地中开垦一片田地。和启示中的一样，田地需要满足以下条件：田地的形状是边平行于坐标轴的长方形；左下角和右上角各有一个稻草人；田地的内部(不包括边界)没有稻草人。给出每个稻草人的坐标，请你求出有多少遵从启示的田地的个数简述 求$n$个点组成的内部不含其它点的矩">
 <meta property="og:locale" content="en">
+<meta property="og:image" content="https:&#x2F;&#x2F;i.loli.net&#x2F;2019&#x2F;10&#x2F;23&#x2F;JUhZF5OKlAq3NTd.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;i.loli.net&#x2F;2019&#x2F;10&#x2F;23&#x2F;Cz6REcTaqVO8bnK.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;i.loli.net&#x2F;2019&#x2F;10&#x2F;23&#x2F;cktHUeR3n8l54xP.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;i.loli.net&#x2F;2019&#x2F;10&#x2F;23&#x2F;8Snm4IBMhrypd3J.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;i.loli.net&#x2F;2019&#x2F;10&#x2F;23&#x2F;zlkrs4tnohfBm69.png">
+<meta property="og:updated_time" content="2019-12-01T10:32:33.490Z">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https:&#x2F;&#x2F;i.loli.net&#x2F;2019&#x2F;10&#x2F;23&#x2F;JUhZF5OKlAq3NTd.png">
   
     <link rel="alternate" href="/atom.xml" title="zzw4257" type="application/atom+xml">
   
@@ -59,100 +68,7 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main">
-  
-    <article id="post-生成函数" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/12/01/%E7%94%9F%E6%88%90%E5%87%BD%E6%95%B0/" class="article-date">
-  <time datetime="2019-12-01T10:30:03.264Z" itemprop="datePublished">2019-12-01</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/12/01/%E7%94%9F%E6%88%90%E5%87%BD%E6%95%B0/">生成函数</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="【前置知识】"><a href="#【前置知识】" class="headerlink" title="【前置知识】"></a>【前置知识】</h3><p>组合数公式($n\in N$):$C_n^m$=$\frac{n!}{(n-m)!\cdot m!}$</p>
-<p>拓展（$n\in R$）:$C_n^m$=$\frac{\prod_{i=n-m+1}^n{}i}{m!}$</p>
-<p>二项式定理:$(a+b)^n=\sum_{i=0}^{n}C_n^i<em>a^{n-i}</em>b^i(n&gt;0)$</p>
-<p>拓展:$(a+b)^{-n}=\sum_{i=0}^{-n}C_{-n}^i<em>a^{n-i}</em>b^i(n&gt;0)$</p>
-<h2 id="一-普通生成函数"><a href="#一-普通生成函数" class="headerlink" title="一.普通生成函数"></a>一.普通生成函数</h2><h3 id="【定义】"><a href="#【定义】" class="headerlink" title="【定义】"></a>【定义】</h3><p>假设你有一个函数$f(n)$</p>
-<p>这个函数不好求(卷积)，尤其是在它的定义很复杂时</p>
-<p>这时我们构造$f$的生成函数$g^{f}(x)=\sum_{i=0}^{∞}f(i)*x^i$</p>
-<p>一个很重要的点：为保证这个求和收敛需要$-1&lt;x&lt;1$，但这个$x$是没有实际意义的，在后面可以看出，它是用来反解系数的。</p>
-<h3 id="【应用】"><a href="#【应用】" class="headerlink" title="【应用】"></a>【应用】</h3><p>例题:_$gyh$要买东西，他要买$3$的倍数个$a$,至少$4$个$b$求买了$n$个字母的情况数_</p>
-<p>解答:首先确定这里的方案数是组合。</p>
-<p>定义$f(n)$表示买了$n$个字母的情况数,$h_i(n)$表示第$i$种字母，选$n$个可取性</p>
-<p>这里再定义$g^{f}(x)=\sum_{i=0}^{∞}f(i)\cdot x^i=g_a(x)\cdot g_b(x)$</p>
-<p>对$h_a:(1,0,0,1,0,0,1)-&gt;g_a(x)=\frac{1}{(1-x)^3}$</p>
-<p>对$h_b:(0,0,0,0,1,1,1)-&gt;g_b(x)=\frac{x^4}{1-x}$</p>
-<p>因此$g^f(x)=\frac{x^4}{(1-x)^4}$</p>
-<p>求出其第$n$项即可</p>
-<h3 id="【例题】"><a href="#【例题】" class="headerlink" title="【例题】"></a>【例题】</h3><p>【一】<a href="https://oj.bashu.com.cn/code/problempage.php?problem_id=4763" target="_blank" rel="noopener">$BSOJ4763$</a>:模板</p>
-<p>偶数 $(1,0,1,0,1,0)-&gt;g_1(x)=\frac{1}{1-x^2}$</p>
-<p>$3$的倍数 $(1,0,0,1,0,0)-&gt;g_2(x)=\frac{1}{1-x^3}$</p>
-<p>$4$的倍数 $(1,0,0,0,1,0)-&gt;g_3(x)=\frac{1}{1-x^4}$</p>
-<p>0或1个$(1,1,0,0,0,0)-&gt;g_4(x)=\frac{1}{1-x}-\frac{x^2}{1-x} =\frac{1-x^2}{1-x}=1+x$</p>
-<p>不超过一个(同上)$(1,1,0,0,0,0)-&gt;g_5(x)=\frac{1-x^2}{1-x}=1+x$</p>
-<p>0,1或2个$(1,1,1,0,0,0)-&gt;g_6(x)=\frac{1}{1-x}-\frac{x^3}{1-x} =\frac{1-x^3}{1-x}$</p>
-<p>0,1,2或3个$(1,1,1,1,0,0)-&gt;g_7(x)=\frac{1}{1-x}-\frac{x^4}{1-x} =\frac{1-x^4}{1-x}$</p>
-<p>奇数 $(0,1,0,1,0,1)-&gt;g_8(x)=\frac{x}{1-x^2}$</p>
-<p>累乘即得$g^f(x)=\frac{x}{(1-x)^4}=(1-x)^{-4}*x$</p>
-<p>$=x\cdot\sum_{i=0}^∞C_{4+i-1}^i\cdot x^i$</p>
-<p>$=x\cdot\sum_{i=0}^∞C_{3+i}^3\cdot x^i$</p>
-<p>$=\sum_{i=0}^∞C_{3+i}^3\cdot x^{i+1}$</p>
-<p>$=\sum_{i=1}^∞C_{2+i}^3\cdot x^i$</p>
-<p>则$f(n)=C_{2+n}^3$</p>
-<p><a href="https://paste.ubuntu.com/p/sxjZdM4xsz/" target="_blank" rel="noopener">$Code$</a></p>
-<p>【二】</p>
-<p>首先我们要求卡特兰数</p>
-<p>$C_n=\sum_{i=0}^{n-1}C_i\cdot C_{n-i-1}$</p>
-<p>定义生成函数$g^C(x)=\sum_{i=0}^{∞}C_i\cdot x^i$</p>
-<p>所以有$g^C(x)=x\cdot g^C(x)^2+1$(卷积性定义可得)</p>
-<p>解得$g^C(x)=\frac{1-\sqrt{1-4x}}{2x}$</p>
-<p>然后就</p>
-<p><img src="https://i.loli.net/2019/05/01/5cc9654b7a446.jpg" alt="11.jpg"></p>
-<p>【三】</p>
-<h3 id="【练习】"><a href="#【练习】" class="headerlink" title="【练习】"></a>【练习】</h3><p>$1.$<a href="https://oj.bashu.com.cn/code/problempage.php?problem_id=4705" target="_blank" rel="noopener">$BSOJ4705$</a></p>
-<p>【简述】给你$n$个正整数$a_1-a_n$</p>
-<p>求对选一个或两个或三个的和可能取值的方案数</p>
-<p>【题解】设$Ans(x)$为斧头的生成函数，其中第$x^i$项的系数为价值为$i$的斧头个数</p>
-<p>$A(x)$表示同一个斧头重复一次价值为$x$的斧头个数</p>
-<p>$B(x)$表示同一个斧头重复二次价值为$x$的斧头个数</p>
-<p>$C(x)$表示同一个斧头重复三次价值为$x$的斧头个数</p>
-<p>对$A^2(x)$，会产生$(x_i,x_i)$同一把斧头的贡献，所以定义$B(x)$为同一个斧头重复两次的方案数，那么$A^2(x)-B(x)$就是两把斧头时真正的贡献，又因为与顺序无关，所以还要除以$2$</p>
-<p>然后$A^3(x)$的话，可能会有一把斧头重复两次或三次，如果重复两次，那么就是$(x_i,x_i,y_i),(x_i,y_i,x_i),(y_i,x_i,x_i)$，就是$3A(x)B(x)$，但是减去这个的话又会把$(x_i,x_i,x_i)$的情况多减去两次，所以定义$C(x)$为同一把斧头重复三次的生成函数，于是还要加上$2C(x)$，然后无关顺序的话还要除掉$3!=6$</p>
-<p>综上，最终的答案的生成函数为$Ans(x)=A(x)+\frac{A^2(x)-B(x)}{2}+\frac{A^3(x)-3A(x)B(x)+2C(x)}{6}$</p>
-<p>$2.$<a href="https://oj.bashu.com.cn/code/problempage.php?problem_id=4370" target="_blank" rel="noopener">$BSOJ4370$</a></p>
-<p>【题意】给你$n$个正整数$a_1-a_n$</p>
-<p>每次随机选出三个数。问这三个数能组成三角形的概率为多大？</p>
-<p>【题解】暂空</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://zzw4257.github.io/2019/12/01/%E7%94%9F%E6%88%90%E5%87%BD%E6%95%B0/" data-id="ck3mv9okc000528u3gnu7cw7l" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-【BZOJ4237】稻草人 CDQ分治 单调栈" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-【BZOJ4237】稻草人 CDQ分治 单调栈" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2019/12/01/%E3%80%90BZOJ4237%E3%80%91%E7%A8%BB%E8%8D%89%E4%BA%BA%20CDQ%E5%88%86%E6%B2%BB%20%E5%8D%95%E8%B0%83%E6%A0%88/" class="article-date">
   <time datetime="2019-12-01T10:28:13.428Z" itemprop="datePublished">2019-12-01</time>
@@ -165,8 +81,8 @@
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/12/01/%E3%80%90BZOJ4237%E3%80%91%E7%A8%BB%E8%8D%89%E4%BA%BA%20CDQ%E5%88%86%E6%B2%BB%20%E5%8D%95%E8%B0%83%E6%A0%88/">【BZOJ4237】稻草人 CDQ分治 单调栈</a>
+    <h1 class="article-title" itemprop="name">
+      【BZOJ4237】稻草人 CDQ分治 单调栈
     </h1>
   
 
@@ -217,159 +133,28 @@
     </footer>
   </div>
   
-</article>
-
-
+    
+<nav id="article-nav">
   
-    <article id="post-CSP心路历程" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/12/01/CSP%E5%BF%83%E8%B7%AF%E5%8E%86%E7%A8%8B/" class="article-date">
-  <time datetime="2019-12-01T10:27:45.832Z" itemprop="datePublished">2019-12-01</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
+    <a href="/2019/12/01/%E7%94%9F%E6%88%90%E5%87%BD%E6%95%B0/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
         
+          生成函数
+        
+      </div>
+    </a>
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/12/01/CSP%E5%BF%83%E8%B7%AF%E5%8E%86%E7%A8%8B/">CSP心路历程</a>
-    </h1>
   
+    <a href="/2019/12/01/CSP%E5%BF%83%E8%B7%AF%E5%8E%86%E7%A8%8B/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">CSP心路历程</div>
+    </a>
+  
+</nav>
 
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>_——人常说无论做什么都不要忘了初心，但如果一个人从来没有”应该”去忘了初心，又从何谈起的初心。_</p>
-<pre><code>CSP开考前，风吹在脸上，一些淡淡的回忆化作影子碎在地上:是到了一个令人感伤的路口了。一些使命，一些被扭曲的狂热摇曳着心中的火。努力的让自己相信，自己从不自卑。漫长的夜里，辗转反侧，如同无垠的汪洋的中心的渺渺一舟，涌上，涌下。
-
-那铃声终于响起，还沉醉在品味那逝去的梦，身前的乱成一团的鼠标与键盘终究让他清醒。突然有些烦躁起来，成事者就是必经坎坷吗，还是我，必经坎坷呢...
-
-终于，9:00，他打开了题面:
-
-12:00，在T2没有测大样例的恐慌中他逃离了考场
-
-他不知道明天怎么办，是自己从来都不是英雄吗……
-</code></pre><p>Day1本身暴露了很多问题:</p>
-<p>T1:在千叮万嘱之下检查了数据范围，发现了n=64但是由于经验认为中间结果爆没关系，因此写完就放下，细致性不足</p>
-<p>T2:作为T2依然想了一个明显复杂的方法，题目积累不足；并且在不知如何开栈的情况下惊慌失措，对小事物用心不足写手工栈……,看着一分一秒的过去，有些破罐子破摔的心态，心态调整不好</p>
-<p>T3：留给T3的时间明显极不合理，导致最后有想法了也只好放下，应试技巧不足，以及对老师指令执行力不足</p>
-<pre><code>他总是把自己当成主角的因此他相信宿命正如同写作，一切的情节是为了中心服务，因此他假装自信的相信着，”平静”着
-
-Day1-Day2的转折点上，我实则漫不经心的听着父母亲的长篇大论，因为那或许与平时习惯有很大关系:
-</code></pre><ul>
-<li><p>课堂，考试，练习无法集中一切注意力，总是唱歌，抖腿，做平时爱做的事，更多的不是对别人的影响，而是让自己缺少了完全投入的能力</p>
-</li>
-<li><p>厌恶自我思考，许多时候不能静下来思考问题，或者读看论文，题解，而是需要别人改错，解释，需要点通关键，实则使自己缺少精准实现，构造，建模等关键能力</p>
-</li>
-<li><p>浮于表面，总是喜欢表面的光鲜的东西，喜欢讲题，讲一些灵感，烟火一样摸不到的东西；但不喜欢过手，实实在在的练习。</p>
-</li>
-</ul>
-<p>铃声再一次响起，一切都结束了，他冲出去，再没有自己，再没有别人<br>Day2:</p>
-<p>T1:一道简单的补集转换dp，正难则反不知道被说了多少次的简单话依然被忘掉，在紧张的情绪下毫无灵感，迁移运用能力不强，心态影响强</p>
-<p>T2:一直试图攻克80分贪心，但却因为实现能力差平时请别人改错过多，到最后都没有过大样例，实现能力差；更重要的是最后没有交上分段暴力64分程序，并且<br>没有把数组改回40000000,MLE……</p>
-<p>T3:也是思考时间不够，但有改进</p>
-<pre><code>最后的最后，是面对失败，我近乎要情绪化的放弃掉自己喜爱的OI，但最终，无论我因为多少原因不再相信自己，我终于想起来自己的初心……
-</code></pre><p>_人常说无论做什么都不要忘了初心，但如果一个人从来没有”应该”去忘了初心，又从何谈起的初心。_</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://zzw4257.github.io/2019/12/01/CSP%E5%BF%83%E8%B7%AF%E5%8E%86%E7%A8%8B/" data-id="ck3mv9ojx000128u305e9e0m1" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
   
 </article>
-
-
-  
-    <article id="post-hello-world" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/12/01/hello-world/" class="article-date">
-  <time datetime="2019-12-01T09:24:14.075Z" itemprop="datePublished">2019-12-01</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/12/01/hello-world/">Hello World</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>我是CQ初三CSP蒟蒻选手zzw4257</p>
-<p>这是我新建的Hexo博客，希望多多关照</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://zzw4257.github.io/2019/12/01/hello-world/" data-id="ck3mv9ok7000328u3bb1j4j21" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-CSP复习" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/12/01/CSP%E5%A4%8D%E4%B9%A0/" class="article-date">
-  <time datetime="2019-11-30T16:00:00.000Z" itemprop="datePublished">2019-12-01</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/12/01/CSP%E5%A4%8D%E4%B9%A0/">CSP2019复习</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>希望能聊胜于无</p>
-        
-          <p class="article-more-link">
-            <a href="/2019/12/01/CSP%E5%A4%8D%E4%B9%A0/#more">Read More</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://zzw4257.github.io/2019/12/01/CSP%E5%A4%8D%E4%B9%A0/" data-id="ck3mv9ojm000028u3g8yr9958" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%AE%97%E6%B3%95/" rel="tag">算法</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-
 
 </section>
         
