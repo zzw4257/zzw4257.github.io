@@ -21,7 +21,7 @@
   var CONFIG = {
     hostname: new URL('http://zzw4257.github.io').hostname,
     root: '/',
-    scheme: 'Muse',
+    scheme: 'Gemini',
     version: '7.6.0',
     exturl: false,
     sidebar: {"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},
@@ -44,7 +44,6 @@
     motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
   };
 </script>
-
   <meta name="description" content="题目描述  JOI村有一片荒地，上面竖着N个稻草人，村民们每年多次在稻草人们的周围举行祭典。有一次，JOI村的村长听到了稻草人们的启示，计划在荒地中开垦一片田地。和启示中的一样，田地需要满足以下条件：田地的形状是边平行于坐标轴的长方形；左下角和右上角各有一个稻草人；田地的内部(不包括边界)没有稻草人。给出每个稻草人的坐标，请你求出有多少遵从启示的田地的个数简述 求$n$个点组成的内部不含其它点的矩">
 <meta name="keywords" content="题解,单调栈,CDQ分治">
 <meta property="og:type" content="article">
@@ -58,7 +57,7 @@
 <meta property="og:image" content="https:&#x2F;&#x2F;i.loli.net&#x2F;2019&#x2F;10&#x2F;23&#x2F;cktHUeR3n8l54xP.png">
 <meta property="og:image" content="https:&#x2F;&#x2F;i.loli.net&#x2F;2019&#x2F;10&#x2F;23&#x2F;8Snm4IBMhrypd3J.png">
 <meta property="og:image" content="https:&#x2F;&#x2F;i.loli.net&#x2F;2019&#x2F;10&#x2F;23&#x2F;zlkrs4tnohfBm69.png">
-<meta property="og:updated_time" content="2019-12-01T11:47:16.422Z">
+<meta property="og:updated_time" content="2019-12-08T09:20:18.604Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https:&#x2F;&#x2F;i.loli.net&#x2F;2019&#x2F;10&#x2F;23&#x2F;JUhZF5OKlAq3NTd.png">
 
@@ -112,7 +111,7 @@
 <body itemscope itemtype="http://schema.org/WebPage">
   <div class="container use-motion">
     <div class="headband"></div>
-
+    <a href="https://github.com/zzw4257" target="_blank" rel="noopener" class="github-corner" aria-label="View source on GitHub"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#fff; color:#151513; position: absolute; top: 0; border: 0; left: 0; transform: scale(-1, 1);" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
     <header class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-container">
   <div class="site-meta">
@@ -198,10 +197,16 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               <span class="post-meta-item-text">Posted on</span>
-              
 
-              <time title="Created: 2019-12-01 00:00:00 / Modified: 19:47:16" itemprop="dateCreated datePublished" datetime="2019-12-01T00:00:00+08:00">2019-12-01</time>
+              <time title="Created: 2019-12-01 00:00:00" itemprop="dateCreated datePublished" datetime="2019-12-01T00:00:00+08:00">2019-12-01</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2019-12-08 17:20:18" itemprop="dateModified" datetime="2019-12-08T17:20:18+08:00">2019-12-08</time>
+              </span>
 
           
 
@@ -237,7 +242,7 @@
 <p><img src="https://i.loli.net/2019/10/23/cktHUeR3n8l54xP.png" alt="1782 1.2.png"></p>
 <p>因此对$a$我们维护一个<strong>$y$值单调递减</strong>的单调栈</p>
 <p>每次维护$x&lt;b_x$的单调栈即可</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">for(;q[j].x&lt;q[i].x&amp;&amp;j&lt;&#x3D;mid;++j)&#123;&#x2F;&#x2F;下,保存的是所有可以成为左下角的点 </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">			while(topmax&amp;&amp;q[j].y&gt;q[stmax[topmax]].y)--topmax;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">			stmax[++topmax]&#x3D;j;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">		&#125;</span></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(;q[j].x&lt;q[i].x&amp;&amp;j&lt;=mid;++j)&#123;<span class="comment">//下,保存的是所有可以成为左下角的点 </span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">	<span class="keyword">while</span>(topmax&amp;&amp;q[j].y&gt;q[stmax[topmax]].y)--topmax;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">	stmax[++topmax]=j;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
 <p>被$b$左边的管并且不会被$b$管的$a$</p>
 <p>现在证明:在$b$左下侧的$b’$是不会影响$b$管辖范围的</p>
 <p><img src="https://i.loli.net/2019/10/23/8Snm4IBMhrypd3J.png" alt="1782 2.png"></p>
@@ -318,6 +323,8 @@
 
       <div class="site-overview-wrap sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="zzw4257"
+      src="/images/avatar.gif">
   <p class="site-author-name" itemprop="name">zzw4257</p>
   <div class="site-description" itemprop="description">人常说无论做什么都不要忘了初心，但如果一个人从来没有”应该”去忘了初心，又从何谈起的初心。</div>
 </div>
@@ -365,10 +372,13 @@
   <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> v4.0.0
   </div>
   <span class="post-meta-divider">|</span>
-  <div class="theme-info">Theme – <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.6.0
+  <div class="theme-info">Theme – <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.6.0
   </div>
 
         
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+</div>
 
 
 
@@ -387,13 +397,9 @@
   <script src="/lib/velocity/velocity.min.js"></script>
   <script src="/lib/velocity/velocity.ui.min.js"></script>
 <script src="/js/utils.js"></script><script src="/js/motion.js"></script>
-<script src="/js/schemes/muse.js"></script>
+<script src="/js/schemes/pisces.js"></script>
 <script src="/js/next-boot.js"></script>
 
-  <script defer src="/lib/three/three.min.js"></script>
-    <script defer src="/lib/three/three-waves.min.js"></script>
-    <script defer src="/lib/three/canvas_lines.min.js"></script>
-    <script defer src="/lib/three/canvas_sphere.min.js"></script>
 
 
   
