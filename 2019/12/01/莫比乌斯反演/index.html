@@ -8,15 +8,15 @@
   <link rel="dns-prefetch" href="http://zzw4257.github.io">
   <title>莫比乌斯反演 | zzw4257</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Welcome to my blog, enter password to read.">
+  <meta name="description" content="Part I 前置技能数论分块 性质一:对于$\large \lfloor \frac Ni \rfloor$,最多只有$2\sqrt{N}$种取值 性质二:对于使得$\large \lfloor \frac N{i’} \rfloor$&#x3D;$\large \lfloor \frac Ni \rfloor$的$i’$,$i’{max}&#x3D;\large \left \lfloor \frac N{\le">
 <meta name="keywords" content="学习笔记,数学,长链剖分">
 <meta property="og:type" content="article">
 <meta property="og:title" content="莫比乌斯反演">
 <meta property="og:url" content="http:&#x2F;&#x2F;zzw4257.github.io&#x2F;2019&#x2F;12&#x2F;01&#x2F;%E8%8E%AB%E6%AF%94%E4%B9%8C%E6%96%AF%E5%8F%8D%E6%BC%94&#x2F;index.html">
 <meta property="og:site_name" content="zzw4257">
-<meta property="og:description" content="Welcome to my blog, enter password to read.">
+<meta property="og:description" content="Part I 前置技能数论分块 性质一:对于$\large \lfloor \frac Ni \rfloor$,最多只有$2\sqrt{N}$种取值 性质二:对于使得$\large \lfloor \frac N{i’} \rfloor$&#x3D;$\large \lfloor \frac Ni \rfloor$的$i’$,$i’{max}&#x3D;\large \left \lfloor \frac N{\le">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-12-10T15:15:00.620Z">
+<meta property="og:updated_time" content="2019-12-14T12:57:15.860Z">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="zzw4257" type="application/atom+xml">
@@ -175,17 +175,147 @@
         
       </header>
     
+    
+    <p class="show-toc-btn" id="show-toc-btn" onclick="showToc();" style="display:none">
+          <span class="btn-bg"></span>
+          <span class="btn-text">文章导航</span>
+          </p>
+    <div id="toc-article" class="toc-article">
+        <span id="toc-close" class="toc-close" title="隐藏导航" onclick="showBtn();">×</span>
+        <strong class="toc-title">文章目录</strong>
+           <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Part-I-前置技能"><span class="toc-number">1.</span> <span class="toc-text">Part I 前置技能</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#数论分块"><span class="toc-number">1.1.</span> <span class="toc-text">数论分块</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#积性函数"><span class="toc-number">1.2.</span> <span class="toc-text">积性函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#狄利克雷卷积"><span class="toc-number">1.3.</span> <span class="toc-text">狄利克雷卷积</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#莫比乌斯反演"><span class="toc-number">2.</span> <span class="toc-text">莫比乌斯反演</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#原理"><span class="toc-number">2.1.</span> <span class="toc-text">原理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#实例："><span class="toc-number">2.2.</span> <span class="toc-text">实例：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#【例题】"><span class="toc-number">2.3.</span> <span class="toc-text">_【例题】_</span></a></li></ol></li></ol>
+         </div>
+   <script type="text/javascript">
+    function showToc(){
+        var toc_article = document.getElementById("toc-article");
+        var show_toc_btn = document.getElementById("show-toc-btn");
+        toc_article.setAttribute("style","display:block");
+        show_toc_btn.setAttribute("style","display:none");
+        };
+    function showBtn(){
+        var toc_article = document.getElementById("toc-article");
+        var show_toc_btn = document.getElementById("show-toc-btn");
+        toc_article.setAttribute("style","display:none");
+        show_toc_btn.setAttribute("style","display:block");
+        };
+   </script>
+      
+  <!-- 目录内容结束 -->
     <div class="article-entry" itemprop="articleBody">
       
-        <div id="hexo-blog-encrypt" data-wpm="Oh, this is an invalid password. Check and try again, please." data-whm="OOPS, these decrypted content may changed, but you can still have a look.">
-  <div class="hbe-input-container">
-  <input type="password" id="hbePass" placeholder="" />
-    <label for="hbePass">Welcome to my blog, enter password to read.</label>
-    <div class="bottom-line"></div>
-  </div>
-  <script id="hbeData" type="hbeData" data-hmacdigest="f52ddf6681b7e47a7f88d06fd1ca336420fb78df6a5fadf100d59ece623421ee">49213a4da5f911b109ceccdc421005399e3f195325accf2860c1c8fb33b66a9e7ef06536916a532adda83a3861475895f13c4a4202b0a8c60f30f32b7bc618f7432e1eca326ab92cf78c4df334c8927815f1b87dcb9aece98df56dbfd0f76155bb3547dbc3deb9fbe28fd3eaba9980af1893b9118e82369c805cac76d95806b583734ef27d877350a8cb5eb18348ceeed8416a875aa92aabb654e81e1e0a0f6385f159f29d46a9eab0439f556c255d4c6143eb95e3d19eed290ff37240045d2cb3e5aa9c0f32863cb77a2dd214166733e7fd3aef8a48a43512de39d08ec586a9c2d568ff154ac42058db044f2b0935c053778e647e7b3cc135646580e580b09d71bbda1a0cd26da4b45ce227847df280e263be80df2109c49518f534bcd582db0b43bf5cb50a0b70a3687a99c7aa956c895b9a86ce2d2035540363693edff498bbb9a486af18764abe12aa267a841ce4ba9785ccde5f0af19fb122e579dac346eb293b399dbccc3badb27af81844655b0159151efb9afa14e369f0ee582a7220d4119dc555d249d8e855ac0571162487cf7c859c8b0c89b6d82846a25f27223f8e38f5c1fb6417a2f6965292b275350b028e06da8f94dc4df5be056580a56db433b9083cbe2a8068a9001df9020f84125e3a78bead12f55becb76f3ecb6fc0527c2fbfc034ed6abfa08bef78a17aa931a0f9cd0ad37d650afe4e0fa3efc7aba193c35fb7e9548b4f60b670c99e04c57cc4e1b8f35f7d169a64ea0650e2237622781e811f5b3cf074270ba0bcf00d96c98dfc131b1db5d4503f65e7d580a35bf22aad7037e930d9e8bd6b827b349f7ead3b1c1167128aa5cf199449463756087bd50e3204b2889489eccf936d5bb3805eeb44415a3bde7ba3d18d3585417cfb90a3a423337ab877a9fd1d1974b746cb2e13b1a5f1cc7a145e87c16dbe489eea8ca19c4219521ae50c9afbe377bc0a1c2c5b5ecf60f360ebda7a1c1be802571dc74cdd7a5e84f9a1756efa9ddcc5f8da6bbddf6d0306b433981bfaaba9fad27f173b510da55ac631a67955f6d079df8c42d564a9e264de92f1186364a649acc568166b89d47cd7ac52dca73bcc02a8b1ed1c6ea01c02fbd2b463da7dee288fcac0336e509138a77cf57908ba2674da949ab740de81f88f0836d40835ef13dbbc5adb525c00d9bc8230906f487b6cf17d6722c98f493ca4659ef8927db19c6630c0e0039227d95268750eaf9d68e21f109ce407a22369eddde50d8ba8678714ecf89bb60b8c7b2037518af0399ca8b22ee9d3caa979cd2d1fa138c168a7e6ae6552cedb88e5aba03291393e540c50a5e8eac08ef863e4566e8ac4971a0c663934490ce7908f5bd745e1e5a8621bff6ec07812cfef2ac614a371ad63128f7d5664e368042212eadd7a17a47bea27c29626ccc009e58a2efa0d8f7ae558d8efc6efdeba5e7d1a06de56db73fa43786f00148caf4e3c568cd19de74cf7075dc2e1ef361deeb47ebceceddac647c414cf7bc0b9daccfec424c5d2422d7938576eab386e6aa215f6ae0f70bf866f867e69ba61ee26e96f0e42a9fd6f3a030efd0dbb1162c1431bda77474afde413f2e2cee20e1aea6086180ee76706144a880f788d2ef6d56fcb6d087763e253348ea4f6230100091c7dbf524babbf312ef33732900822590be9b838d0feaa8b94cdae69bfa8e1f2e03c6a90699ed017275229580ab593d3e30fb76e4e720445ec2f6e9a239fbb52550fe5c19498fa18e1287d1684395c859fb21d1e0bad582dea952877ce28459d1e19db4fbddf0d9fdb025ba3e466fd3f15cd115fb292ae7f7883daf7594aac803c603351189f2f9826f43b8858b4432160b30cec3b32693a2a2868a3616de7596cb84e5822a4c9ab1070f10de42e9f2dc97db6f5dc9b766ca6e8be377249c5f4b649240c2d75f7e53d4fd394137567cddbf971c5f3c10e1cfbf5d477103c9502ea33feded43a419a0a80c18d06140a70f2ac21b606958ae2098878633bc504f66a55902efd2299a51f051474be8418ed7b99b3159f4a1bd2c1a6148830059f6d0b7cb912b09041b079dc8a0b718c8c6ac376e65885801bd38fce70d168e72cb7ab759b255eee151f04ea5af52989162644254559a9cc9ce7364483c3489bc87e773fcf8ebff6506da7b03acbe68941454420cbab26e6eb95f7fde8c502ae1fc1e9eed1e57b903292617bd1f00076b08bb0923d5c61597898813703123d1119f1078091e2f9ab3a6525c4c98ed0eb8d0d1f16f1681f3728f799d69c46c7833c948eb8690fc37d9383d3afca0d507d45b4a918cb72dc3dc0b503ebd4900bf3a075e516f76a5e96542efc647fdcdab0984c797b6a6e695374791e75290a18120f1fb6f9afc26fde58d426b053e64400f2cf215d04b81be34f04e1537c0039da7128f82cd25ef2f7e093b14a21404df93fd25ea9c78ce472206dfe01567306f587c56233de67a40809a9caccde6a4026046e85757dacfd8dc898c4d194321e683665c358214a836f2fba8fa9ca20468be1c0af49d39415988551ab124e0a6bc4d76d6603ab5211e7ab7201e0b672b5f303cafd459c3d74b3c29f0d913b276ba921a60e34b8345bc7d797e6c7bdd0960dae1c5d5833f6d7f643747ae1b2c600b6035b46020cbd271dc022e48e1c49d87ba10dc93782957f35c2a8c72c997e246f7efca4f2fa44266664558eb862910b089c010c1a7bee973ada3cb580d9af72a55b700407883bdcdcce73753b7f2334b1ecd76f60e8e1c5a06cbd88a467ccb612c0e45891195d6f1a107092184f0bf16d3b13ee194a76b8a7550071af8660895718bdb7b54693cc37b1656304d90679ec6b9fc1cf6c7b4ba54855ebf97ca312f9d2358781a3b066cc4bd15c08b42e4a6181c06dcd8a38b84147890b896eab6f1a5eace0e0f1a4cce37f7230180ffa8183c5883c2023cb5f2da9dca635c417339294b4de25a697df4ae07b2e94e40df88719de14dfc0e9b19e07b9874fc5cb36e7332cd8f4d504e3a7f78c97507f71d421da0f3096a964d1d9f6817c4ac08517548af2bae3126818b5d4d9d3fe1f430085ae5c1a86ca0728c4eba4e2fe3ca97b9d2c36e0f17ee3974524af9252b6b67f47c34192fb5d9736fdcba9491b07847afa527c84f604a33037ff50a45f2ce5766dff18c7782d5a59106ba471f5631d556641e9227ff2e03179dc48cf4760143beec9477ba4241cedcd2d41e9ef9e993208f2576681a5c0dfd347e7494ba4f62d548f734526f7300f150c621641fc6d19925858c1ef57254ac23d809c702312b2aece0e5677baab6a691b80561e56d03dca67b6497f3c38f09de5ccdd33abf8a23e56392ab79b0db6d0c8ed251db0148d3c9ad131d419ab5970cf4cb7d3c7864392c25f686aa40755c5bf7e5e89a7f454112abe89e008dc08e87a049f6f2327b7719c039a7d255a1c086f0dec4e2fe9c4467c22c941b944d308ba6c40497c56a4180305ef02e50525f6e9bda2f3a0c1baf8b1aa374c5ae384d168c94bd72c3ecb3a8972385c6af0ee9e7da2a4249071a172cf9426832e141c8b0128d8f514879f3c7b91b7b28c8a4873299f02e9f1e1f5a1c8c66cfb0384f338504e6e7b19d778236a8df7272492a74ad6ee7f42c6a4d163bb48279ba2db55b22d46c5e380dddc5634ee044adf2a69c7595f207cd05168429411bd87b1fad524252da7e241c4db73e6af9e9fb86079909993c87af01d597738edc49cc07f0da97f162369687c7744b928ca46d903db98a0745afd132422eff3b974fcdd2f848be59373c47161d568a5305ba71ce65d503b3b95d6a3a44603566d64f419fa5cf0b8bd02175476c6e9e59d1ed0c9cbd69601f7f03d0082616ca244f8d75260dde4404933cf327b8249c2cf3c191bf0f5df13ec7deab18da052eccf1af9a9a3c6195b13e30d85bd9762e4cff47c6c5b59e0dfa2bd02d9b5b6e7308915f59b8d3dede20be8831de5588de25f2e528f9feaac2b054a2b4b570910a25fd590bf3c9dc5c213a74f581b1467cc4fc3173f944654ac99a0e5c2f408562069dd39ebda8070fdee1844dda7a98441c822ea352fd9fb3a8a48262dedfa1da73e73eb6b32eec23ff83325613754fb418762de048c99bfe14fd5b42f6f1e3e300f4e18ab142266667d6a1d800225d59d0523264f6a21c1768b3862265fe96f9386374acdccc7a47269a9b4ece54e0b316a521b1ff21b4b206c6cb0347772b996f1f9ccd07d8cbc240e8651b6310544cf7d0aa84379268409512f551922df2b8a6d990a539be71beb8619ca80b5cd86af2e8f4fa7eb1227360c102c1c1c58194fc3aea6ab57ff404ef3435a94f76d0cb67ded5f1bd7b7f5146885492b5cd0d159606ecef0e27f34ce08105e709e625e8a5474ae4abf518d6b1b8f5200b341ef822722a693d3f85f46895d0099626702112d41211e414cdabaae0daf62e5948bfaa065b72f015f4fd68da65f11ba3b2b95f2fd2933eab07a62a08eea81b4e4f9effdfc4771c3b11390ede2d6d95015495227ae344e239401cabe05c2c9bcb2d2e63d32d91987440e32654cf616f86b37642b66711afb48911a278e669089429c1b4b63dd52d73370275e48c6d96d9d7265138f85fc2275f0e8d39752b1fbf1c0b06d9e0ab134d3dae491e4cb56b32325805d27e1b84110e17880a6860fa0c53906dd1c5a37d11261b3b59d462162b146a503bb6773e6d3a7f73514dc35b1974a971d9da2a3a9efe630a8a38e0a7ff5791054b2de3ff440df7fb9283746c04dfab0084006d8468e33fefeebcb596063cd98b71666db46afaee23775e0a63471311726e92c7a3930ea6a39ba35a1346c4a432c23b3c244bc527646de831772af1954f44f19115b97855fb0105445e948def4ce156d703aafb45176b346258584803c530088cdc19a24387ce24fdee37055bd373a8aaf8b62d107ef5478547e8ed8d3cb75009245a7e9d4adf58539c04b8ff6118d852de78e7a0a5ffa9ee37186c541382b624bf1e1e66972cce766a3490345f7952779be539955806985298f8b09031a826b33c22307dbea6a2af844a6c5552b26f4908beffebd38c0c93a0c83bbbc53cd3b23f24904fbfffa5595de61180f0c0ffba83981a259f253129ca4c54dced91394dfbc461516e73b00aa97d92111b5134e93099c514ad8ff915c66797c7250aaa3cedb3cdd11a893e2514461cb8f42a4060072b0c1fa8e31a10870aa5dd5498ce224ee289d0cb7f4bc3d9c5baba10f0f325f45d0403cf180d9979a59f06429768a8ffee928612fbefec12e85f8ae831ad03988e99ff4b2e00fc6d2ebe25d21d3855fcc0e3ed48f046def2f890d29c03dff2d401058068dc48d815e54c2f32069df202b5bfe91c92deb7731fcc7ad3f905eb23b0dc8c271664b6ecb749f3b4bd0e61c1eee0b77729c4060eaa06a04ccebaed13cbead754c6e3ca7d57edc37065c2557be32607c00d87c681a26069c3802e0838073fed5317d117aa22898c9d513a0422056eebb4206a2df93401985df1ef72b7e93da8e00427c40722f171c2dd05dcde9f3cd708d3a9811a5f2a8af6dd71b3069c431eb63c63d7b6833b9f8850b374120ef4efdd0966ba89adaa05f487c0db27946b0670ea4d5500053ffd1843c2d81493e46a05e24dd7e6d363335e5a4dd4e07a1cbed23ab4231b38a89dec7c73175af19167bd3fd97390b416cc27ea0bd9eb023b4d4a2e96d39d519f65648279f7e28cd49fca3e00d3ee5b324b924d153cba782c0916d7df84680ce2c8dd0df257dfb851426000168352653f62e07db2f9c9d801a716322851e160fe44bd0738458d7c223f01cef15ca504b50c1b6026990648e0281331afe5d9c4f9f716c2f6bcaf1502c23f7f289a9535082131e6ffd43dd39ddfafe48f1e91c7f772f248fef815eadf54b38e56d414056cbca685e567ea688fb28f0ddebab58abedf386cb97b2932efe338ce64bc28e60492567e0d236bc8c3e2cc9e14b326da4d181771522f9d6822bfa4da0c1c395bf633dbeb09354b088e9e07916c990e97e54a5a2b9b85d87d0ca62c43f7995ba11f1f1e6e66dbba7b2907a85e78c99fc7760567bee26b787198641aed053a1605ba6ee3863f65cd50a7505d03fccd79629cf74bbb98e25cc303aaf23757ae87a86d3d30e951b123e1b201b4b52a88569c2342f65098221ad58ae22f45eca87540fa5b807bf4dffe21063a7c639e2227cc7bd9ec960de89ede99520bd421e42f50468c0a9c4931df3b7c40fb4128bfaf0c799176e94b2815324ec0481c4ae48a836a08e41e3336b7a301de43ce136ad5230e00cfdab3fc86122e6281948f19ef5756138b24aaeb0fd83061860e288f090145dc331e1aef6dc0b57e6123e0840e3efd94cfde89039797020cc3b8b6a5b01918d7e886e6dd2937b610609d9beb5eb510b489a9175d463b0a0baf9aebcdc2377af1f83ae119568ac908d94e51ae0164cebbdf8f10c6dd6e5bae1a6f3a11c73ac33ccaf779917466197568624974d4dc4d7a0ebb67ed6ac6c4b47c449870eb3a2b577e4888b8237db4c401a5697b519caf678b283e3801e93943c2f4ff79df3e3ddbbfcc3b8e92ebaa89bb4692577d34964c24677d84139fe3c6d00a99baca9857366045faa84613d8cbcff2250c96d9f3bfb8b708e95a5565270cee05881a6f9e19fe8219773cf02ed942ae6da4c851fec6f18f7063a021747b1fec3edeec2cfea8c209a27b5f32d39ce95a449d33644a13037e017d4088f0df3c0945c817758b177d927fbe8dce78dd9bec148c3e39ad550188dacf17863fca121f14e9b93f4f442f9fb56feb4d013324be93663b983541af1ea5b485304e00073601848b01c692fd53eb5582456c30369586bd0eee11d0446647cc1c486fbbccc3d5a324530d5e655f78a51b365c246929e66231bbbcb795e4e6b2c5635df620b1d1186cb0a69b2472f3ec2fa3578d0fe185e69ec2de80c2db61fb845abb4f63894c302079542b236f0428e4cbeba478089f095c64841f629f75ffd0ea4780d497d00e0b063dd717591a7b64cfbd59de6e07192ab3dc0ba6833ddbde60c11cf3867443b4414cd4462e3cf8082c7f21c1ffec217ed828e8e9312b8c461e3e201b71358c0afa52c26d11e15ab2bef64b4bf04ca1009f6ed719654e075410e70c1031ac78e6a0b7267424799e49b58b21f8fdde8faad78fc4d63f46357712229c95634d0d1c68e68907d25677f89b080d7152f9b738999228e3227f600baeafa94e551f431aad0d0fd5b2f5ffbb839102e3785ffa6e548dcd088cc2a45409d9c54029e3560b47ace17257a94cfa7de03b531975dca2aaad82dd09896f540025c42ff7c5105bfdb80203d35cbf9185852728807ce746b0debd78356a224ec683753ea4ccf15a0875cd8b8485cd6903392398b07c1e86286a008168657929c19ea8ce9368f00ffe064ea93f478a103772455c0498c37857a28c81a69e3435285c025c31289b43147a60090892281a2c848d63a1d573f159bafd30d2566567691d7ccd785912a9c954999f0ae02e98cb5b0b58732b5a6f1575b73e82dfd437cf3d9ae430ae532ed52663eddee297067936962a58d2ef849a56b76dabd5539f38e556972ceb73262a1dd2646f98e2d3c4990c5749db7673a0a86cc4d3176dfdc8fdb3d936adb58edd75993345e09ef960f1421d30e54fc38a45bef62dbc2217e4220899ec35f6de509144fa1d2567b9b394b49e8c71c487db64ee539f09347ecef86e0e94236a9067200728c05c98765ed2c4276db86e67b457b33365d475d327d34f47987b0976c6ec7b4eebe558b9e29437b1d22f3eac09e98f640060d2a0620737df525f296d841141770338b0b3a0d85f12dd0302d2492613ca7cc69c2066ee599ead73d28ad55a300f5311b4151f5a53d8f72dfb2e05f1ddb9094382b60c9fe274aea0bbf73f5ea093ab651e8ff0832e9d0eff04196aa48fb431115c896ca99ab06998f06685172468c72f92a0b1404d5e3d33c7a9d9e9dddc5b93699db56ee1becae2a0382f11e0a3c068672ed73674b33c08a149bc3dd052c1ffaf982ec5385625c2e78acab6dfcaec62f1853109c5d1723476928501b76d582bbce9bb4b48263c81afe9e1381296f8201d2d72a42a6b97920e68a508f5be344edadf09ceeadc5d7842080347fa0ddb4d6009b49e0dadb7d5f3dee3fbcd031027cb9fb66af276c88af8c0710b7524f8f3c839dee913d7ae29a66d72f2eceb338539a9661239d2066b77dd1fe964512cf98af70bde954d9b80a2d4588c796a50abc470334bd0434c015c3c03b67944c17b3491d22905e0cec3c9c0cc43ddd356f29a1d7fc5d88a3f1c4401dc10680e152d1d617fc4b27fefb56c72b673fa4eafc87e4e8ec0bb5d05c7f9dd7f07e720e86bfda53546993a59640310879e03c50a378b12d6c316603464071bbc65dd4551ff60c0f2000c27dc8dd9768d7177672a0e3a2454e327d888b3db5adeb773e4c38e701733ad70e9cd9301ba5da49c12e06dbaa8228a517ba4171130cae93544f476a937692e202f7c0d163d4b405200f836c90fdd32d96233a1a35799c180ec834e16b897f52a79d81e221c8467cb9a9ebbf80c2f559b420c9c4b9d9fb0bf3b6efc0e60ca7d365fb0d7b8ac535df9ec48a337a683b7f314f62a66e80d792968b8f5b31e411ee5c57a4c7e2ad244bd025c76685398233223d16520b0876a106325868ec3f373274647e70d95983f77ada2706ae302bd92f7c8cbc288c3669c8f48dc6f439e875ec5d65a52985abb0ec358bf4ca1da7f13de53a68d0364454c8e062435977cfe445fd113c05df3510a7c98de92c328cb10bf8c657ec6dbbd4f34ac81e004012d9bd89d15e88264ba3e79317ea757147c5b5b3082acc6f2bb90446c5930a2a38d6ed79a6d9190c56673e48cb285c020b84f5fbd6be80b0953f60febd1723ebc40997f1b826c15fd4c3f582fe2079dedd646ce1fc84e2ee446d58f023c9420a029e12111b33aa2aa3788d95e549eaf26eba30016685cae5867c13e62885d1d20b0c1d24635d42cea24ab0f11d4f12080640b7630a24f57844ff12645cbc644f90621ff4a2e338cf86976586f8fe7e24aeef40b5c8dc1f649ffcef139ef6b05e392b971fb8fcbd3d942ec6f0d987e78c09cf44fe431dfba2b42f06d4eb883f076b9fcb102531c155a4b82df8a7e87198736278e51f11e2157e853d06f4598ee0006dad953e4325a224612a973e8f381388960d4ca196a148933acbdf8b04e5f6f156510c8f3fc134b528cda312fb7852e7118552e943113093cc30dc6cab49c313da4afc659fd20485aa48bf97c0065d281aa0fed5c64dcda09620ce982d1397610a20e1888d81209ad758240b153e4968464ff49c1813d5f3157019cd67de31ad040e481dbd4d9ef18c3b85dc3a75f18aaade9f047a141ec32c8ce9ec82253d20e69a755ecc4a3a352e6e525152924a3a75844af90c784ce45640c6e4dbb71a53b68d91438190496ff900d7df607f9611a1f52deed3ee031e8646f996e08d750da35fa42201a9ff4ba9d7f55364f3ace258fbc061042c26c304296d897133daf0a438312e4d148abd0193ae8428ae7b803fa1842820c1a557eb4c58ec3b5ea4d50b6c96f1e83edfb801c4977a3f2bd23648568d13d34506b6fd09f8085597cb511c1cfdda24a000154e2fd455637501fcce87035ab794b44688b2aacf4c4b95316c9be88f89b6337c207defc51d903716427ce600d1ace2ae5620f8be48054e13ad4b031f35dac89825ea415bbc7296ef8f82f8277c91e04eb53a39f3b4c1bd54340352cdc46b46f44dfe5e3394c7484886b94d180a711386edbbb4c5543351a44ad2c7c7996f249659b56d451146a1378f83d0ca8cd2c2e2b77d9fc98f880d745f7d2dc2cedaa4030f5c92889a58bf405e8458aac62df60972929d0debb1753a85fb9947f3e61e36a62fbc88c729d14d783f2637b93f4791cfef3cdffa73db4af8518ec801a0239af80d4015daca293b957f769c426cdec978fe01d9ee9c3e1870191f03fd50f639f5647beaa923c595b2271ce6210ef04adce88ac3602adde790683d2bff89e9d2f3cafe2c3f84c0a63bf23155dd64221d56f9e79a2102517757b4c3907a17bdbaa1a159606d1f33a5172647b07a64631acd4a8f18a4fd6f064bda601da78e05fc5e79b3b5cd7da2344753420fd4d90bd4dcbcca373de2d2ef7d296ff5039a4682d56400a90ad86a814d1514fec87d6ef7cd8696a0feb22998ae13ad469102b7304ed41c1bf3d5ca52f9a877f73ca61b3a9705de87a8dc6371fa93aa848c524b38ad39a28954cbf32ffd42f275442414a0898fbb2b53d51b11b92c04b82c88d8488c802e0c49e41a8f65fc93a98e96e30912a9d7988b88f0d9f16d75bf4bc1b041f42deb0565fdbb4be82523e0adba92e4726d2fd7786c53af8fefc34f4eb1e0c8c8215446a90d4866130fb5bad466fd9a1c25b1d67b98ac063550927cc75918f58b241a6569106be2fe398ffcededffcbf761e95acec569e8970d8d922b05e8a95d484fb6aac94cd900ff7b25b06f47c47d936e8f26033358a4ddbd18fcf02515dfc4cfe961b8d120fcf220cdeb9beada13b5c29f7187abb17ea6b7d36d52e821c644fc6fb13300a1840910ee8f6f6310baf040923a51e1bda5fbfa3cf7b449bc4e45a86231bb2b7f291db597ec1e14d178a699ef50f57b636d7a3e949bbac970ec52afefdf75d271c2d57ca52f7817d3c930402d68ed82ffbfe0bbbc0ad708db073ff08c87daf6a0f69b3234ddce75383439807bb3714def37f9db7491e14141b64534852f1ed899ab8ca8772ac8f7201c64cdcadd451a0b6a02c561e317a37f8e22ec15d41ef522bc2bf1d4a4a8d3fadbfb8dd7ceb4c0f5ad7ba1932c99fd6c037c4ac2ee46aa5b8e7b7074e3262570c8824dbbdf36c82ea40251b31d5cf7aa9d5e3c2da3f6bdac0e2c4caed1407c3bd084204d72714aad67d131b640fb4c6211ea1ada31b57e279fd094d4b0936229f5accb1cce5b32667d26d8cea5f3245595568afc33196c7a519d29759c27b5eaa31b4249b4f591c1ee5c8621e6605125b8a6684c4ce9c359250176a354bbe8964b4b729211d2aceb38e6af58f3c2ddf4f30a191ed2f9a7e36b938f5a3dc6eaf8a59403241f7fb2eb21ca8720e4ba558e277496070f0f4d9b3c3d7f083cd87d3219cb53d4cec78c5ff75de614cb4774cc270080b82cf5faed9117e51ed535f28f6388baf139152610f72bcff4dc0245132e1af10f33d672b5722eb74aee016b4411fb4eac46e232308535e0a343a6677bfa60c21b2dcfa4fa73eff27eaceef0773b8fa053428a626287188e868cbe1305eb704d6aafcf1788de5b17420763218c59f675550190abe493affb68314572fe5520c8dadc8d8d7fa385e41e3c0e1939b8f587bfbd7590b4aeb5b6bd35c4a9d0b22cda94135802b9a37dacc514759f001e8e320c85f06c51b3e1a01576c5c615ca42cd5427e31a8c4b417db895f3c932ae487f2d2a9399ef3cc84e50e6a0ac79d6bbb53ac7a2274beb7fe208f27da8d4ade996b760c5dc30eff41837fa8bcb459d0b2c84033415a6d49fbfcd81597131da2dc0497a2803723a09c899ea430c1c1ab72f7c8c44957249bd8922dbff8a7389f697510a8aadfa53652e14147305884bfc89cfcc03c27beaa6f78f1abb45765fef801e63c1ff402139688c97065fcb976adb9b371ac21e633bf8723a8ac58248d65fc581bb5bee2b494ca40c4b154769c021990a7db6b891f06ec087ff082e179d054020bdea03d2dadb693f1518a42fd3e2e7fffdbdf3fa825da9dfeda8a7041561976d1527863f0adc86f3440ecc7efc129cd6ac0256af765df2ac05c67d6c34a1338c9f9779409cce77b9eff5fb2e5d8e3a6a7b6620533fb5652fba4455f288de09b9e68407605e385154d14b4e7318c9afa9bd1ecb18fc6057c0e7b9ddb206c4acc6f71c8505e968216fcba29053a3613d406bb0ecd733c94ddea1d380e34b400c94c13cbe8243daa91b108722231826ae86895cffdf2fcf2e7aad0fe5a1a06b011e29bd39548c8c750f0ea72e66e569c8e804f59677030436becfcaccf814087f452d09ca1a3b0d47ad436b2bd1c8dbb0f4b70f8bc9e2480cd2641434cffa6f78c30021ab65f22c7d6d36426c185a8d8e2a52581f5d447d71883f34bcb41e702558774aa8c4d0b205b6b37286fbc757615d06273939beb9472145e2dd90262eedac12acd62dea42d2e524bf5fa00db0fceafdb0ddc316f817e9be7548f378d70adea5d1bdafd974b754ddb619e7170b9f2affc3ce4f81ed766592e543f912702c23015ec1838e1082c41f0cd4535c9e5b958017d4b73b98ff883545967f7efb31806013fe7c7957d0c980c17ddb997b34812a2c9c40ad87ffba5c10fb6f8b24e08df87a63858d8f77be7a86b5dfa277ababeff7aa44dfa552e3e6dd79fcf78a93a810d4305d5ddbbc78ecbf7ed3fe94972b8eefff9b916f1cb3e9de3926f4ba1d924986a6282f9a25ca2b8369c8f1050757b6ca447451dbadb819cb6644b2a6033538647dd16ad4974d00f0b8367d9c6e1b327db4b871fdfeebd46d4f92123c02d81c6c0afa7bd60b5043d7a06604c5b1f0c51bcf0e1856c93353966c88cdc0c8fd8102c8eeed8fc3b7ced19292127a4f73173cf9e779eaac5cbe3956eff102434495f1268035820dbb93a400ea252bbe976402fd350dcba35b6bfc36b4941a062fdd9d51aecee4128d1441c64c886a5d6244dd8723fdcd01bd6f6ffeeb85958d6b949bc817bc78e93ddc38c3baa214bafa93fead0413aa5c6d6a0a492d9e15e45b9b47c27d626a08dd5f690a7b51b50cfa51c7dcc86b8436e7be12cd92411f118efd56e2cfdfbd23b3fd27122b48b9425fefeaa766bb5289960c4987a715f80029da61e9606ae13e34b7942c45b6971d745192637ff5315a3f13e6377dd0cf19ba90a3bd8e408eaf55a91d97f08b3df685b537108abce53e6ceaaf858ac4af3b3a4df169d97c1ca253ccfcc23f75ffaff68d97013f9e197328bcefd695589e960c5a387eaba9c423c63358223064c1540a814686756967381eba8ca406f948c6b9f835e567fa5f9811fcdb69d281615f268810a11bfa392377b2d42a9b87abd004f171b0d78b4ec60031fe4c1085e726bf31f9c6607fb1502fe0370c16a5d16133c27052079a95506c54cfde55342708f746e889303e79a066f7724ed8a07faec079106485559c9dda6bdbede645f2ab689f54f31b1f654f22c52cefa69dccefec6466e8070d9ae07112e0bb6c78f9b36ceac395f928178970efedf87007cc11451ebdae2e735f967d2aba0a144e8c5041c6b9fed28ad5502bb59a74ab0ba036e1553672c681a51837acd49854a1e1f725902f245704cb00f2603a0fb2b35c4a9671e642f49e48aff324f69d69f1c66d3c8b51d417f5f55aa3ee47652cfc6c15ea075eca28a1bd72abb8be87ad2bd0d0f12be707b9d35384f4e69b5f79bb59cdf4ed4c66c4e11ddf499427fcd1f42dced84d4e8313f1949346abe661a56390c9c849e55132198fa610b7359844bfa01e6303ace19ee7a7936fabd649c2c41655bff7829da928ace5efffeacefc335f6b42023bc5fd2fe32e72aa70ced1c9fd8032d9e33e5d34cc345e22a98a8db460e667f6e3bacaec382ccf124da2070ad2374d82a6fa207367465b4dfc6cdc7e34fa8157c66579e1001720cd2c637266418b6f8a89becdcb8d089704b2450c8510f80801f3b002bfd9a1ac09217570b3cdb97a50d7da2f68f27f3ad262fa44c865cce3136f48e634bf8d5de2ffbd2376143acaba03f7e40ea769b8edc4b37343f0dfdf2e5cdb60b97a7a972dc037cf7e22bb4e5270b81ad8871c49424b6b34ba039492e53d58e49bf48a8eef0df51bcf952b34e620d070f903a4c26093b53b1259d14a6b046454501614cdd10df1f0f2f0ba69deea3b8941af8576fdeb7cd2c8c256080b980cdfa3faa2c38e33ba2f2243c6aa65cf5f2e0ff4072d4f1db7d4811573310c841c3bf6eae4ca4630bba5314a3997ab2f75de3a482267657a018aed48625c1f2bf56f3a14f9e0f8dd5c41d62003426e76ff44db936dd4c1b20b7d082f35091d05d6196b02702e7d78c12d5fdca885eb299deacf2fed7aec88991dfd262b8bff4d2546c23b34e876b62f9f13d20d0f370a806b3c7e8dac476f89a0102c6f1a9d7de5e2c5a8d6250f9da9bb6c1f9ac2b396fc928d5c8852e47f90e89fbaeee037e6380cfa06358cd2fd9ade7fa7c4365b895326f3eca9e45ef9ce97fa6ad8eab8b6a668539cbbe9e0c1b8f5eee98a1b521992d94d3827043b19acb07fd14f69bd7087563a6fe7d4e540fba8f2370f9296319ce67ce15df9c9969c7777b1c8746301dcf6e1c8787a121995522ee41af27718d9fd7cb6eef04c22f44f9caf887c11b5b614ea68849fcdc6b05d811a2b60d3c373928e4dc191c9874e70dab2146fb8b80210996cfed0afb6eae70f9ccc69b117c5bfe18982b26610c17b8cd00809571dbaeaad0770f24e84c6ebbcec4047cc8e98990611a1913085746d4fea71e06561951b4f5b3d5317a04e597df8d531f233a2920757680524b0a10e2f2f059826c13376c2648121ff12c5105898d6ad96349d2c8f59e1b5c2da1ae904ee6e8582a4b96c4746c4ea747372f3d78746d90b827fb80590b72ac435ef5289175a9413921b84431bae0a637b0d6df1c6978909e61759b225e522dc7eaf76997cf3d11d14ccc17f7b368822f37ebd15aa90b0a7de5852e002a61a3a050972c91764003c8a0711020c750e7bf9a9cab9975d4faee238b3d6f542e6bd431770d1e7da7483f6e114159e00003a3843ab6f210637087ecd4200e6074925c8ed8f10341d40ed0a94b5973c62e10afd7fd895491f0a51f7409c7577cce672b4a6e48fc3e997de2f3eef4909a15059001cd9a8898472c53d9a52ba11aae076ecc5cd5ac1de7169b21915758b7d476a7d9cd8ec04cf73c4a32701b71a281357ae11596063f2cd5fccc3a9ce04f5d1653b23e3d1e56a584489cdaf475cf550c0c257729914f3157d7a35ca5f94cf2bab11591bc31fcd97ae741c95ff239f83f3fb2affc04ddca8a7905845085a5c2bbc783313471abd5ce50237a8f95f10e74e7db575a345af647d0923e2fbc71e2c13244c7378c1fddbc3c4b2e52e1d26d89f26369bc7804ad27273a5ef68e50fae4b1df397e027088aac1a3a7e9dfb780e5fca482cec42bdd1195f7cdc94e8e1b7999c69e0d94f581c0c8d30d6fbcc3cb86bb8e5da32bf155865da7581e04bc1e7f8ebe2cce60bedf88405def084541a622cebfa2ba7208bf8809b1df3986bf28c3974e4afb232b5898ac838770555f235c8438ce1ade4591ee9886502d389b059c6bec9bcd02948dff5d8fafa517cfa4bf01311ef921a5c4a1b910a3788c67d45be8f8007c2f6a6bbac2020a295ee5c263606e9a336e9df46c7f0728076bd7c4ebd4b8f8edb65c1bd33722d303bf9f89d5a68275d48fcf7ca8fe122c451284a3a5ece03b18ab798b7589653404dd9e88222933f4b6c558ebb1ba68d75da1e8b90f3e03d7c58364f559d235e12182a75c19c3a0f076d3262e8c76c3bf014e1b05c6461bd18c9d12a51eebea8da711e15a287ef84ec730702d094c0ba24a8bf15ec3284bf99a379610eaf2b28a821d24ea4dc62286b2bf768f69da27e95d2620eb4a60dd285e08f3abe4c8f6bfbf20335bbe6543dea65f9f806d15d387a4f45ce2a5d4fc9ac616bf77a949f22cbb2a8eba27bd98bb7f2beb945a54d7e4ea04f8e4323ea0773483620408e50bcd3f2c9365e162b53996c21f9ce6088647af0ce3698f3adb9e49fdbb955ad029a5c1ff2c85d5ac77c7d38eeb98fdd0f29b69822749887711ac09f026ef123c09a4f3df55855026a84b8f32773b3de4e7a1fb03462a47e40e22e729ca97ec18dceaee469f7e8d2ac312f1d1680446420ebbf9ba1ebe0d38bc062a0a99eae5c2e1d4c57f6516f29213d400bfdffd26b2f8a79bf8795cbfab32344d37cba7395c97d2d7ab6c33b8de13f0a5f3645e765c7ea0c5264d5ee1959bdf3c8449ff925bce401160a9a68023990870529a2a3954e1fca39fb2bf23f6a849287670635bba9392433366e2ec9eefeff8ea5c2ddc205a7df8bf089d2247a435cc82626c06d2ade6b807462a4a7c9b5ade9bfc1c7cfaa8f142c73a826c0d8941627001a2736ddf16f283f51b29605d18c648fd84798a428c4bdfca1c03dd12f723487af0ade278d09b55534dae947333475357e980d425a67cd3d032746696151f1de2af517c8ecf34ddd0a3e4354b103f579018646ce34dc0234238634b16dc313246de2799740c8ff7bb1a30821a4781483133db61fc6c345d656b652f78f652208eca53ff7bc866108f80b050e5306246f4035513ca02303d029211c233a2bbb2fcf18621e9f785911f28378c33fda370a2a4008610cad3c1e181610dbdaa262214174857e9192f8fbc52975b40fa345b41b116b7bfb14c94d113af6e9960f95ea1f1c2aba5283f662cdcf116ed7374c5c027af58ccce97689ee21a9183d37a103c1f9e9caea230854d80b6e9f87f7e20c459b79250982bee21cc2ff202863298671b48eb3b826c03b36e265114a5e725da6ab96d640fefb960e0a163220e35f1b2003b2875bdc619fa0c6afd20c0c5a3f308815871cebac1724780d59062218e9fae6427af5571ca0823dbf0538f167d5262306bce8df3159099564a3439dc3c5e91dfacf2ceb330749228f8989d5ee83fc58346bdb6bd3ca1d5338bea17faf724f83415d489c5706b679678b48b59aa1dcaf6c88b7cb9af1e730a37b9670cfc3add7922cc2aa42f29bc827a96204b45dfb6c00b879d5e5c86717e3fbbb85b8022eb2d173394965c06da6768c584975f2414b2badfb224c7f3f1f92e4e2030670b0e02e46fe2e1db02f2a772c774de5a82c3070f16571b83078bb972e75f68834a4cb119e0c21657cf274635ab2fe27daa66a677fa2f323de47b0c4fecd231be5101efa608265f50fdf5d73bbc43d4d6458d3a609bceb51b7301c82fa28445cfb50ddf11a7a6bb96464f04da8ecd2f64ed40b946787d1062d5c1451f705847b3bf83dd096ef4cdff3f11fac22a97ba151ccd55e3693cc26dc1af431c36916fdd7d81c898ef4e23e56a57271cece6df8800f2cad98b8da2bb59cc1eb92991c15c3654cf855d316fe4c11621023fe294ae36aba828a0ce18cc77495522ad18bb0dbc168a266f0da75ea45701b63f68a3427a6a9f0079ff236c20d496aae18313d91d03ca34412db504ff684bf7db1847c023d6eff75e65f468e5e728d773c7822dbb6221fb83b101a757568d2e0135e4faf8c901ac92b6ae5bb7452ac5256e30e90cf52875ade273df674fafa8ff3691bccfe38b9f334df65e9d56f3f434de580121022365450e25413a8781bb17fb71f3894ed6138296bca3364e38c18e5bbf13469bd26aa90965da2886f814d2dacbba49c17cddab57b66370ce5d41f2aed3a</script>
-</div>
-<script src="/lib/blog-encrypt.js"></script><link href="/css/blog-encrypt.css" rel="stylesheet" type="text/css">
+        <h2 id="Part-I-前置技能"><a href="#Part-I-前置技能" class="headerlink" title="Part I 前置技能"></a>Part I 前置技能</h2><h3 id="数论分块"><a href="#数论分块" class="headerlink" title="数论分块"></a><strong>数论分块</strong></h3><hr>
+<p>性质一:对于$\large \lfloor \frac Ni \rfloor$,最多只有$2\sqrt{N}$种取值</p>
+<p>性质二:对于使得$\large \lfloor \frac N{i’} \rfloor$=$\large \lfloor \frac Ni \rfloor$的$i’$,<br>$i’{max}=\large \left \lfloor \frac N{\left \lfloor \frac Ni \right \rfloor } \right \rfloor$</p>
+<p>$e.g.$求$\sum_{i=1}^N \lfloor \frac Ni \rfloor(N&lt;10^{12})$</p>
+<a id="more"></a>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(l=<span class="number">1</span>;l&lt;=n;l=r+<span class="number">1</span>)&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">	r=(n/(n/l));</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">	ans+=(n/l)*(r-l+<span class="number">1</span>); </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
+<p><strong>例一</strong><a href="https://oj.bashu.com.cn/code/problempage.php?problem_id=2019" target="_blank" rel="noopener">$BSOJ2019$</a></p>
+<p><strong>【题意】</strong>:求$\sum_{i=1}^{n}{k\space mod\space i}$</p>
+<p>$\sum_{i=1}^{n}{k\space mod\space i}$<br>$=\sum_{i=1}^{n}{k\space-\lfloor \frac{k}{i} \rfloor<em>i}$<br>$=n </em> k-\sum_{i=1}^{n}{\lfloor \frac{k}{i}\rfloor*i}$</p>
+<p>以这道题为例解释一下怎么做<br>对于同一个${\lfloor \frac{k}{i} \rfloor}$,设其区间为$[l,r]$<br>有$\sum_{i=l}^{r}{\lfloor \frac{k}{i} \rfloor}<em>i \\<br>=\sum_{i=l}^{r}{\lfloor \frac{k}{i} \rfloor}</em>\sum_{i=l}^{r}i$</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(l=<span class="number">1</span>;l&lt;=n;l=r+<span class="number">1</span>)&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">	r=(k/l)?min(k/(k/l),n):n;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">	ans+=(k/l)*Sum(l,r);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
+<p><strong>例二</strong><a href="https://oj.bashu.com.cn/code/problempage.php?problem_id=3713" target="_blank" rel="noopener">$BSOJ3713$</a></p>
+<p>$\sum_{i=1}^{n}\sum_{j=1 \land i \not = j}^{m}(n mod i)(m mod j)\\<br>=\sum_{i=1}^{n}\sum_{j=1}^{m}(n-{\left \lfloor \frac{n}{i} \right \rfloor}i)(m-{\left \lfloor \frac{m}{j} \right \rfloor}j)-\sum_{i=1}^{min(n,m)}(n-{\left \lfloor \frac{n}{i} \right \rfloor}i)(m-{\left \lfloor \frac{m}{i} \right \rfloor}i)\\<br>=\sum_{i=1}^{n}\sum_{j=1}^{m}(n-{\left \lfloor \frac{n}{i} \right \rfloor}i)(m-{\left \lfloor \frac{m}{j} \right \rfloor}j)-\sum_{i=1}^{min(n,m)}(nm+{\left \lfloor \frac{n}{i} \right \rfloor}{\left \lfloor \frac{m}{i} \right \rfloor}i^2-(m{\left \lfloor \frac{n}{i} \right \rfloor}+n{\left \lfloor \frac{m}{i} \right \rfloor})i)<br>$</p>
+<h3 id="积性函数"><a href="#积性函数" class="headerlink" title="积性函数"></a><strong>积性函数</strong></h3><hr>
+<p>首先，我们定义整数集合上的数论函数：定义域和值域都在整数集合中的函数称为数论函数;</p>
+<p>（真正的数论函数定义有所不同，可以自行参考维基）</p>
+<p>那么积性函数就是这样的一类数论函数：</p>
+<p>若函数$f$是积性函数，那么对于任意$gcd\left(i,j\right)=1$，有$f\left(i\ast j\right)=f\left(i\right)\ast f\left(j\right)$</p>
+<p>如果函数$f$在$gcd\left(i,j\right)\neq1$时也满足后面的条件，称函数$f$为完全积性函数</p>
+<p>常见的积性函数：</p>
+<p>$\mu\left(i\right)$，莫比乌斯函数</p>
+<p>$\varphi\left(i\right)$，欧拉函数</p>
+<p>$d\left(i\right)$，约数个数函数</p>
+<p>$\sigma\left(i\right)$，约数和函数</p>
+<p>常见的完全积性函数（注意完全积性函数一定是积性函数）</p>
+<p>$I\left(i\right)=1$，常函数</p>
+<p>$\varepsilon\left(i\right)=\left[i=1\right]$，单位函数</p>
+<p>$id\left(i\right)=i$，恒等函数</p>
+<h3 id="狄利克雷卷积"><a href="#狄利克雷卷积" class="headerlink" title="狄利克雷卷积"></a>狄利克雷卷积</h3><p>嗯这个东西，是今天我要讲的大部分东西的基础<br>那么狄利克雷卷积就是两个数论函数，通过一定的方法相乘：</p>
+<p>定义$\left(g\ast f\right)\left(i\right)=F$，我们称F函数是g和f函数关于i的狄利克雷卷积<br>F的计算方式如下：<br>$F\left(i\right)=\sum_{d|i}g\left(d\right)f\left(\frac id\right)$<br>还是比较好理解的吧？</p>
+<p>狄利克雷卷积满足交换律、结合律，并且有一些经典的结论：</p>
+<p>$\left(\mu\ast I\right)=\varepsilon$</p>
+<p>$\left(\varphi\ast I\right)=id$</p>
+<p>$\left(\mu\ast id\right)=\varphi$</p>
+<p>$\left(I\ast I\right)=d$</p>
+<p>$\left(I\ast id\right)=\sigma$</p>
+<p>其中前面三个，在莫比乌斯反演以及杜教筛中的应用很广泛，后面两个在解决大部分积性函数题目时候也有很大的作用</p>
+<p>Part II 莫比乌斯函数/莫比乌斯反演<br>莫比乌斯函数<br>前面已经提到过这个东西……名字听起来很高大上对不对~<br>实际上它的定义不是特别高大上<br>定义莫比乌斯函数$\mu$</p>
+<p>当$i=1$时，$\mu\left(i\right)=1$</p>
+<p>当$i=\prod_{i=1}^{n}p_i^1$，其中$p_i$是互不相同的质数时，$\mu\left(i\right)=\left(-1\right)^n$</p>
+<p>其余时候$\mu\left(i\right)=0$</p>
+<p>$\mu$函数的两个最重要的性质，在上文中都已经用狄利克雷卷积的形式写过了</p>
+<p>莫比乌斯函数同时也是接下来的莫比乌斯反演的主角</p>
+<h2 id="莫比乌斯反演"><a href="#莫比乌斯反演" class="headerlink" title="莫比乌斯反演"></a>莫比乌斯反演</h2><p>莫比乌斯反演是一个数论反演。当初发明它的主要目的是为了简化计算（1718世纪的时候）</p>
+<h3 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h3><p>$\left(\mu\ast I\right)=\varepsilon$</p>
+<h3 id="实例："><a href="#实例：" class="headerlink" title="实例："></a>实例：</h3><p>设$f=\left(g\ast I\right)$<br>两边同时卷积一个$\mu$，变成<br>$f\ast\mu=g\ast I\ast\mu$<br>$f\ast\mu=g\ast\varepsilon=g$<br>莫比乌斯反演就完成了<br>如果写成$\sum$的形式就是这样的：<br>如果</p>
+<p>$f\left(d\right)=\sum_{i|d}g\left(i\right)$</p>
+<p>那么</p>
+<p>$g\left(i\right)=\sum_{i|d}f\left(i\right)\mu\left(\frac di\right)$</p>
+<p>另一种形式：</p>
+<p>如果</p>
+<p>$f\left(d\right)=\sum_{d|i}g\left(i\right)$</p>
+<p>那么</p>
+<p>$g\left(i\right)=\sum_{d|i}f\left(d\right)\mu\left(\frac di\right)$</p>
+<p>好像在大部分莫比乌斯反演题目中后面再这一种形式更常见一些<br>可以把他们两个理解为&ldquo;对一个东西的所有约数求和&rdquo;以及&ldquo;对一个东西的所有倍数求和&rdquo;然后反演</p>
+<p>为了加深理解，我们先来看一个<a href="http://www.cnblogs.com/dedicatus545/p/8488890.html" target="_blank" rel="noopener">例子</a></p>
+<p>$f(x)=\sum_{i=1}^{n}\sum_{j=1}^{m}[gcd(i,j)=x]$</p>
+<p>$F(x)=\sum_{i=1}^{n}\sum_{j=1}^{m}[x|gcd(i,j)]=\lfloor \frac{n}{x}\rfloor\lfloor \frac{m}{x}\rfloor$</p>
+<p>因为$F(x)=\sum_{x|d}f(d)$</p>
+<p>所以$f(x)=\sum_{x|d}F(d)\mu(\frac{d}{x})$</p>
+<p>注意这里面就是把一个不太好求的东西求了一个和，然后变成了一个很好求的东西，再通过反演把它反向算出来</p>
+<p>再来看下一个例子：求<br>$\sum_{i=1}^{n}\sum_{j=1}^{m}gcd\left(i,j\right)$<br>我们做一步变形，一步非常重要的变形：把$gcd\left(i,j\right)$的值提出来，变成：</p>
+<p>$\sum_{d=1}^{n}d\sum_{i=1}^{n}\sum_{j=1}^{m}\left[gcd\left(i,j\right)=d\right]$</p>
+<p>这一步非常重要，一定要好好理解再继续，因为它是一个超级常用的技巧</p>
+<p>下一步，发现后面$gcd\left(i,j\right)=d$这里的$d$很烦呐，把它除上去：</p>
+<p>$\sum_{d=1}^{n}d\sum_{i=1}^{\frac nd}\sum_{j=1}^{\frac md}\left[gcd\left(i,j\right)=1\right]$</p>
+<p>看到了吗？这就完成了向的转变，后面就反演一下，变成这个形式：</p>
+<p>$\sum_{d=1}^{n}d\sum_{i=1}^{n}\mu\left(i\right)\frac n{id}\frac m{id}$</p>
+<p>设$D=id$，我们先枚举D再枚举D的约数d，变成这个形式</p>
+<p>$\sum_{D=1}^{N}\sum_{d|D}d\mu\left(\frac Dd\right)\frac n{id}\frac m{id}$</p>
+<p>最后面两项提到前面去，变成</p>
+<p>$\sum_{D=1}^{N}\frac n{D}\frac m{D}\sum_{d|D}d\mu\left(\frac Dd\right)$</p>
+<p>发现后面的是一个卷积的形式，就是$\left(\mu\ast id\right)=\varphi$</p>
+<p>所以得到最终结果：</p>
+<p>$\sum_{D=1}^{N}\frac n{D}\frac m{D}\varphi\left(D\right)$</p>
+<p>然后数论分块技巧，在$O\left(\sqrt n\right)$下解决</p>
+<h3 id="【例题】"><a href="#【例题】" class="headerlink" title="_【例题】_"></a>_【例题】_</h3><p><a href="https://oj.bashu.com.cn/code/problempage.php?problem_id=4127" target="_blank" rel="noopener">$BSOJ3431$</a>&amp;<br><a href="https://oj.bashu.com.cn/code/problempage.php?problem_id=4129" target="_blank" rel="noopener">$BSOJ4129$</a></p>
+<p>${\sum_{i=1}^{n}\sum_{j=1}^{m}lcm(i,j)}$</p>
+<p>${=\sum_{i=1}^{n}\sum_{j=1}^{m}\frac{ij}{gcd(i,j)}}$</p>
+<p>${=\sum_{d=1}^{n}\sum_{i=1}^{\left \lfloor \frac{n}{d} \right \rfloor}\sum_{j=1}^{\left \lfloor \frac{m}{d} \right \rfloor}\sum_{k|i,k|j}\mu (k)ijg}$</p>
+<p>令$S[n]=\sum_{i=1}^{n}i$，则</p>
+<p>原式${=\sum_{d=1}^{n}d\sum_{k=1}^{\left\lfloor\frac{n}{d}\right\rfloor}\mu (k)k^2 S(\left \lfloor \frac{n}{gt} \right \rfloor) S(\left \lfloor \frac{m}{gt} \right \rfloor)}$</p>
+<p>令$T=gt$，换元得：</p>
+<p>原式${=\sum_{T=1}^{n}S(\left \lfloor \frac{n}{T} \right \rfloor)S(\left \lfloor \frac{m}{T} \right \rfloor)T\sum_{k|T}\mu (k)k}$</p>
+<p>不妨设${f(n)=\sum_{k|n}\mu(k)\ast k}$</p>
+<p> 则$f(n)$为积性函数，可以在$O(n)$的复杂度内，做线性筛时顺便递推得到：</p>
+<p>　  ${f(i<em>p)=f(i)</em>f(p) ,}$ $i$ $mod$ $p$ ${\neq 0}$</p>
+<p> 　${f(i*p)=f(i) ,}$ $i$ $mod$ $p$ ${=0}$</p>
+<p>（$p$为质数）</p>
+<p>总复杂度：$O(n)$</p>
+<p>变形:<br><a href="https://oj.bashu.com.cn/code/problempage.php?problem_id=4127" target="_blank" rel="noopener">$BSOJ4127$</a></p>
+<p>求$\sum_{i=1}^{n} lcm(i,n)$</p>
+<p>$\sum_{i=1}^{n} lcm(i,n)$</p>
+<p>$=\sum_{i=1}^{n} i \cdot n/gcd(i,n)$</p>
+<p>$=n\sum_{i=1}^{n} i/gcd(i,n)$</p>
+<p>$=n\sum_{d|n}\sum_{i=1}^{n} \frac{i}{d}[gcd(i,n)==d]$</p>
+<p>$=n\sum_{d|n}\sum_{i=1}^{n/d} \frac{i}{d}[gcd(id,n)==d]$</p>
+<p>$=n\sum_{d|n}\sum_{i=1}^{n/d} i[gcd(i,n/d)==1]$</p>
+<p>$=n\sum_{d|n}\sum_{i=1}^{d} i[gcd(i,d)==1]$</p>
+<p>$=n\sum_{d|n}\frac{\varphi(d)d}{2}$</p>
+<p><a href="https://oj.bashu.com.cn/code/problempage.php?problem_id=4347" target="_blank" rel="noopener">$BSOJ4347$</a></p>
+<p>记一个结论:</p>
+<p>$d(i \ast j)=\sum_{x|i}\sum_{y|j}[gcd(x,y)==1]$</p>
+<p><a href="https://blog.csdn.net/ab_ever/article/details/76737617" target="_blank" rel="noopener">题解</a></p>
+<p><a href="https://oj.bashu.com.cn/code/problempage.php?problem_id=4372" target="_blank" rel="noopener">$BSOJ4372$</a></p>
+<p>$\sum\limits_i^n \sum\limits_j^m f(gcd(i,j))$</p>
+<p>$=\sum\limits_d f(d) \sum\limits_i^n \sum\limits_j^m [gcd(i,j)==d]$</p>
+<p>$=\sum\limits_d f(d) \sum\limits_i^{\lfloor\frac{n}{d}\rfloor} \sum\limits_j^{\lfloor\frac{m}{d}\rfloor}  [gcd(i,j)==1]$</p>
+<p>$=\sum\limits_d f(d) \sum\limits_i^{\lfloor\frac{n}{d}\rfloor} \sum\limits_j^{\lfloor\frac{m}{d}\rfloor} \sum_{d|i,d|j} \mu(d)$</p>
+<p>$=\sum_d f(d) \sum_k \mu(k) \lfloor\frac{m}{kd}\rfloor \lfloor\frac{n}{kd}\rfloor$</p>
+<p>令$T=kd$</p>
+<p>$=\sum_T  \lfloor\frac{m}{T}\rfloor \lfloor\frac{n}{T}\rfloor \sum_{d|T}  f(d) \mu(\frac{T}{d})$</p>
+
       
 
       
@@ -297,18 +427,18 @@
   
 <nav id="article-nav">
   
-    <a href="/2019/12/01/%E3%80%90BSOJ3763%E3%80%91%E6%B6%88%E6%81%AF%E4%BC%A0%E9%80%92%20%E6%8D%A2%E6%A0%B9dp/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2019/12/01/%E3%80%90BZOJ4237%E3%80%91%E7%A8%BB%E8%8D%89%E4%BA%BA%20CDQ%E5%88%86%E6%B2%BB%20%E5%8D%95%E8%B0%83%E6%A0%88/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          【BSOJ2769】 消息传递 换根dp
+          【BZOJ4237】稻草人 CDQ分治 单调栈
         
       </div>
     </a>
   
   
-    <a href="/2019/12/01/%E9%95%BF%E9%93%BE%E5%89%96%E5%88%86/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">长链剖分</div>
+    <a href="/2019/12/01/%E7%94%9F%E6%88%90%E5%87%BD%E6%95%B0/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">生成函数</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -327,6 +457,19 @@
             </div>
         </div>
         
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Part-I-前置技能"><span class="toc-number">1.</span> <span class="toc-text">Part I 前置技能</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#数论分块"><span class="toc-number">1.1.</span> <span class="toc-text">数论分块</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#积性函数"><span class="toc-number">1.2.</span> <span class="toc-text">积性函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#狄利克雷卷积"><span class="toc-number">1.3.</span> <span class="toc-text">狄利克雷卷积</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#莫比乌斯反演"><span class="toc-number">2.</span> <span class="toc-text">莫比乌斯反演</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#原理"><span class="toc-number">2.1.</span> <span class="toc-text">原理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#实例："><span class="toc-number">2.2.</span> <span class="toc-text">实例：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#【例题】"><span class="toc-number">2.3.</span> <span class="toc-text">_【例题】_</span></a></li></ol></li></ol>
+                    </div>
+                </span>
+            </div>
+        </div>
         
     </div>
 </aside>
@@ -455,11 +598,11 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color3">游记</a>
+                <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color3">算法</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color3">算法</a>
+                <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color3">游记</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -475,6 +618,10 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color5">换根dp</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color4">单调栈</a>
               </li>
              
@@ -483,19 +630,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color5">换根dp</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color5">学习笔记</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color3">数学</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color5">长链剖分</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -511,11 +646,19 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color5">数据结构</a>
+                <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color3">数学</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color5">长链剖分</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color5">生成函数</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color5">数据结构</a>
               </li>
             
             <div class="clearfix"></div>
