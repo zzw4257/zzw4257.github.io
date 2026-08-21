@@ -17,8 +17,9 @@ button{border:0;border-radius:10px;padding:9px 12px;cursor:pointer;font-weight:7
 .bar.on{transform:translate(-50%,0)}.bar button{margin-left:12px;background:#fff;color:#071d49}.note{color:#667085;font-size:12px;line-height:1.7;margin-top:20px}footer{text-align:center;color:#98a2b3;padding:40px 0 70px}
 @media(max-width:720px){.grid{grid-template-columns:1fr 1fr;gap:9px}.name{font-size:12px}.cb{padding:10px}.sheet{display:block}.mpic{max-height:55vh}.hero{padding-top:42px}.how{align-items:flex-start;flex-direction:column}.code{white-space:normal}.info h3{font-size:23px}}
 .mpic img{cursor:zoom-in}
-.lbox{position:fixed;inset:0;background:#000000e6;z-index:40;display:none;align-items:center;justify-content:center;cursor:zoom-out}
-.lbox.on{display:flex}.lbox img{max-width:97vw;max-height:95vh;border-radius:8px}
+.lbox{position:fixed;inset:0;background:#000000e6;z-index:40;display:none;align-items:center;justify-content:center;flex-direction:column;cursor:zoom-out}
+.lbox.on{display:flex}.lbox img{max-width:97vw;max-height:93vh;border-radius:8px;transition:transform .2s;cursor:zoom-in}
+.lbhint{color:#ffffff99;font-size:12px;margin-top:10px}
 .share{position:fixed;inset:0;background:#071d49aa;z-index:30;display:none;padding:16px;align-items:center;justify-content:center}
 .share.on{display:flex}
 .ssheet{width:min(540px,100%);max-height:92vh;overflow:auto;background:#fff;border-radius:20px;padding:20px;position:relative}

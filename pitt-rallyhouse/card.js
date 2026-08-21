@@ -15,7 +15,7 @@ async function itemCanvas(p){
   const H=1660,FH=1000,cv=document.createElement('canvas');cv.width=1080;cv.height=H;
   const c=cv.getContext('2d');
   c.fillStyle='#f6f7fa';c.fillRect(0,0,1080,H);
-  const fx=48,fy=48,fw=984,im=await loadImg(image(p.id));
+  const fx=48,fy=48,fw=984,im=await loadImg(photoUrl(p.id));
   c.save();rr(c,fx,fy,fw,FH,36);c.clip();
   const cov=place(im,fw,FH,true);
   let blurOK=false;
@@ -64,7 +64,7 @@ async function listCanvas(){
   c.fillStyle='#667085';c.font='500 30px '+FONT;c.fillText('共 '+items.length+' 件',48,172);
   let y=top;
   for(let k=0;k<rows;k++){const p=items[k];
-    try{const im=await loadImg(image(p.id));c.save();rr(c,48,y+12,126,126,24);c.clip();
+    try{const im=await loadImg(photoUrl(p.id));c.save();rr(c,48,y+12,126,126,24);c.clip();
       const pl=place(im,126,126,true);c.drawImage(im,48+pl.x,y+12+pl.y,pl.w,pl.h);c.restore()}catch(e){}
     c.fillStyle='#101828';c.font='700 37px '+FONT;c.fillText(ellip(c,id(p.id)+' '+p.name,560),204,y+58);
     c.fillStyle='#667085';c.font='400 28px '+FONT;c.fillText('实拍 '+p.size+' · '+(p.usd==null?'到店确认':'$'+Number(p.usd).toFixed(2)),204,y+108);
@@ -101,8 +101,9 @@ let SB=null,SNAME='pitt-card.png',SHARE_TEXT='';
 async function showShare(cv,text,name){
   SB=await new Promise(r=>cv.toBlob(r,'image/png'));SNAME=name;
   SHARE_TEXT=text;$('scard').src=URL.createObjectURL(SB);
-  $('share').classList.add('on');document.body.style.overflow='hidden'}
-function closeShare(){$('share').classList.remove('on');document.body.style.overflow=''}
+  const sh=$('share');sh.style.display='flex';sh.classList.add('on');
+  document.body.style.overflow='hidden'}
+function closeShare(){const sh=$('share');sh.style.display='none';sh.classList.remove('on');document.body.style.overflow=''}
 async function openItemShare(){const p=P.find(x=>x.id===cur);await showShare(await itemCanvas(p),cardText(p),'pitt-'+id(p.id)+'.png')}
 async function openCartShare(){if(!C.size)return;await showShare(await listCanvas(),listText(),'pitt-list.png')}
 function toast(m){const e=$('toast');e.textContent=m;e.classList.add('on');clearTimeout(toast.t);toast.t=setTimeout(()=>e.classList.remove('on'),1700)}

@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Pitt 选衣册 · 家人朋友选购参考</title>
-<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="styles.css?v=20260821c">
 </head>
 <body>
 <header><div class="w"><nav><div class="logo"><div class="p">P</div>Pitt 选衣册 · 18件</div><button onclick="guide()">想要怎么发</button></nav></div></header>
@@ -32,11 +32,11 @@
 <div class="id" id="mid"></div><h3 id="mn"></h3><div class="sub" id="ms"></div><div class="big" id="price"></div>
 <div class="facts" id="facts"></div><div class="txt"><b>适合人群</b><br><span id="aud"></span></div>
 <div class="txt"><b>这件怎么看</b><br><span id="note"></span></div>
-<button class="plink" onclick="lightbox(posterUrl(cur))">📄 查看完整海报大图</button>
+<button class="plink" onclick="lightbox(image(cur))">📄 查看完整海报大图</button>
 <div class="acts"><button class="buy" id="buy" onclick="toggleCur()">加入清单</button><button class="detail" onclick="openItemShare()">分享卡片</button><button class="detail" onclick="copyCur()">复制</button></div>
 </div></div></div>
 <div class="bar" id="bar">已选 <b id="ncart">0</b> 件<button onclick="openCartShare()">分享清单</button><button onclick="copyCart()">复制清单</button></div>
-<div class="lbox" id="lbox" onclick="this.classList.remove('on');document.body.style.overflow=''"><img id="limg" alt=""></div>
+<div class="lbox" id="lbox" onclick="closeLb()"><img id="limg" onclick="event.stopPropagation();lbZoom(event)" alt=""><span class="lbhint">点击图片放大 / 点击空白关闭</span></div>
 <div class="share" id="share" onclick="if(event.target===this)closeShare()"><div class="ssheet">
 <button class="x" onclick="closeShare()">×</button>
 <div class="stitle">分享卡片</div><div class="ssub">直接把卡片发给家人朋友，或发给我下单</div>
@@ -50,7 +50,7 @@
 <small>提示：也可以长按上方预览图保存到相册。</small>
 </div></div>
 <div id="toast"></div>
-<script src="data/products.js"></script>
-<script src="app.js"></script>
-<script src="card.js"></script>
+<script src="data/products.js?v=20260821c"></script>
+<script src="app.js?v=20260821c"></script>
+<script src="card.js?v=20260821c"></script>
 </body></html>

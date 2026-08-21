@@ -4,8 +4,8 @@ const $=id=>document.getElementById(id);
 const id=i=>'#'+String(i).padStart(2,'0');
 const usd=x=>x==null?'价格待确认':'$'+Number(x).toFixed(2);
 const cn=x=>x==null?'到店确认':'¥'+x;
-const image=i=>`assets/photo/${String(i).padStart(2,'0')}.webp`;
-const posterUrl=i=>`assets/web/${String(i).padStart(2,'0')}.webp`;
+const image=i=>`assets/web/${String(i).padStart(2,'0')}.webp`;
+const photoUrl=i=>`assets/photo/${String(i).padStart(2,'0')}.webp`;
 
 function filter(f){
   F=f;
@@ -47,7 +47,7 @@ function render(){
 function openM(i){
   cur=i;
   const p=P.find(x=>x.id===i);
-  $('mpic').innerHTML=`<img src="${image(i)}" alt="${id(i)} ${p.name}" onclick="lightbox('${image(i)}')" title="点击查看大图">`;
+  $('mpic').innerHTML=`<img src="${photoUrl(i)}" alt="${id(i)} ${p.name}" onclick="lightbox('${image(i)}')" title="点击查看海报大图">`;
   $('mid').textContent=id(i)+' · '+p.brand;
   $('mn').textContent=p.name;
   $('ms').textContent=p.category+' · '+p.detail;
@@ -77,10 +77,16 @@ async function cp(t){try{await navigator.clipboard.writeText(t);toast('已复制
 function copyCur(){const p=P.find(x=>x.id===cur);cp(line(p)+'\n需要：尺码____ / 数量____')}
 function copyCart(){cp('Pitt 选衣册心愿单\n'+[...C].sort((a,b)=>a-b).map(i=>line(P.find(x=>x.id===i))).join('\n')+'\n请补充每件尺码和数量。')}
 function guide(){cp('想要哪件直接发一句话就行。\n格式：编号 + 尺码 + 数量\n例如：#14 / S / 1件\n\n也可以点「分享卡片」，把生成的卡片图片直接发我，更直观。\n多件先点"＋"加入清单，最后「分享清单」一张图全搞定。')}
-function lightbox(src){$('limg').src=src;$('lbox').classList.add('on');document.body.style.overflow='hidden'}
+function lightbox(src){const im=$('limg');im.dataset.z='';im.style.transform='none';im.src=src;$('lbox').classList.add('on');document.body.style.overflow='hidden'}
+function closeLb(){$('lbox').classList.remove('on');document.body.style.overflow=''}
+function lbZoom(e){const im=$('limg');
+  if(im.dataset.z==='1'){im.dataset.z='';im.style.transform='none';e.currentTarget.style.cursor='zoom-in'}
+  else{const r=im.getBoundingClientRect();
+    im.style.transformOrigin=((e.clientX-r.left)/r.width*100)+'% '+((e.clientY-r.top)/r.height*100)+'%';
+    im.style.transform='scale(2.2)';im.dataset.z='1';e.currentTarget.style.cursor='zoom-out'}}
 document.addEventListener('keydown',e=>{if(e.key!=='Escape')return;
   if($('share').classList.contains('on'))closeShare();
-  else if($('lbox').classList.contains('on')){$('lbox').classList.remove('on');document.body.style.overflow=''}
+  else if($('lbox').classList.contains('on')){closeLb()}
   else closeM()});
 render();
 const m=location.hash.match(/item-(\d+)/); if(m&&P.some(x=>x.id===+m[1])) openM(+m[1]);
