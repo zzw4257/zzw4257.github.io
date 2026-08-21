@@ -32,9 +32,25 @@
 <div class="id" id="mid"></div><h3 id="mn"></h3><div class="sub" id="ms"></div><div class="big" id="price"></div>
 <div class="facts" id="facts"></div><div class="txt"><b>适合人群</b><br><span id="aud"></span></div>
 <div class="txt"><b>这件怎么看</b><br><span id="note"></span></div>
-<div class="acts"><button class="buy" id="buy" onclick="toggleCur()">加入清单</button><button class="detail" onclick="copyCur()">复制这一件</button><button class="detail" onclick="xhsCur()">小红书文案</button></div>
+<button class="plink" onclick="lightbox(posterUrl(cur))">📄 查看完整海报大图</button>
+<div class="acts"><button class="buy" id="buy" onclick="toggleCur()">加入清单</button><button class="detail" onclick="openItemShare()">分享卡片</button><button class="detail" onclick="copyCur()">复制</button></div>
 </div></div></div>
-<div class="bar" id="bar">已选 <b id="ncart">0</b> 件<button onclick="copyCart()">复制清单</button><button onclick="xhsCart()">分享文案</button></div>
+<div class="bar" id="bar">已选 <b id="ncart">0</b> 件<button onclick="openCartShare()">分享清单</button><button onclick="copyCart()">复制清单</button></div>
+<div class="lbox" id="lbox" onclick="this.classList.remove('on');document.body.style.overflow=''"><img id="limg" alt=""></div>
+<div class="share" id="share" onclick="if(event.target===this)closeShare()"><div class="ssheet">
+<button class="x" onclick="closeShare()">×</button>
+<div class="stitle">分享卡片</div><div class="ssub">直接把卡片发给家人朋友，或发给我下单</div>
+<div class="sprev"><img id="scard" alt="分享卡片预览"></div>
+<div class="sacts">
+<button class="buy" onclick="doShare()">分享给朋友</button>
+<button class="detail" onclick="saveCard()">保存图片</button>
+<button class="detail" onclick="copyCard()">复制图片</button>
+<button class="detail" onclick="copyCardText()">复制文字</button>
+</div>
+<small>提示：也可以长按上方预览图保存到相册。</small>
+</div></div>
+<div id="toast"></div>
 <script src="data/products.js"></script>
 <script src="app.js"></script>
+<script src="card.js"></script>
 </body></html>
